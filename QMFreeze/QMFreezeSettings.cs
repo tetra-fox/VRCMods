@@ -2,7 +2,7 @@
 
 namespace QMFreeze
 {
-    public static class Settings
+    public static class QMFreezeSettings
 
     {
         public static bool Enabled { get; set; } = true;
@@ -19,7 +19,7 @@ namespace QMFreeze
         {
             bool _Enabled = MelonPreferences.GetEntryValue<bool>(BuildInfo.Name, "Enabled");
             // Unfreeze the player if they disable QMFreeze while the QM is open, otherwise they will fly infinitely if they try to move
-            if (Mod.Frozen && !_Enabled) Mod.Unfreeze();
+            if (QMFreezeMod.Frozen && !_Enabled) QMFreezeMod.Unfreeze();
             // Then actually set the pref lol
             Enabled = _Enabled;
 

@@ -10,11 +10,10 @@ namespace UnmuteSound
     {
         public const string Name = "UnmuteSound";
         public const string Author = "tetra";
-        public const string Version = "1.0.3";
-        public const string DownloadLink = "https://github.com/tetra-fox/UnmuteSound/releases/download/1.0.3/UnmuteSound.dll";
+        public const string Version = "2.0.0";
     }
 
-    public class Mod : MelonMod
+    public class UnmuteSoundMod : MelonMod
     {
         private static AudioSource _unmuteBlop;
 
@@ -23,14 +22,13 @@ namespace UnmuteSound
 
         public override void OnApplicationStart()
         {
-            if (Utils.HasMod("UI Expansion Kit"))
+            if (!MelonHandler.Mods.Any(m => m.Info.Name.Equals("VRChatUtilityKit")))
             {
-                MelonLogger.Msg("UIX found. Using UIX hook.");
-                UIExpansionKit.API.ExpansionKitApi.OnUiManagerInit += Init;
+                MelonLogger.Error("This mod requires VRChatUtilityKit to run! Download it from loukylor's GitHub:");
+                MelonLogger.Error("https://github.com/loukylor/VRC-Mods");
                 return;
             }
-            MelonLogger.Msg("UIX not found. Using fallback hook.");
-            MelonCoroutines.Start(Hooks.UiManager(Init));
+            VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
         }
 
         private void Init()
@@ -42,7 +40,7 @@ namespace UnmuteSound
                 .ForEach(m =>
                 {
                     HarmonyInstance.Patch(m,
-                        prefix: new HarmonyMethod(typeof(Mod).GetMethod("ToggleVoicePrefix",
+                        prefix: new HarmonyMethod(typeof(UnmuteSoundMod).GetMethod("ToggleVoicePrefix",
                             BindingFlags.NonPublic | BindingFlags.Static)));
                     MelonLogger.Msg("Patched " + m.Name);
                 });
@@ -73,7 +71,7 @@ namespace UnmuteSound
         }
 
         [HarmonyPrefix]
-        private static bool ToggleVoicePrefix(bool __0)
+        private static bool ToggleVoicePrefix(ref bool __0)
         {
             // __0 true on mute
             MelonLogger.Msg(__0);

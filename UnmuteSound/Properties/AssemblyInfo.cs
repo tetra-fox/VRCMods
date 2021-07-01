@@ -7,6 +7,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright(UnmuteSound.BuildInfo.Author)]
 [assembly: AssemblyFileVersion(UnmuteSound.BuildInfo.Version)]
 [assembly: ComVisible(false)]
-[assembly: MelonInfo(typeof(UnmuteSound.Mod), UnmuteSound.BuildInfo.Name, UnmuteSound.BuildInfo.Version, UnmuteSound.BuildInfo.Author, UnmuteSound.BuildInfo.DownloadLink)]
+[assembly: MelonInfo(typeof(UnmuteSound.UnmuteSoundMod), UnmuteSound.BuildInfo.Name, UnmuteSound.BuildInfo.Version, UnmuteSound.BuildInfo.Author)]
 [assembly: MelonGame("VRChat", "VRChat")]
-[assembly: MelonOptionalDependencies(new string[1] { "UIExpansionKit" })]
+[assembly: MelonAdditionalDependencies(new string[1] { "VRChatUtilityKit" })]
