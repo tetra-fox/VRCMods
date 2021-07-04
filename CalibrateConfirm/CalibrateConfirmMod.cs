@@ -13,24 +13,17 @@ namespace CalibrateConfirm
     {
         public const string Name = "CalibrateConfirm";
         public const string Author = "tetra";
-        public const string Version = "2.0.0";
+        public const string Version = "2.0.1";
         public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
     }
 
-    public class CalibrateConfirmMod : MelonMod
+    public class Mod : MelonMod
     {
         private SingleButton _calibrateConfirmButton;
         private GameObject _calibrateButton;
 
         public override void OnApplicationStart()
         {
-            if (!MelonHandler.Mods.Any(m => m.Info.Name.Equals("VRChatUtilityKit")))
-            {
-                MelonLogger.Error("This mod requires VRChatUtilityKit to run! Download it from loukylor's GitHub:");
-                MelonLogger.Error("https://github.com/loukylor/VRC-Mods");
-                return;
-            }
-
             VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
         }
 
@@ -41,7 +34,7 @@ namespace CalibrateConfirm
 
             _calibrateButton = GameObject.Find("UserInterface/QuickMenu/ShortcutMenu/CalibrateButton");
 
-            object timeout = new object();
+            object timeout = new();
 
             _calibrateConfirmButton = new SingleButton(GameObject.Find("UserInterface/QuickMenu/ShortcutMenu"),
                 new Vector3(3, 1, 0), "Confirm?", null, "Are you sure you want to calibrate?",

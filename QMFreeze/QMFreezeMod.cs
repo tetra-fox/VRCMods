@@ -1,5 +1,4 @@
-﻿using HarmonyLib;
-using MelonLoader;
+﻿using MelonLoader;
 using System.Linq;
 using UnityEngine;
 using VRC.SDKBase;
@@ -10,29 +9,22 @@ namespace QMFreeze
     {
         public const string Name = "QMFreeze";
         public const string Author = "tetra";
-        public const string Version = "2.0.0";
+        public const string Version = "2.0.1";
         public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
     }
 
-    public class QMFreezeMod : MelonMod
+    public class Mod : MelonMod
     {
         private static bool _freezeAllowed;
-        public static bool Frozen;
+        private static bool _frozen;
         private static Vector3 _originalGravity;
         private static Vector3 _originalVelocity;
 
         public override void OnApplicationStart()
         {
-            if (!MelonHandler.Mods.Any(m => m.Info.Name.Equals("VRChatUtilityKit")))
-            {
-                MelonLogger.Error("This mod requires VRChatUtilityKit to run! Download it from loukylor's GitHub:");
-                MelonLogger.Error("https://github.com/loukylor/VRC-Mods");
-                return;
-            }
-
             MelonLogger.Msg("Registering settings...");
-            QMFreezeSettings.Register();
-            QMFreezeSettings.Apply();
+            Settings.Register();
+            Settings.OnConfigChanged += OnDisableCheck;
 
             VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
         }
@@ -45,23 +37,14 @@ namespace QMFreeze
 
             MelonLogger.Msg("Setting up emm check...");
             VRChatUtilityKit.Utilities.VRCUtils.OnEmmWorldCheckCompleted += allowed => { _freezeAllowed = allowed; };
+            VRChatUtilityKit.Utilities.NetworkEvents.OnInstanceLeft += LeaveRoomPatch;
 
             MelonLogger.Msg("Initialized!");
         }
 
-        [HarmonyPatch(typeof(NetworkManager), "OnLeftRoom")]
-        private class OnLeftRoomPatch
-        {
-            private static void Prefix()
-            {
-                Unfreeze();
-                _freezeAllowed = false;
-            }
-        }
-
         private static void Freeze()
         {
-            if (!_freezeAllowed || !QMFreezeSettings.Enabled) return;
+            if (!_freezeAllowed || !Settings.Enabled.Value) return;
             _originalGravity = Physics.gravity;
             _originalVelocity = Networking.LocalPlayer.GetVelocity();
 
@@ -70,20 +53,27 @@ namespace QMFreeze
 
             Physics.gravity = Vector3.zero;
             Networking.LocalPlayer.SetVelocity(Vector3.zero);
-            Frozen = true;
+            _frozen = true;
         }
 
-        public static void Unfreeze()
+        private static void Unfreeze()
         {
-            if (!_freezeAllowed || !Frozen || !QMFreezeSettings.Enabled) return;
+            if (!_freezeAllowed || !_frozen) return;
             Physics.gravity = _originalGravity;
             // If you're trying to respawn after being launched at a super high velocity, you might want this off so that you don't keep flying after respawning
-            if (QMFreezeSettings.RestoreVelocity) Networking.LocalPlayer.SetVelocity(_originalVelocity);
-            Frozen = false;
+            if (Settings.RestoreVelocity.Value) Networking.LocalPlayer.SetVelocity(_originalVelocity);
+            _frozen = false;
         }
 
-        public override void OnPreferencesLoaded() => QMFreezeSettings.Apply();
+        private static void OnDisableCheck()
+        {
+            if (_frozen && !Settings.Enabled.Value) Unfreeze();
+        }
 
-        public override void OnPreferencesSaved() => QMFreezeSettings.Apply();
+        private static void LeaveRoomPatch()
+        {
+            Unfreeze();
+            _freezeAllowed = false;
+        }
     }
 }

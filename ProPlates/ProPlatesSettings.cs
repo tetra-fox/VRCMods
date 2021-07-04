@@ -1,23 +1,21 @@
-﻿using System;
-using MelonLoader;
+﻿using MelonLoader;
+using System;
 
 namespace ProPlates
 {
-    public static class ProPlatesSettings
+    public static class Settings
 
     {
-        public static int MaxPronouns { get; set; } = 8;
+        private static MelonPreferences_Category Prefs = MelonPreferences.CreateCategory(BuildInfo.Name, BuildInfo.Name);
+        internal static MelonPreferences_Entry<int> MaxPronouns;
 
-        public static void Register()
-        {
-            MelonPreferences.CreateCategory(BuildInfo.Name, BuildInfo.Name);
-            MelonPreferences.CreateEntry(BuildInfo.Name, "MaxPronouns", 8, "Max pronouns to display (0 to disable)");
-        }
+        internal static event Action OnConfigChanged; 
 
-        public static void Apply()
+        internal static void Register()
         {
-            MaxPronouns = Math.Max(0, MelonPreferences.GetEntryValue<int>(BuildInfo.Name, "MaxPronouns"));
-            ProPlatesMod.ReloadPronouns();
+            MaxPronouns = Prefs.CreateEntry("MaxPronouns", 8, "Max pronouns to display (0 to disable)");
+            foreach (MelonPreferences_Entry e in Prefs.Entries)
+                e.OnValueChangedUntyped += delegate { OnConfigChanged?.Invoke(); };
         }
     }
 }
