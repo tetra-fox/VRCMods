@@ -16,9 +16,9 @@ CalibrateConfirm adds a confirmation prompt when you click calibrate, in the cas
 ## ProPlates
 ProPlates displays a player's pronouns under their nameplate.
 
-If you'd like to let users of this mod easily see your pronouns, simply add a line to your VRChat bio formatted like this: `pronouns: xxx/xxx/xxx`. Note that this is case-insensitive. You may add as many pronouns as you like, however, this mod only displays the first 8 by default. This value is configurable in `MelonPreferences.cfg`, however I don't really recommend going over that because if someone has a lot of pronouns, you'll just see a floating wall of text.
+**If you'd like to set your own pronouns**, simply add a line to your VRChat bio formatted like this: `pronouns: xxx/xxx/xxx`. Note that this is case-insensitive. You may add as many pronouns as you like, however, this mod only displays the first 8 by default. This value is configurable in `MelonPreferences.cfg`, however I don't really recommend going over that because if someone has a lot of pronouns, you'll just see a floating wall of text.
 
-**NOTE:** This mod also has some basic safeguards against trolls because even in the current year, people still think attack helicopter jokes are funny for whatever reason.
+>**NOTE:** This mod also has some basic safeguards against trolls because even in the current year, people still think attack helicopter jokes are funny for whatever reason.
 
 Safeguards include:
 - Default display limit of 8 pronouns
