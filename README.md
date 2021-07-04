@@ -23,7 +23,7 @@ If you'd like to let users of this mod easily see your pronouns, simply add a li
 Safeguards include:
 - Default display limit of 8 pronouns
 - Duplicate checking
-- Pronoun filtering (`pronouns.tab` contains the most common good faith pronouns. If you feel that more pronouns belong here, feel free to send a pull request!)
+- Pronoun filtering (`pronouns.csv` contains the most common good faith pronouns. If you feel that more pronouns belong here, feel free to send a pull request!)
 
 ![a](https://i.imgur.com/AZEl7LA.png)
 
