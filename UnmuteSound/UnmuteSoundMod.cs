@@ -13,7 +13,7 @@ namespace UnmuteSound
         public const string Version = "2.0.0";
     }
 
-    public class UnmuteSoundMod : MelonMod
+    public class Mod : MelonMod
     {
         private static AudioSource _unmuteBlop;
 
@@ -22,12 +22,6 @@ namespace UnmuteSound
 
         public override void OnApplicationStart()
         {
-            if (!MelonHandler.Mods.Any(m => m.Info.Name.Equals("VRChatUtilityKit")))
-            {
-                MelonLogger.Error("This mod requires VRChatUtilityKit to run! Download it from loukylor's GitHub:");
-                MelonLogger.Error("https://github.com/loukylor/VRC-Mods");
-                return;
-            }
             VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
         }
 
@@ -40,21 +34,23 @@ namespace UnmuteSound
                 .ForEach(m =>
                 {
                     HarmonyInstance.Patch(m,
-                        prefix: new HarmonyMethod(typeof(UnmuteSoundMod).GetMethod("ToggleVoicePrefix",
+                        prefix: new HarmonyMethod(typeof(Mod).GetMethod(nameof(ToggleVoicePrefix),
                             BindingFlags.NonPublic | BindingFlags.Static)));
                     MelonLogger.Msg("Patched " + m.Name);
                 });
+            VRChatUtilityKit.Utilities.NetworkEvents.OnInstanceJoined += delegate { _joiningRoom = false; };
+            VRChatUtilityKit.Utilities.NetworkEvents.OnInstanceLeft += delegate { _joiningRoom = true; };
 
             MelonLogger.Msg("Creating audio source...");
 
             // this is the actual name of the audio clip lol
-            AudioClip Blop = GameObject.Find("UserInterface/UnscaledUI/HudContent/Hud/VoiceDotParent")
+            AudioClip blop = GameObject.Find("UserInterface/UnscaledUI/HudContent/Hud/VoiceDotParent")
                 .GetComponent<HudVoiceIndicator>().field_Public_AudioClip_0;
 
             _unmuteBlop = GameObject.Find("UserInterface/UnscaledUI/HudContent/Hud/VoiceDotParent")
                 .AddComponent<AudioSource>();
 
-            _unmuteBlop.clip = Blop;
+            _unmuteBlop.clip = blop;
             _unmuteBlop.playOnAwake = false;
             _unmuteBlop.pitch = 1.2f;
 
@@ -69,8 +65,6 @@ namespace UnmuteSound
 
             MelonLogger.Msg("Initialized!");
         }
-
-        [HarmonyPrefix]
         private static bool ToggleVoicePrefix(ref bool __0)
         {
             // __0 true on mute
@@ -80,18 +74,6 @@ namespace UnmuteSound
             _unmuteBlop.Play();
             _wasUnmuted = true;
             return true;
-        }
-
-        [HarmonyPatch(typeof(NetworkManager), "OnJoinedRoom")]
-        private class OnJoinedRoomPatch
-        {
-            private static void Prefix() => _joiningRoom = false;
-        }
-
-        [HarmonyPatch(typeof(NetworkManager), "OnLeftRoom")]
-        private class OnLeftRoomPatch
-        {
-            private static void Prefix() => _joiningRoom = true;
         }
     }
 }
