@@ -9,7 +9,7 @@ namespace QMFreeze
     {
         public const string Name = "QMFreeze";
         public const string Author = "tetra";
-        public const string Version = "2.0.1";
+        public const string Version = "2.0.2";
         public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
     }
 
@@ -37,7 +37,7 @@ namespace QMFreeze
 
             MelonLogger.Msg("Setting up emm check...");
             VRChatUtilityKit.Utilities.VRCUtils.OnEmmWorldCheckCompleted += allowed => { _freezeAllowed = allowed; };
-            VRChatUtilityKit.Utilities.NetworkEvents.OnInstanceLeft += LeaveRoomPatch;
+            VRChatUtilityKit.Utilities.NetworkEvents.OnRoomLeft += LeaveRoomPatch;
 
             MelonLogger.Msg("Initialized!");
         }

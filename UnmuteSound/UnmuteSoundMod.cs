@@ -38,8 +38,8 @@ namespace UnmuteSound
                             BindingFlags.NonPublic | BindingFlags.Static)));
                     MelonLogger.Msg("Patched " + m.Name);
                 });
-            VRChatUtilityKit.Utilities.NetworkEvents.OnInstanceJoined += delegate { _joiningRoom = false; };
-            VRChatUtilityKit.Utilities.NetworkEvents.OnInstanceLeft += delegate { _joiningRoom = true; };
+            VRChatUtilityKit.Utilities.NetworkEvents.OnRoomJoined += delegate { _joiningRoom = false; };
+            VRChatUtilityKit.Utilities.NetworkEvents.OnRoomLeft += delegate { _joiningRoom = true; };
 
             MelonLogger.Msg("Creating audio source...");
 
