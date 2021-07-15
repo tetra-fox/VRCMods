@@ -118,7 +118,7 @@ namespace ProPlates
             string[] playerPronouns = {};
 
             // combine bio and status to make my life easier
-            string playerInfo = string.Concat(player.prop_APIUser_0.bio, player.prop_APIUser_0.statusDescription);
+            string playerInfo = string.Concat(player.prop_APIUser_0.statusDescription, player.prop_APIUser_0.bio);
 
             string foundPronouns = PronounPairs.FirstOrDefault(pair => playerInfo.Contains(pair));
 
