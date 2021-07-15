@@ -68,7 +68,7 @@ namespace ProPlates
             if (string.IsNullOrEmpty(text)) return;
             if (Settings.MaxPronouns.Value < 1) return;
             
-            PlayerNameplate nameplate = player.prop_VRCPlayer_0.field_Public_PlayerNameplate_0;
+            PlayerNameplate nameplate = player._vrcplayer.field_Public_PlayerNameplate_0;
             Transform pronounPlate = Object.Instantiate(nameplate.transform.Find("Contents/Quick Stats"),
                 nameplate.transform.Find("Contents"), false);
 
@@ -118,7 +118,7 @@ namespace ProPlates
             string[] playerPronouns = {};
 
             // combine bio and status to make my life easier
-            string playerInfo = string.Concat(player.prop_APIUser_0.statusDescription, player.prop_APIUser_0.bio);
+            string playerInfo = string.Concat(player.prop_APIUser_0.statusDescription, player.prop_APIUser_0.bio).ToLower();
 
             string foundPronouns = PronounPairs.FirstOrDefault(pair => playerInfo.Contains(pair));
 
