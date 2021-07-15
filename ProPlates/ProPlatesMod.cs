@@ -24,7 +24,7 @@ namespace ProPlates
     {
         private static string[] _pronounTable;
         private static readonly Regex PronounParser = new(@"^pronouns˸ (.*$)", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-        private static readonly List<string> CommonCombinations = new();
+        private static readonly List<string> PronounPairs = new();
         public override void OnApplicationStart()
         {
             MelonLogger.Msg("Initializing ProPlates...");
@@ -45,8 +45,8 @@ namespace ProPlates
                 {
                     // vrchat please stop "sanitizing" user input by replacing characters with unicode equivalents
                     // it looks horrible and is terribly hacky
-                    CommonCombinations.Add(p1 + "⁄" + p2);
-                    CommonCombinations.Add(p1 + "＼" + p2);
+                    // and so is this lol
+                    PronounPairs.AddRange(new List<string> {$"{p1}⁄{p2}", $"{p1}＼{p2}"});
                 }
             }
 
@@ -116,19 +116,14 @@ namespace ProPlates
         private static string[] ParseEntireProfile(Player player)
         {
             string[] playerPronouns = {};
-            
-            string playerBio = player.prop_APIUser_0.bio;
-            string playerStatus = player.prop_APIUser_0.statusDescription;
-            
-            List<string> bioWords = playerBio.Split(' ', '\n').ToList();
-            List<string> statusWords = playerStatus.Split(' ', '\n').ToList();
 
-            bioWords.AddRange(statusWords);
+            // combine bio and status to make my life easier
+            string playerInfo = string.Concat(player.prop_APIUser_0.bio, player.prop_APIUser_0.statusDescription);
 
-            string selectedPronouns = bioWords.FirstOrDefault(word => CommonCombinations.Any(word.Equals));
+            string foundPronouns = PronounPairs.FirstOrDefault(pair => playerInfo.Contains(pair));
 
-            if (!string.IsNullOrEmpty(selectedPronouns)) playerPronouns = selectedPronouns.Split('⁄', '＼');
-            
+            if (!string.IsNullOrEmpty(foundPronouns)) playerPronouns = foundPronouns.Split('⁄', '＼');
+
             return playerPronouns;
         }
 
