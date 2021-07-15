@@ -4,11 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using Il2CppSystem.Collections.Generic;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using VRC;
-using VRC.Core;
 using Object = UnityEngine.Object;
 
 namespace ProPlates
@@ -17,7 +16,7 @@ namespace ProPlates
     {
         public const string Name = "ProPlates";
         public const string Author = "tetra";
-        public const string Version = "1.0.1";
+        public const string Version = "1.1.0";
         public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
     }
 
@@ -25,11 +24,10 @@ namespace ProPlates
     {
         private static string[] _pronounTable;
         private static readonly Regex PronounParser = new(@"^pronouns˸ (.*$)", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
+        private static readonly List<string> CommonCombinations = new();
         public override void OnApplicationStart()
         {
             MelonLogger.Msg("Initializing ProPlates...");
-
             MelonLogger.Msg("Registering settings...");
             Settings.Register();
             Settings.OnConfigChanged += ReloadPronouns;
@@ -39,6 +37,18 @@ namespace ProPlates
             
             // pronoun table sourced from https://github.com/witch-house/pronoun.is/blob/master/resources/pronouns.tab
             _pronounTable = new StreamReader(s).ReadToEnd().Split(',', '\n');
+            
+            // BIG LIST, it's *probably* fine
+            foreach (string p1 in _pronounTable)
+            {
+                foreach (string p2 in _pronounTable)
+                {
+                    // vrchat please stop "sanitizing" user input by replacing characters with unicode equivalents
+                    // it looks horrible and is terribly hacky
+                    CommonCombinations.Add(p1 + "⁄" + p2);
+                    CommonCombinations.Add(p1 + "＼" + p2);
+                }
+            }
 
             VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
         }
@@ -47,36 +57,23 @@ namespace ProPlates
         {
             VRChatUtilityKit.Utilities.NetworkEvents.OnPlayerJoined += player =>
             {
-                if (player) SetPronouns(player);
+                if (player) MakePlate(player, GetPlayerPronouns(player));
             };
 
             MelonLogger.Msg("Initialized!");
         }
 
-        private static void SetPronouns(Player player)
+        private static void MakePlate(Player player, string text)
         {
+            if (string.IsNullOrEmpty(text)) return;
             if (Settings.MaxPronouns.Value < 1) return;
-
-            // vrchat pls stop obfuscating this is horrible
+            
             PlayerNameplate nameplate = player.prop_VRCPlayer_0.field_Public_PlayerNameplate_0;
-            APIUser apiUser = player.prop_APIUser_0;
-
-            if (nameplate.transform.Find("Contents/Pronouns Container")) return;
-
-            // parse bio for pronouns
-            string[] playerPronouns = PronounParser.Match(apiUser.bio).Groups[1].Value.Split('⁄', '＼');
-            // then sanitize because pronoun jokes aren't funny
-            playerPronouns = playerPronouns.Distinct(StringComparer.CurrentCultureIgnoreCase).Where(p => _pronounTable.Contains(p.ToLower())).ToArray();
-
-            if (playerPronouns.Length > Settings.MaxPronouns.Value) Array.Resize(ref playerPronouns, Settings.MaxPronouns.Value);
-
-            if (playerPronouns.Length < 1) return;
-
-            MelonLogger.Msg("Setting pronouns for {0}", apiUser.displayName);
-
-            // create new plate
             Transform pronounPlate = Object.Instantiate(nameplate.transform.Find("Contents/Quick Stats"),
                 nameplate.transform.Find("Contents"), false);
+
+            if (nameplate.transform.Find("Contents/Pronouns Container")) return;
+            MelonLogger.Msg("Setting pronouns for {0}", player.prop_APIUser_0.displayName);
 
             pronounPlate.name = "Pronouns Container";
             pronounPlate.localPosition = new Vector3(0f, -60f, 0f); // y coordinate is in increments of 30, yes i'm aware the avatar DL progress covers this
@@ -89,7 +86,7 @@ namespace ProPlates
                 if (c.name == "Trust Text")
                 {
                     c.name = "Pronouns Text";
-                    c.GetComponent<TextMeshProUGUI>().text = string.Join("/", playerPronouns);
+                    c.GetComponent<TextMeshProUGUI>().text = text;
                     c.GetComponent<TextMeshProUGUI>().color = Color.white;
                     continue;
                 }
@@ -97,11 +94,49 @@ namespace ProPlates
             }
         }
 
+        private static string GetPlayerPronouns(Player player)
+        {
+            string[] playerPronouns = PronounParser.Match(player.prop_APIUser_0.bio).Groups[1].Value.Split('⁄', '＼');
+
+            // sanitize because pronoun jokes aren't funny
+            playerPronouns = playerPronouns.Distinct(StringComparer.CurrentCultureIgnoreCase).Where(p => _pronounTable.Contains(p.ToLower())).ToArray();
+
+            // fall back to exact string comparison (now in status too)
+            if (playerPronouns.Length < 1)
+            {
+                //MelonLogger.Msg("No ProPlates format found, falling back");
+                playerPronouns = ParseEntireProfile(player);
+            }
+            
+            if (playerPronouns.Length > Settings.MaxPronouns.Value) Array.Resize(ref playerPronouns, Settings.MaxPronouns.Value);
+
+            return playerPronouns.Length < 1 ? null : string.Join("/", playerPronouns);
+        }
+
+        private static string[] ParseEntireProfile(Player player)
+        {
+            string[] playerPronouns = {};
+            
+            string playerBio = player.prop_APIUser_0.bio;
+            string playerStatus = player.prop_APIUser_0.statusDescription;
+            
+            List<string> bioWords = playerBio.Split(' ', '\n').ToList();
+            List<string> statusWords = playerStatus.Split(' ', '\n').ToList();
+
+            bioWords.AddRange(statusWords);
+
+            string selectedPronouns = bioWords.FirstOrDefault(word => CommonCombinations.Any(word.Equals));
+
+            if (!string.IsNullOrEmpty(selectedPronouns)) playerPronouns = selectedPronouns.Split('⁄', '＼');
+            
+            return playerPronouns;
+        }
+
         private static void ReloadPronouns()
         {
             try
             {
-                List<Player> players =  PlayerManager.field_Private_Static_PlayerManager_0.field_Private_List_1_Player_0;
+                Il2CppSystem.Collections.Generic.List<Player> players =  PlayerManager.field_Private_Static_PlayerManager_0.field_Private_List_1_Player_0;
                 foreach (Player p in players)
                 {
                     try
@@ -111,7 +146,7 @@ namespace ProPlates
                         MelonLogger.Msg("Removed pronouns for {0}", p.prop_APIUser_0.displayName);
                     }
                     catch { }
-                    SetPronouns(p);
+                    MakePlate(p, GetPlayerPronouns(p));
                 }
             }
             catch { }
