@@ -56,6 +56,9 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>H:\Steam\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
     <Reference Include="VRC.SDKBase.Editor.BuildPipeline">
       <HintPath>H:\Steam\steamapps\common\VRChat\MelonLoader\Managed\VRC.SDKBase.Editor.BuildPipeline.dll</HintPath>
     </Reference>
@@ -136,6 +139,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\OpacityListener.cs" />
     <Compile Include="ProPlatesMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProPlatesSettings.cs" />
