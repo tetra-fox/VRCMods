@@ -1,14 +1,17 @@
 ﻿using MelonLoader;
-using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using ProPlates.Components;
 using TMPro;
+using UnhollowerRuntimeLib;
 using UnityEngine;
 using VRC;
+using Array = System.Array;
 using Object = UnityEngine.Object;
+using StringComparer = System.StringComparer;
 
 namespace ProPlates
 {
@@ -16,7 +19,7 @@ namespace ProPlates
     {
         public const string Name = "ProPlates";
         public const string Author = "tetra";
-        public const string Version = "1.1.0";
+        public const string Version = "1.1.1";
         public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
     }
 
@@ -31,12 +34,15 @@ namespace ProPlates
             MelonLogger.Msg("Registering settings...");
             Settings.Register();
             Settings.OnConfigChanged += ReloadPronouns;
+            
+            MelonLogger.Msg("Registering components...");
+            ClassInjector.RegisterTypeInIl2Cpp<OpacityListener>();
 
             MelonLogger.Msg("Loading pronoun table...");
             using Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream(BuildInfo.Name + ".pronouns.csv");
             
             // pronoun table sourced from https://github.com/witch-house/pronoun.is/blob/master/resources/pronouns.tab
-            _pronounTable = new StreamReader(s).ReadToEnd().Split(',', '\n');
+            _pronounTable = new StreamReader(s!).ReadToEnd().Split(',', '\n');
             
             // BIG LIST, it's *probably* fine
             foreach (string p1 in _pronounTable)
@@ -69,15 +75,20 @@ namespace ProPlates
             if (Settings.MaxPronouns.Value < 1) return;
             
             PlayerNameplate nameplate = player._vrcplayer.field_Public_PlayerNameplate_0;
+            if (nameplate.transform.Find("Contents/ProPlates Container")) return;
+            
+            MelonLogger.Msg("Setting pronouns for {0}", player.prop_APIUser_0.displayName);
+            
             Transform pronounPlate = Object.Instantiate(nameplate.transform.Find("Contents/Quick Stats"),
                 nameplate.transform.Find("Contents"), false);
 
-            if (nameplate.transform.Find("Contents/Pronouns Container")) return;
-            MelonLogger.Msg("Setting pronouns for {0}", player.prop_APIUser_0.displayName);
-
-            pronounPlate.name = "Pronouns Container";
+            pronounPlate.name = "ProPlates Container";
             pronounPlate.localPosition = new Vector3(0f, -60f, 0f); // y coordinate is in increments of 30, yes i'm aware the avatar DL progress covers this
             pronounPlate.gameObject.active = true;
+            
+            OpacityListener opacityListener = pronounPlate.gameObject.AddComponent<OpacityListener>();
+            opacityListener.reference = nameplate.transform.Find("Contents/Main/Background").GetComponent<ImageThreeSlice>();
+            opacityListener.target = pronounPlate.gameObject.GetComponent<ImageThreeSlice>();
 
             // remove unnecessary gameobjects and set pronoun text
             for (int i = pronounPlate.childCount; i > 0; i--)
@@ -85,7 +96,7 @@ namespace ProPlates
                 Transform c = pronounPlate.GetChild(i - 1);
                 if (c.name == "Trust Text")
                 {
-                    c.name = "Pronouns Text";
+                    c.name = "Text";
                     c.GetComponent<TextMeshProUGUI>().text = text;
                     c.GetComponent<TextMeshProUGUI>().color = Color.white;
                     continue;
