@@ -148,7 +148,7 @@ namespace ProPlates
                     try
                     {
                         Object.DestroyImmediate(p.prop_VRCPlayer_0.field_Public_PlayerNameplate_0.transform
-                            .Find("Contents/Pronouns Container").gameObject);
+                            .Find("Contents/ProPlates Container").gameObject);
                         MelonLogger.Msg("Removed pronouns for {0}", p.prop_APIUser_0.displayName);
                     }
                     catch { }
