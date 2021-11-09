@@ -4,10 +4,10 @@ namespace AdBlocker
 {
     internal static class Helpers
     {
-        // very bad and inefficient do not use
-        // or do i don't really care
         internal static GameObject FindInactive(string path)
         {
+            // very bad and inefficient do not use
+            // or do i don't really care
             string[] hierarchy = path.Split('/');
             GameObject currentObject = GameObject.Find(hierarchy[0]);
             string targetObjectName = hierarchy[hierarchy.Length - 1];
