@@ -1,9 +1,9 @@
 ## ProPlates
 ProPlates displays a player's pronouns under their nameplate.
 
-**As of [version 1.1.0](https://github.com/tetra-fox/VRCMods/releases/tag/2021.7.16) (pending approval)**, ProPlates will attempt to look for pronouns formatted as `xxx/xxx` **OR** `xxx\xxx` (limited to two) anywhere in your bio and status text.
+ProPlates will attempt to look for pronouns formatted as `xxx/xxx` **OR** `xxx\xxx` (limited to two) anywhere in your bio and status text.
 
-**If this doesn't work, you want to display more than two, or you'd just like to manually configure how ProPlates displays your pronouns**, simply add a line to your VRChat bio formatted like this: `pronouns: xxx/xxx/xxx`. Note that this is **NOT** case-sensitive. You may add as many pronouns as you like, however, this mod only displays the first 8 by default. This value is configurable in `MelonPreferences.cfg`, however I don't really recommend going over that because if someone has a lot of pronouns, you'll just see a floating wall of text.
+**If that doesn't work, you want to display more than two, or you'd just like to manually configure how ProPlates displays your pronouns**, simply add a line to your VRChat bio formatted like this: `pronouns: xxx/xxx/xxx`. Note that this is **NOT** case-sensitive. You may add as many pronouns as you like, however, this mod only displays the first 8 by default. This value is configurable in `MelonPreferences.cfg`, however I don't really recommend going over that because if someone has a lot of pronouns, you'll just see a floating wall of text.
 
 >**NOTE:** This mod also has some basic safeguards against trolls because even in the current year, people still think attack helicopter jokes are funny for whatever reason.
 

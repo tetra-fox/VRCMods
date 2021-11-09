@@ -1,5 +1,4 @@
-﻿using System;
-using MelonLoader;
+﻿using MelonLoader;
 using UnityEngine;
 
 namespace AdBlocker
@@ -16,23 +15,18 @@ namespace AdBlocker
     {
         public override void OnApplicationStart()
         {
-            //VRChatUtilityKit.Ui.UiManager.OnQuickMenuOpened += RemoveBanners;
+            VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
         }
 
-        public override void OnUpdate()
+        private static void Init()
         {
-        }
-
-        private static void RemoveBanners()
-        {
-            GameObject carousel = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Carousel_Banners");
-            //GameObject vrcplus = GameObject.Find("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/VRC+_Banners");
-            GameObject.DestroyImmediate(carousel);
-            //GameObject.DestroyImmediate(vrcplus);
-            MelonLogger.Msg(carousel.name);
-            MelonLogger.Msg("naw");
+            GameObject carousel = Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Carousel_Banners");
+            GameObject vrcPlus = Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/VRC+_Banners");
             
-            VRChatUtilityKit.Ui.UiManager.OnQuickMenuOpened -= RemoveBanners;
+            GameObject.DestroyImmediate(carousel);
+            MelonLogger.Msg("Removed Carousel");
+            GameObject.DestroyImmediate(vrcPlus);
+            MelonLogger.Msg("Removed VRC+");
         }
     }
 }
