@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
+using CalibrateConfirm.Components;
 using HarmonyLib;
 using UnhollowerRuntimeLib;
 using UnityEngine;
@@ -64,13 +65,18 @@ namespace CalibrateConfirm
                     MelonCoroutines.Stop(timeout);
                 },
                 confirmFbtSprite, "Confirm?", "Button_ConfirmFBT", "Are you sure you want to calibrate?");
+
+            ButtonWatcher watcher = _calibrateFbtButton.gameObject.AddComponent<ButtonWatcher>();
+            watcher.reference = _confirmFbtButton.gameObject;
+            watcher.target = _calibrateFbtButton;
+            
+            _confirmFbtButton.gameObject.SetActive(false);
             
             GameObject sitStandGroup = Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/SitStandCalibrateButton");
 
             UiManager.AddButtonToExistingGroup(sitStandGroup, _confirmFbtButton);
-            
-            _confirmFbtButton.gameObject.SetActive(false);
 
+            // reset calibrate button's onClick
             _calibrateFbtButton.GetComponent<Button>().onClick = new Button.ButtonClickedEvent();
             
             _calibrateFbtButton.GetComponent<Button>().onClick.AddListener((Action)delegate
@@ -79,21 +85,18 @@ namespace CalibrateConfirm
                 _calibrateFbtButton.SetActive(false);
                 timeout = MelonCoroutines.Start(Timeout(5));
             });
-        
-            // shit fix for when opening QM while timeout period is active
-            UiManager.OnQuickMenuOpened += delegate { if (_confirmFbtButton.gameObject.active) _calibrateFbtButton.SetActive(false); };
 
             MelonLogger.Msg("Initialized!");
         }
-
+        
         private IEnumerator Timeout(int length)
         {
-            int timeout = length;
+            int timeLeft = length;
 
-            while (timeout > 0)
+            while (timeLeft > 0)
             {
-                _confirmFbtButton.Text = "Confirm?\n" + timeout;
-                timeout--;
+                _confirmFbtButton.Text = "Confirm?\n" + timeLeft;
+                timeLeft--;
                 yield return new WaitForSeconds(1);
             }
 
