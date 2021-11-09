@@ -18,10 +18,6 @@
     <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(MelonLoaderPath)\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
     <Reference Include="Il2Cppmscorlib">
       <HintPath>$(MelonLoaderPath)\Managed\Il2Cppmscorlib.dll</HintPath>
     </Reference>
@@ -47,9 +43,6 @@
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
       <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="VRCCore-Standalone">
-      <HintPath>$(MelonLoaderPath)\Managed\VRCCore-Standalone.dll</HintPath>
     </Reference>
     <Reference Include="Il2Cppmscorlib">
       <HintPath>$(MelonLoaderPath)\Managed\Il2Cppmscorlib.dll</HintPath>
