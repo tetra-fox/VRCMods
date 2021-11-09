@@ -34,12 +34,6 @@
     <ItemGroup>
         <Reference Include="System" />
         <Reference Include="System.Core" />
-        <Reference Include="System.Data" />
-        <Reference Include="System.Xml" />
-        <Reference Include="Assembly-CSharp, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-            <SpecificVersion>False</SpecificVersion>
-            <HintPath>$(MelonLoaderPath)\Managed\Assembly-CSharp.dll</HintPath>
-          </Reference>
           <Reference Include="Il2Cppmscorlib">
             <HintPath>$(MelonLoaderPath)\Managed\Il2Cppmscorlib.dll</HintPath>
           </Reference>
@@ -66,9 +60,6 @@
           <Reference Include="UnityEngine.LegacyInputModule">
             <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.LegacyInputModule.dll</HintPath>
           </Reference>
-          <Reference Include="UnityEngine.UI">
-            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.UI.dll</HintPath>
-          </Reference>
           <Reference Include="Il2Cppmscorlib">
             <HintPath>$(MelonLoaderPath)\Managed\Il2Cppmscorlib.dll</HintPath>
           </Reference>
@@ -91,10 +82,6 @@
           </Reference>
           <Reference Include="UnityEngine.UI">
             <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.UI.dll</HintPath>
-          </Reference>
-          <Reference Include="UnityEngine.VRModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-            <SpecificVersion>False</SpecificVersion>
-            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.VRModule.dll</HintPath>
           </Reference>
     </ItemGroup>
     <ItemGroup>
