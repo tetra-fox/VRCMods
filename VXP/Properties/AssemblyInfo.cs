@@ -1,4 +1,5 @@
-﻿using MelonLoader;
+﻿using System;
+using MelonLoader;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -9,4 +10,5 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: MelonInfo(typeof(VXP.Mod), VXP.BuildInfo.Name, VXP.BuildInfo.Version, VXP.BuildInfo.Author, VXP.BuildInfo.DownloadLink)]
 [assembly: MelonGame("VRChat", "VRChat")]
-[assembly: MelonAdditionalDependencies(new string[] { "VRChatUtilityKit", "VRCWSLibary" })]
+[assembly: MelonColor(ConsoleColor.Magenta)]
+[assembly: MelonAdditionalDependencies(new string[] { "VRChatUtilityKit" })]

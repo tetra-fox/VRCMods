@@ -1,0 +1,16 @@
+<Project>
+    <PropertyGroup>
+        <TargetFramework>net472</TargetFramework>
+        <LangVersion>9.0</LangVersion>
+        <OutputType>Library</OutputType>
+        <MelonLoaderPath>F:\Steam\steamapps\common\VRChat\MelonLoader</MelonLoaderPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="MelonLoader">
+            <HintPath>$(MelonLoaderPath)\MelonLoader.dll</HintPath>
+        </Reference>
+        <Reference Include="VRChatUtilityKit">
+            <HintPath>$(MelonLoaderPath)\..\Mods\VRChatUtilityKit.dll</HintPath>
+        </Reference>
+    </ItemGroup> 
+</Project>

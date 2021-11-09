@@ -9,7 +9,6 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>QMFreeze</RootNamespace>
     <AssemblyName>QMFreeze</AssemblyName>
-    <MelonLoaderPath>H:\Steam\steamapps\common\VRChat\MelonLoader</MelonLoaderPath>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

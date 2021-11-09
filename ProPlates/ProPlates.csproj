@@ -9,7 +9,6 @@
     <RootNamespace>ProPlates</RootNamespace>
     <AssemblyName>ProPlates</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <MelonLoaderPath>H:\Steam\steamapps\common\VRChat\MelonLoader</MelonLoaderPath>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <LangVersion>latest</LangVersion>
@@ -26,10 +25,6 @@
     </Reference>
     <Reference Include="Il2Cppmscorlib">
       <HintPath>$(MelonLoaderPath)\Managed\Il2Cppmscorlib.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="MelonLoader">
-      <HintPath>$(MelonLoaderPath)\MelonLoader.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -99,9 +94,6 @@
     <Reference Include="Il2Cppmscorlib">
       <HintPath>$(MelonLoaderPath)\Managed\Il2Cppmscorlib.dll</HintPath>
     </Reference>
-    <Reference Include="MelonLoader">
-      <HintPath>$(MelonLoaderPath)\MelonLoader.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="UnhollowerBaseLib">
@@ -118,9 +110,6 @@
     </Reference>
     <Reference Include="VRCCore-Standalone">
       <HintPath>$(MelonLoaderPath)\Managed\VRCCore-Standalone.dll</HintPath>
-    </Reference>
-    <Reference Include="VRChatUtilityKit">
-      <HintPath>$(MelonLoaderPath)\..\Mods\VRChatUtilityKit.dll</HintPath>
     </Reference>
     <Reference Include="VRCLog">
       <HintPath>H:\Steam\steamapps\common\VRChat\MelonLoader\Managed\VRCLog.dll</HintPath>
@@ -147,7 +136,7 @@
   <ItemGroup>
     <EmbeddedResource Include="pronouns.csv" />
   </ItemGroup>
-  <!-- Copy mod to VRChat mods folder after build -->
+  
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
     <Message Text="Copying $(AssemblyName).dll to Mods folder..." Importance="high" />

@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
-            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -33,22 +32,86 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="System"/>
-        <Reference Include="System.Core"/>
-        <Reference Include="System.Data"/>
-        <Reference Include="System.Xml"/>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Xml" />
+        <Reference Include="Assembly-CSharp, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
+            <SpecificVersion>False</SpecificVersion>
+            <HintPath>$(MelonLoaderPath)\Managed\Assembly-CSharp.dll</HintPath>
+          </Reference>
+          <Reference Include="Il2Cppmscorlib">
+            <HintPath>$(MelonLoaderPath)\Managed\Il2Cppmscorlib.dll</HintPath>
+          </Reference>
+          <Reference Include="MelonLoader">
+            <HintPath>$(MelonLoaderPath)\MelonLoader.dll</HintPath>
+          </Reference>
+          <Reference Include="System" />
+          <Reference Include="System.Core" />
+          <Reference Include="VRChatUtilityKit">
+            <HintPath>$(MelonLoaderPath)\..\Mods\VRChatUtilityKit.dll</HintPath>
+          </Reference>
+          <Reference Include="UnhollowerBaseLib">
+            <HintPath>$(MelonLoaderPath)\Managed\UnhollowerBaseLib.dll</HintPath>
+          </Reference>
+          <Reference Include="UnhollowerRuntimeLib">
+            <HintPath>$(MelonLoaderPath)\Managed\UnhollowerRuntimeLib.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine">
+            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.CoreModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.LegacyInputModule">
+            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.LegacyInputModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.UI">
+            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.UI.dll</HintPath>
+          </Reference>
+          <Reference Include="Il2Cppmscorlib">
+            <HintPath>$(MelonLoaderPath)\Managed\Il2Cppmscorlib.dll</HintPath>
+          </Reference>
+          <Reference Include="MelonLoader">
+            <HintPath>$(MelonLoaderPath)\MelonLoader.dll</HintPath>
+          </Reference>
+          <Reference Include="System" />
+          <Reference Include="System.Core" />
+          <Reference Include="UnhollowerBaseLib">
+            <HintPath>$(MelonLoaderPath)\Managed\UnhollowerBaseLib.dll</HintPath>
+          </Reference>
+          <Reference Include="UnhollowerRuntimeLib">
+            <HintPath>$(MelonLoaderPath)\Managed\UnhollowerRuntimeLib.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine">
+            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.CoreModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.UI">
+            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.UI.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.VRModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
+            <SpecificVersion>False</SpecificVersion>
+            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.VRModule.dll</HintPath>
+          </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Class1.cs"/>
-        <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="Helpers.cs" />
+        <Compile Include="AdBlockerMod.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">
     </Target>
-    <Target Name="AfterBuild">
-    </Target>
     -->
+    <Target Name="AfterBuild">
+      <Message Text="Copying $(AssemblyName).dll to Mods folder..." Importance="high" />
+      <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFiles="$(MelonLoaderPath)\..\Mods\$(AssemblyName).dev.dll" />
+      <Message Text="Done." Importance="high" />
+    </Target>
 
 </Project>
