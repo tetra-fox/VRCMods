@@ -1,0 +1,74 @@
+[
+  {
+    "_id": 277,
+    "name": "AdBlocker",
+    "modversion": "1.0.0",
+    "vrchatversion": "1149",
+    "loaderversion": "0.4.3",
+    "modtype": "Mod",
+    "author": "tetra#0001",
+    "description": "Literally just removes the carousels from the quick menu.",
+    "searchtags": null,
+    "requirements": [
+      "[VRChatUtilityKit](https://github.com/loukylor/VRC-Mods/releases)"
+    ],
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.9/AdBlocker.dll",
+    "sourcelink": "https://github.com/tetra-fox/VRCMods",
+    "changelog": "Initial release",
+    "embedcolor": "#d92341"
+  },
+  {
+    "_id": 184,
+    "name": "CalibrateConfirm",
+    "modversion": "3.0.0",
+    "vrchatversion": "1149",
+    "loaderversion": "0.4.3",
+    "modtype": "Mod",
+    "author": "tetra#0001",
+    "description": "Adds a confirmation prompt when you click calibrate, in the case that you've accidentally clicked calibrate and don't want to stand up to recalibrate your avatar.",
+    "searchtags": null,
+    "requirements": [
+      "[VRChatUtilityKit](https://github.com/loukylor/VRC-Mods/releases)"
+    ],
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.9/CalibrateConfirm.dll",
+    "sourcelink": "https://github.com/tetra-fox/VRCMods",
+    "changelog": "Updated for UI 1.5 (build 1149)",
+    "embedcolor": "#43e872"
+  },
+  {
+    "_id": 233,
+    "name": "ProPlates",
+    "modversion": "2.0.0",
+    "vrchatversion": "1149",
+    "loaderversion": "0.4.3",
+    "modtype": "Mod",
+    "author": "tetra#0001",
+    "description": "Displays a player's pronouns under their nameplate.\nIf you'd like to set your own pronouns, check the [**README**](https://github.com/tetra-fox/VRCMods/tree/master/ProPlates) for instructions.",
+    "searchtags": null,
+    "requirements": [
+      "[VRChatUtilityKit](https://github.com/loukylor/VRC-Mods/releases)"
+    ],
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.9/ProPlates.dll",
+    "sourcelink": "https://github.com/tetra-fox/VRCMods",
+    "changelog": "Version bump & rebuilt for latest VRCUK",
+    "embedcolor": "#03bafc"
+  },
+  {
+    "_id": 163,
+    "name": "QMFreeze",
+    "modversion": "3.0.0",
+    "vrchatversion": "1149",
+    "loaderversion": "0.4.3",
+    "modtype": "Mod",
+    "author": "tetra#0001",
+    "description": "Freezes your avatar when you open the quick menu, in case you are falling or otherwise unable to click anything on the quick menu.",
+    "searchtags": null,
+    "requirements": [
+      "[VRChatUtilityKit](https://github.com/loukylor/VRC-Mods/releases)"
+    ],
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.9/QMFreeze.dll",
+    "sourcelink": "https://github.com/tetra-fox/VRCMods",
+    "changelog": "Version bump & rebuilt for latest VRCUK",
+    "embedcolor": "#ad2ee8"
+  }
+]
