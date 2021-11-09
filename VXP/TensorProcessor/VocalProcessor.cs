@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VXP
+namespace VXP.TensorProcessor
 {
     public static class VocalProcessor
     {

@@ -1,11 +1,10 @@
 ﻿using System;
 using MelonLoader;
 using UnityEngine;
-using UnityEngine.Input;
 
 namespace AdBlocker
 {
-    public static class BuildInfo
+    internal static class BuildInfo
     {
         public const string Name = "AdBlocker";
         public const string Author = "tetra";

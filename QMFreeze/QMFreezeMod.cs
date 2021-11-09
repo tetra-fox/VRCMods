@@ -4,11 +4,11 @@ using VRC.SDKBase;
 
 namespace QMFreeze
 {
-    public class BuildInfo
+    internal static class BuildInfo
     {
         public const string Name = "QMFreeze";
         public const string Author = "tetra";
-        public const string Version = "2.0.2";
+        public const string Version = "3.0.0";
         public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
     }
 
@@ -34,7 +34,7 @@ namespace QMFreeze
             VRChatUtilityKit.Ui.UiManager.OnQuickMenuOpened += Freeze;
             VRChatUtilityKit.Ui.UiManager.OnQuickMenuClosed += Unfreeze;
 
-            MelonLogger.Msg("Setting up emm check...");
+            MelonLogger.Msg("Setting up risky functions check...");
             VRChatUtilityKit.Utilities.VRCUtils.OnEmmWorldCheckCompleted += allowed => { _freezeAllowed = allowed; };
             VRChatUtilityKit.Utilities.NetworkEvents.OnRoomLeft += LeaveRoomPatch;
 

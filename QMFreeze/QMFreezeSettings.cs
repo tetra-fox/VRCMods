@@ -6,7 +6,7 @@ namespace QMFreeze
     public static class Settings
 
     {
-        private static MelonPreferences_Category Prefs = MelonPreferences.CreateCategory(BuildInfo.Name, BuildInfo.Name);
+        private static readonly MelonPreferences_Category Prefs = MelonPreferences.CreateCategory(BuildInfo.Name, BuildInfo.Name);
         internal static MelonPreferences_Entry<bool> Enabled;
         internal static MelonPreferences_Entry<bool> RestoreVelocity;
 

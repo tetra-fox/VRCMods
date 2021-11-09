@@ -9,4 +9,3 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: MelonInfo(typeof(CalibrateConfirm.Mod), CalibrateConfirm.BuildInfo.Name, CalibrateConfirm.BuildInfo.Version, CalibrateConfirm.BuildInfo.Author, CalibrateConfirm.BuildInfo.DownloadLink)]
 [assembly: MelonGame("VRChat", "VRChat")]
-[assembly: MelonAdditionalDependencies("VRChatUtilityKit")]
