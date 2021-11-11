@@ -1,96 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{203D7CCB-AEAE-499B-92EA-9C68C3DEC88E}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CalibrateConfirm</RootNamespace>
-    <AssemblyName>CalibrateConfirm</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release\</OutputPath>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Assembly-CSharp, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(MelonLoaderPath)\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2Cppmscorlib">
-      <HintPath>$(MelonLoaderPath)\Managed\Il2Cppmscorlib.dll</HintPath>
-    </Reference>
-    <Reference Include="MelonLoader">
-      <HintPath>$(MelonLoaderPath)\MelonLoader.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="VRChatUtilityKit">
-      <HintPath>$(MelonLoaderPath)\..\Mods\VRChatUtilityKit.dll</HintPath>
-    </Reference>
-    <Reference Include="UnhollowerBaseLib">
-      <HintPath>$(MelonLoaderPath)\Managed\UnhollowerBaseLib.dll</HintPath>
-    </Reference>
-    <Reference Include="UnhollowerRuntimeLib">
-      <HintPath>$(MelonLoaderPath)\Managed\UnhollowerRuntimeLib.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2Cppmscorlib">
-      <HintPath>$(MelonLoaderPath)\Managed\Il2Cppmscorlib.dll</HintPath>
-    </Reference>
-    <Reference Include="MelonLoader">
-      <HintPath>$(MelonLoaderPath)\MelonLoader.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="UnhollowerBaseLib">
-      <HintPath>$(MelonLoaderPath)\Managed\UnhollowerBaseLib.dll</HintPath>
-    </Reference>
-    <Reference Include="UnhollowerRuntimeLib">
-      <HintPath>$(MelonLoaderPath)\Managed\UnhollowerRuntimeLib.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VRModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.VRModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CalibrateConfirmMod.cs" />
-    <Compile Include="Components\ButtonWatcher.cs" />
-    <Compile Include="Helpers.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="calibrateconfirm.assetbundle" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="AfterBuild">
-    <Message Text="Copying $(AssemblyName).dll to Mods folder..." Importance="high" />
-    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFiles="$(MelonLoaderPath)\..\Mods\$(AssemblyName).dev.dll" />
-    <Message Text="Done." Importance="high" />
-  </Target>
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName Condition="$(Configuration) == Release">CalibrateConfirm</AssemblyName>
+        <AssemblyName Condition="$(Configuration) == Debug">CalibrateConfirm.dev</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AssetBundleModule">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.UI.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VRModule">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.VRModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
 </Project>

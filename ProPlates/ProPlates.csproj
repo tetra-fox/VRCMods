@@ -1,94 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProPlates</RootNamespace>
-    <AssemblyName>ProPlates</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <LangVersion>latest</LangVersion>
-    <ProjectGuid>{0A8FDBE7-A7C6-4655-98DF-A7C7D5B859C0}</ProjectGuid>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release\</OutputPath>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Assembly-CSharp, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(MelonLoaderPath)\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Il2Cppmscorlib">
-      <HintPath>$(MelonLoaderPath)\Managed\Il2Cppmscorlib.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="UnhollowerBaseLib">
-      <HintPath>$(MelonLoaderPath)\Managed\UnhollowerBaseLib.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnhollowerRuntimeLib">
-      <HintPath>$(MelonLoaderPath)\Managed\UnhollowerRuntimeLib.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>$(MelonLoaderPath)\Managed\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.CoreModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="VRCCore-Standalone">
-      <HintPath>$(MelonLoaderPath)\Managed\VRCCore-Standalone.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Il2Cppmscorlib">
-      <HintPath>$(MelonLoaderPath)\Managed\Il2Cppmscorlib.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="UnhollowerBaseLib">
-      <HintPath>$(MelonLoaderPath)\Managed\UnhollowerBaseLib.dll</HintPath>
-    </Reference>
-    <Reference Include="UnhollowerRuntimeLib">
-      <HintPath>$(MelonLoaderPath)\Managed\UnhollowerRuntimeLib.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="VRCCore-Standalone">
-      <HintPath>$(MelonLoaderPath)\Managed\VRCCore-Standalone.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Components\OpacityListener.cs" />
-    <Compile Include="ProPlatesMod.cs" />
-    <Compile Include="ProPlatesSettings.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="pronouns.csv" />
-  </ItemGroup>
+<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="AfterBuild">
-    <Message Text="Copying $(AssemblyName).dll to Mods folder..." Importance="high" />
-    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFiles="$(MelonLoaderPath)\..\Mods\$(AssemblyName).dev.dll" />
-    <Message Text="Done." Importance="high" />
-  </Target>
+    <PropertyGroup>
+        <AssemblyName Condition="$(Configuration) == Release">ProPlates</AssemblyName>
+        <AssemblyName Condition="$(Configuration) == Debug">ProPlates.dev</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.UI.dll</HintPath>
+        </Reference>
+        <Reference Include="VRCCore-Standalone">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCCore-Standalone.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
 </Project>

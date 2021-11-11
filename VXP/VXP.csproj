@@ -1,175 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-    <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{25DB813A-7780-401B-B118-6A839FB9FCDF}</ProjectGuid>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>VXP</RootNamespace>
-        <AssemblyName>VXP</AssemblyName>
-        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>$(MelonLoaderPath)\Managed\Assembly-CSharp.dll</HintPath>
-        </Reference>
-        <Reference Include="Il2Cppmscorlib, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>$(MelonLoaderPath)\Managed\Il2Cppmscorlib.dll</HintPath>
-        </Reference>
-        <Reference Include="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <HintPath>$(MelonLoaderPath)\Managed\mscorlib.dll</HintPath>
-        </Reference>
-        <Reference Include="netstandard, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>$(MelonLoaderPath)\Managed\netstandard.dll</HintPath>
-        </Reference>
-        <Reference Include="System" />
-        <Reference Include="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <HintPath>$(MelonLoaderPath)\Managed\System.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Core" />
-        <Reference Include="System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <HintPath>$(MelonLoaderPath)\Managed\System.Core.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Data" />
-        <Reference Include="System.IO.Compression, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <HintPath>$(MelonLoaderPath)\Managed\System.IO.Compression.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-          <HintPath>$(MelonLoaderPath)\Managed\System.Net.Http.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Xml" />
-        <Reference Include="Assembly-CSharp, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-            <SpecificVersion>False</SpecificVersion>
-            <HintPath>$(MelonLoaderPath)\Managed\Assembly-CSharp.dll</HintPath>
-          </Reference>
-          <Reference Include="Il2Cppmscorlib">
-            <HintPath>$(MelonLoaderPath)\Managed\Il2Cppmscorlib.dll</HintPath>
-          </Reference>
-          <Reference Include="MelonLoader">
-            <HintPath>$(MelonLoaderPath)\MelonLoader.dll</HintPath>
-          </Reference>
-          <Reference Include="System" />
-          <Reference Include="System.Core" />
-          <Reference Include="UIExpansionKit, Version=0.3.4.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>F:\Steam\steamapps\common\VRChat\Mods\UIExpansionKit.dll</HintPath>
-          </Reference>
-          <Reference Include="UnhollowerBaseLib, Version=0.4.15.4, Culture=neutral, PublicKeyToken=null">
-            <HintPath>$(MelonLoaderPath)\Managed\UnhollowerBaseLib.dll</HintPath>
-          </Reference>
-          <Reference Include="UnhollowerRuntimeLib, Version=0.4.10.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>$(MelonLoaderPath)\Managed\UnhollowerRuntimeLib.dll</HintPath>
-          </Reference>
-          <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.dll</HintPath>
-          </Reference>
-          <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.CoreModule.dll</HintPath>
-          </Reference>
-          <Reference Include="UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
-          </Reference>
-          <Reference Include="VRCCore-Standalone, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>$(MelonLoaderPath)\Managed\VRCCore-Standalone.dll</HintPath>
-          </Reference>
-          <Reference Include="VRChatUtilityKit">
-            <HintPath>$(MelonLoaderPath)\..\Mods\VRChatUtilityKit.dll</HintPath>
-          </Reference>
-          <Reference Include="UnhollowerBaseLib">
-            <HintPath>$(MelonLoaderPath)\Managed\UnhollowerBaseLib.dll</HintPath>
-          </Reference>
-          <Reference Include="UnhollowerRuntimeLib">
-            <HintPath>$(MelonLoaderPath)\Managed\UnhollowerRuntimeLib.dll</HintPath>
-          </Reference>
-          <Reference Include="UnityEngine">
-            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.dll</HintPath>
-          </Reference>
-          <Reference Include="UnityEngine.CoreModule">
-            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.CoreModule.dll</HintPath>
-          </Reference>
-          <Reference Include="UnityEngine.PhysicsModule">
-            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.PhysicsModule.dll</HintPath>
-          </Reference>
-          <Reference Include="VRCCore-Standalone">
-            <HintPath>$(MelonLoaderPath)\Managed\VRCCore-Standalone.dll</HintPath>
-          </Reference>
-          <Reference Include="Il2Cppmscorlib">
-            <HintPath>$(MelonLoaderPath)\Managed\Il2Cppmscorlib.dll</HintPath>
-          </Reference>
-          <Reference Include="MelonLoader">
-            <HintPath>$(MelonLoaderPath)\MelonLoader.dll</HintPath>
-          </Reference>
-          <Reference Include="System" />
-          <Reference Include="System.Core" />
-          <Reference Include="UnhollowerBaseLib">
-            <HintPath>$(MelonLoaderPath)\Managed\UnhollowerBaseLib.dll</HintPath>
-          </Reference>
-          <Reference Include="UnhollowerRuntimeLib">
-            <HintPath>$(MelonLoaderPath)\Managed\UnhollowerRuntimeLib.dll</HintPath>
-          </Reference>
-          <Reference Include="UnityEngine">
-            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.dll</HintPath>
-          </Reference>
-          <Reference Include="UnityEngine.CoreModule">
-            <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.CoreModule.dll</HintPath>
-          </Reference>
-          <Reference Include="VRCCore-Standalone">
-            <HintPath>$(MelonLoaderPath)\Managed\VRCCore-Standalone.dll</HintPath>
-          </Reference>
-          <Reference Include="VRCSDK3A, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>$(MelonLoaderPath)\Managed\VRCSDK3A.dll</HintPath>
-          </Reference>
-          <Reference Include="VRCSDKBase, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>$(MelonLoaderPath)\Managed\VRCSDKBase.dll</HintPath>
-          </Reference>
-          <Reference Include="VRCSDKBase, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-            <SpecificVersion>False</SpecificVersion>
-            <HintPath>$(MelonLoaderPath)\Managed\VRCSDKBase.dll</HintPath>
-          </Reference>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Components\ParameterDriver.cs" />
-        <Compile Include="ParamLib\BaseParam.cs" />
-        <Compile Include="ParamLib\ParamLib.cs" />
-        <Compile Include="ParamManager.cs" />
-        <Compile Include="TensorProcessor\Processor.cs" />
-        <Compile Include="TensorProcessor\VocalProcessor.cs" />
-        <Compile Include="VXPMod.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="VXPSettings.cs" />
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="TensorProcessor\model.tflite" />
-      <Content Include="ParamLib\.git" />
-      <Content Include="ParamLib\LICENSE" />
-    </ItemGroup>
-    <ItemGroup>
-      <PackageReference Include="NAudio" Version="2.0.1" />
-      <PackageReference Include="TensorFlow.NET" Version="0.60.4" />
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-         Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
-    <Target Name="AfterBuild">
-        <Message Text="Copying $(AssemblyName).dll to Mods folder..." Importance="high" />
-        <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFiles="$(MelonLoaderPath)\..\Mods\$(AssemblyName).dev.dll" />
-        <Message Text="Done." Importance="high" />
-      </Target>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName Condition="$(Configuration) == Release">VXP</AssemblyName>
+    <AssemblyName Condition="$(Configuration) == Debug">VXP.dev</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(VRChatPath)\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UIExpansionKit">
+      <HintPath>>$(VRChatPath)\Mods\UIExpansionKit.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCCore-Standalone, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCCore-Standalone.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCCore-Standalone">
+      <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCCore-Standalone.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCSDK3A, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCSDK3A.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCSDKBase, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCSDKBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(VRChatPath)\Mods\$(TargetFileName)" />
+    <Message Text="Copied $(TargetFileName) to $(VRChatPath)\Mods" Importance="high" />
+  </Target>
 
 </Project>

@@ -70,5 +70,23 @@
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
     "changelog": "Version bump & rebuilt for latest VRCUK",
     "embedcolor": "#ad2ee8"
+  },
+  {
+    "_id": 185,
+    "name": "UnmuteSound",
+    "modversion": "2.0.0",
+    "vrchatversion": "1149",
+    "loaderversion": "0.4.3",
+    "modtype": "Mod",
+    "author": "tetra#0001",
+    "description": "Plays a higher pitched *blop* sound when unmuting your microphone.",
+    "searchtags": null,
+    "requirements": [
+      "[VRChatUtilityKit](https://github.com/loukylor/VRC-Mods/releases)"
+    ],
+    "downloadlink": "https://api.vrcmg.com/v0/mods/185/UnmuteSound.dll",
+    "sourcelink": "https://github.com/tetra-fox/VRCMods",
+    "changelog": "Fix for build 1149",
+    "embedcolor": "#F5DE19"
   }
 ]
