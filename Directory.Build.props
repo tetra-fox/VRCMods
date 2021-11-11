@@ -1,16 +1,38 @@
 <Project>
+
     <PropertyGroup>
         <TargetFramework>net472</TargetFramework>
-        <LangVersion>9.0</LangVersion>
-        <OutputType>Library</OutputType>
-        <MelonLoaderPath>F:\Steam\steamapps\common\VRChat\MelonLoader</MelonLoaderPath>
+        <LangVersion>latest</LangVersion>
+        <VRChatPath>F:\Steam\steamapps\common\VRChat</VRChatPath>
     </PropertyGroup>
+
     <ItemGroup>
         <Reference Include="MelonLoader">
-            <HintPath>$(MelonLoaderPath)\MelonLoader.dll</HintPath>
+            <HintPath>$(VRChatPath)\MelonLoader\MelonLoader.dll</HintPath>
         </Reference>
         <Reference Include="VRChatUtilityKit">
-            <HintPath>$(MelonLoaderPath)\..\Mods\VRChatUtilityKit.dll</HintPath>
+            <HintPath>$(VRChatPath)\Mods\VRChatUtilityKit.dll</HintPath>
         </Reference>
-    </ItemGroup> 
+        <Reference Include="Il2Cppmscorlib">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\Il2Cppmscorlib.dll</HintPath>
+        </Reference>
+        <Reference Include="UnhollowerBaseLib">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>
+        </Reference>
+        <Reference Include="UnhollowerRuntimeLib">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnhollowerRuntimeLib.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(VRChatPath)\Mods\$(TargetFileName)" />
+        <Message Text="Copied $(TargetFileName) to $(VRChatPath)\Mods" Importance="high" />
+    </Target>
+    
 </Project>
