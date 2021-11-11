@@ -19,7 +19,7 @@ namespace CalibrateConfirm
     {
         public const string Name = "CalibrateConfirm";
         public const string Author = "tetra";
-        public const string Version = "3.0.0";
+        public const string Version = "3.0.1";
         public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
     }
 

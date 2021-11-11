@@ -3,7 +3,7 @@ using MelonLoader;
 using System.Linq;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(UnmuteSound.Mod), UnmuteSound.BuildInfo.Name, UnmuteSound.BuildInfo.Version, UnmuteSound.BuildInfo.Author)]
+[assembly: MelonInfo(typeof(UnmuteSound.Mod), UnmuteSound.BuildInfo.Name, UnmuteSound.BuildInfo.Version, UnmuteSound.BuildInfo.Author, UnmuteSound.BuildInfo.DownloadLink)]
 [assembly: MelonGame("VRChat", "VRChat")]
 
 namespace UnmuteSound
@@ -13,6 +13,7 @@ namespace UnmuteSound
         public const string Name = "UnmuteSound";
         public const string Author = "tetra";
         public const string Version = "2.0.0";
+        public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
     }
 
     public class Mod : MelonMod
@@ -40,7 +41,7 @@ namespace UnmuteSound
             {
                 audioManager.field_Public_AudioMixerGroup_0,
                 audioManager.field_Public_AudioMixerGroup_1,
-                audioManager.field_Public_AudioMixerGroup_2,
+                audioManager.field_Public_AudioMixerGroup_2
             }.Single(mg => mg.name == "UI");
 
             MelonLogger.Msg("Patching methods...");
