@@ -10,7 +10,6 @@
     <RootNamespace>CalibrateConfirm</RootNamespace>
     <AssemblyName>CalibrateConfirm</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <MelonLoaderPath>H:\Steam\steamapps\common\VRChat\MelonLoader</MelonLoaderPath>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <LangVersion>latest</LangVersion>
@@ -84,7 +83,6 @@
     <Compile Include="CalibrateConfirmMod.cs" />
     <Compile Include="Components\ButtonWatcher.cs" />
     <Compile Include="Helpers.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="calibrateconfirm.assetbundle" />
