@@ -2,7 +2,7 @@
   {
     "_id": 277,
     "name": "AdBlocker",
-    "modversion": "1.0.0",
+    "modversion": "1.0.1",
     "vrchatversion": "1149",
     "loaderversion": "0.4.3",
     "modtype": "Mod",
@@ -12,15 +12,15 @@
     "requirements": [
       "[VRChatUtilityKit](https://github.com/loukylor/VRC-Mods/releases)"
     ],
-    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.9/AdBlocker.dll",
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.11/AdBlocker.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
-    "changelog": "Initial release",
+    "changelog": "Version bump & rebuilt for latest VRCUK",
     "embedcolor": "#d92341"
   },
   {
     "_id": 184,
     "name": "CalibrateConfirm",
-    "modversion": "3.0.0",
+    "modversion": "3.0.1",
     "vrchatversion": "1149",
     "loaderversion": "0.4.3",
     "modtype": "Mod",
@@ -30,25 +30,25 @@
     "requirements": [
       "[VRChatUtilityKit](https://github.com/loukylor/VRC-Mods/releases)"
     ],
-    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.9/CalibrateConfirm.dll",
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.11/CalibrateConfirm.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
-    "changelog": "Updated for UI 1.5 (build 1149)",
+    "changelog": "Version bump & rebuilt for latest VRCUK",
     "embedcolor": "#43e872"
   },
   {
     "_id": 233,
     "name": "ProPlates",
-    "modversion": "2.0.0",
+    "modversion": "2.0.1",
     "vrchatversion": "1149",
     "loaderversion": "0.4.3",
     "modtype": "Mod",
     "author": "tetra#0001",
-    "description": "Displays a player's pronouns under their nameplate.\nIf you'd like to set your own pronouns, check the [**README**](https://github.com/tetra-fox/VRCMods/tree/master/ProPlates) for instructions.",
+    "description": "Gets a player's pronouns from their status/bio then displays them under their nameplate.\n\nIf you'd like to manually set your pronouns, check the [**README**](https://github.com/tetra-fox/VRCMods/tree/master/ProPlates) for instructions.",
     "searchtags": null,
     "requirements": [
       "[VRChatUtilityKit](https://github.com/loukylor/VRC-Mods/releases)"
     ],
-    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.9/ProPlates.dll",
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.11/ProPlates.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
     "changelog": "Version bump & rebuilt for latest VRCUK",
     "embedcolor": "#03bafc"
@@ -56,17 +56,17 @@
   {
     "_id": 163,
     "name": "QMFreeze",
-    "modversion": "3.0.0",
+    "modversion": "3.0.1",
     "vrchatversion": "1149",
     "loaderversion": "0.4.3",
     "modtype": "Mod",
     "author": "tetra#0001",
-    "description": "Freezes your avatar when you open the quick menu, in case you are falling or otherwise unable to click anything on the quick menu.",
+    "description": "Freezes your avatar when you open the quick menu, in case you're falling/moving too fast and can't click anything on the quick menu.",
     "searchtags": null,
     "requirements": [
       "[VRChatUtilityKit](https://github.com/loukylor/VRC-Mods/releases)"
     ],
-    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.9/QMFreeze.dll",
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.11/QMFreeze.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
     "changelog": "Version bump & rebuilt for latest VRCUK",
     "embedcolor": "#ad2ee8"
@@ -84,7 +84,7 @@
     "requirements": [
       "[VRChatUtilityKit](https://github.com/loukylor/VRC-Mods/releases)"
     ],
-    "downloadlink": "https://api.vrcmg.com/v0/mods/185/UnmuteSound.dll",
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.11/UnmuteSound.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
     "changelog": "Fix for build 1149",
     "embedcolor": "#F5DE19"
