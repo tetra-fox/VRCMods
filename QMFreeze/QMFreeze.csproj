@@ -64,9 +64,6 @@
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>$(MelonLoaderPath)\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
-    <Reference Include="VRCCore-Standalone">
-      <HintPath>$(MelonLoaderPath)\Managed\VRCCore-Standalone.dll</HintPath>
-    </Reference>
     <Reference Include="VRCSDKBase, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(MelonLoaderPath)\Managed\VRCSDKBase.dll</HintPath>
@@ -74,7 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="QMFreezeMod.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QMFreezeSettings.cs" />
   </ItemGroup>
   <ItemGroup />
