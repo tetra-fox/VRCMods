@@ -14,10 +14,10 @@ namespace QMFreeze
 
         internal static void Register()
         {
-            Enabled = Prefs.CreateEntry("Enabled", true, "Enable QMFreeze");
-            RestoreVelocity = Prefs.CreateEntry("RestoreVelocity", false, "Restore velocity");
-            foreach (MelonPreferences_Entry e in Prefs.Entries)
-                e.OnValueChangedUntyped += delegate { OnConfigChanged?.Invoke(); };
+            Enabled = Prefs.CreateEntry(nameof(Enabled), true, "Enable QMFreeze");
+            RestoreVelocity = Prefs.CreateEntry(nameof(RestoreVelocity), false, "Restore velocity");
+
+            foreach (MelonPreferences_Entry e in Prefs.Entries) e.OnValueChangedUntyped += () => OnConfigChanged?.Invoke();
         }
     }
 }

@@ -4,12 +4,14 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 using CalibrateConfirm.Components;
-using HarmonyLib;
 using UnhollowerRuntimeLib;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
 using VRChatUtilityKit.Ui;
+
+[assembly: MelonInfo(typeof(CalibrateConfirm.Mod), CalibrateConfirm.BuildInfo.Name, CalibrateConfirm.BuildInfo.Version, CalibrateConfirm.BuildInfo.Author, CalibrateConfirm.BuildInfo.DownloadLink)]
+[assembly: MelonGame("VRChat", "VRChat")]
 
 namespace CalibrateConfirm
 {
@@ -37,26 +39,26 @@ namespace CalibrateConfirm
             MelonLogger.Msg("Initializing...");
 
             _calibrateFbtButton = Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/SitStandCalibrateButton/Button_CalibrateFBT");
-            
+
             // load our asset bundle
             AssetBundle assetBundle;
             using var stream = Assembly.GetExecutingAssembly()
                 .GetManifestResourceStream("CalibrateConfirm.calibrateconfirm.assetbundle");
-                
+
             using (MemoryStream tempStream = new MemoryStream((int)stream.Length))
             {
                 stream.CopyTo(tempStream);
                 assetBundle = AssetBundle.LoadFromMemory_Internal(tempStream.ToArray(), 0);
                 assetBundle.hideFlags |= HideFlags.DontUnloadUnusedAsset;
             }
-            
+
             // load sprite from the asset bundle
             Sprite confirmFbtSprite = assetBundle.LoadAsset_Internal("ConfirmFBT", Il2CppType.Of<Sprite>()).Cast<Sprite>();
 
             MethodInfo calibrateMethod = Helpers.GetCalibrateMethod();
-            
+
             object timeout = new();
-            
+
             _confirmFbtButton = new SingleButton(() =>
                 {
                     calibrateMethod.Invoke(VRCTrackingManager.field_Private_Static_VRCTrackingManager_0, null);
@@ -69,16 +71,16 @@ namespace CalibrateConfirm
             ButtonWatcher watcher = _calibrateFbtButton.gameObject.AddComponent<ButtonWatcher>();
             watcher.reference = _confirmFbtButton.gameObject;
             watcher.target = _calibrateFbtButton;
-            
+
             _confirmFbtButton.gameObject.SetActive(false);
-            
+
             GameObject sitStandGroup = Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/SitStandCalibrateButton");
 
             UiManager.AddButtonToExistingGroup(sitStandGroup, _confirmFbtButton);
 
             // reset calibrate button's onClick
             _calibrateFbtButton.GetComponent<Button>().onClick = new Button.ButtonClickedEvent();
-            
+
             _calibrateFbtButton.GetComponent<Button>().onClick.AddListener((Action)delegate
             {
                 _confirmFbtButton.gameObject.SetActive(true);
@@ -88,7 +90,7 @@ namespace CalibrateConfirm
 
             MelonLogger.Msg("Initialized!");
         }
-        
+
         private IEnumerator Timeout(int length)
         {
             int timeLeft = length;

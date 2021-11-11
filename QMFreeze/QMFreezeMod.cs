@@ -2,6 +2,9 @@
 using UnityEngine;
 using VRC.SDKBase;
 
+[assembly: MelonInfo(typeof(QMFreeze.Mod), QMFreeze.BuildInfo.Name, QMFreeze.BuildInfo.Version, QMFreeze.BuildInfo.Author, QMFreeze.BuildInfo.DownloadLink)]
+[assembly: MelonGame("VRChat", "VRChat")]
+
 namespace QMFreeze
 {
     internal static class BuildInfo
