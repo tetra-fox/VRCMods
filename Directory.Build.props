@@ -31,8 +31,8 @@
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(VRChatPath)\Mods\$(TargetFileName)" />
-        <Message Text="Copied $(TargetFileName) to $(VRChatPath)\Mods" Importance="high" />
+        <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(VRChatPath)\Mods\$(TargetFileName)"/>
+        <Message Text="Copied $(TargetFileName) to $(VRChatPath)\Mods" Importance="high"/>
     </Target>
-    
+
 </Project>
