@@ -20,4 +20,9 @@
         </Reference>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="pronouns.csv" />
+      <EmbeddedResource Include="pronouns.csv" />
+    </ItemGroup>
+
 </Project>
