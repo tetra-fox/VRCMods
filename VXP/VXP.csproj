@@ -10,7 +10,7 @@
       <HintPath>$(VRChatPath)\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="UIExpansionKit">
-      <HintPath>>$(VRChatPath)\Mods\UIExpansionKit.dll</HintPath>
+      <HintPath>$(VRChatPath)\Mods\UIExpansionKit.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
