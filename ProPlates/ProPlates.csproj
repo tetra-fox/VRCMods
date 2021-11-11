@@ -85,7 +85,7 @@
   <ItemGroup>
     <EmbeddedResource Include="pronouns.csv" />
   </ItemGroup>
-  
+
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
     <Message Text="Copying $(AssemblyName).dll to Mods folder..." Importance="high" />
