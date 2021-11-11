@@ -6,6 +6,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <EmbeddedResource Include="calibrateconfirm.assetbundle" />
+    </ItemGroup>
+
+    <ItemGroup>
         <Reference Include="Assembly-CSharp">
             <HintPath>$(VRChatPath)\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
         </Reference>
@@ -19,5 +23,4 @@
             <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.VRModule.dll</HintPath>
         </Reference>
     </ItemGroup>
-
 </Project>

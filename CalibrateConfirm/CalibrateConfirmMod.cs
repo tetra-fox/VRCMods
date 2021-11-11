@@ -42,10 +42,10 @@ namespace CalibrateConfirm
 
             // load our asset bundle
             AssetBundle assetBundle;
-            using var stream = Assembly.GetExecutingAssembly()
+            using Stream stream = Assembly.GetExecutingAssembly()
                 .GetManifestResourceStream("CalibrateConfirm.calibrateconfirm.assetbundle");
 
-            using (MemoryStream tempStream = new MemoryStream((int)stream.Length))
+            using (MemoryStream tempStream = new((int)stream.Length))
             {
                 stream.CopyTo(tempStream);
                 assetBundle = AssetBundle.LoadFromMemory_Internal(tempStream.ToArray(), 0);
