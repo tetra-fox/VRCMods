@@ -6,6 +6,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <EmbeddedResource Include="pronouns.csv" />
+    </ItemGroup>
+
+    <ItemGroup>
         <Reference Include="Assembly-CSharp">
             <HintPath>$(VRChatPath)\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
         </Reference>
@@ -18,11 +22,6 @@
         <Reference Include="VRCCore-Standalone">
             <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCCore-Standalone.dll</HintPath>
         </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="pronouns.csv" />
-      <EmbeddedResource Include="pronouns.csv" />
     </ItemGroup>
 
 </Project>
