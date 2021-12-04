@@ -33,7 +33,12 @@ namespace AdBlocker
             vrcPlusSupporterEntry = cat.CreateEntry("vrcPlusSupporter", false, "Remove VRC+ Supporter Button");
             vrcPlusGiftEntry = cat.CreateEntry("vrcPlusGift", true, "Remove VRC+ Gift Buttons");
             vrcPlusTabEntry = cat.CreateEntry("vrcPlusTab", false, "Remove VRC+ Tab");
+
+            carousselEntry.OnValueChangedUntyped += OnPreferencesChanged;
             vrcPlusBannerEntry.OnValueChangedUntyped += OnPreferencesChanged;
+            vrcPlusSupporterEntry.OnValueChangedUntyped += OnPreferencesChanged;
+            vrcPlusGiftEntry.OnValueChangedUntyped += OnPreferencesChanged;
+            vrcPlusTabEntry.OnValueChangedUntyped += OnPreferencesChanged;
 
             VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
         }
