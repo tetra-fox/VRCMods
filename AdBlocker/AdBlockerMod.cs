@@ -95,9 +95,12 @@ namespace AdBlocker
                     GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/MenuContent/Screens/UserInfo/Buttons/RightSideButtons/RightUpperButtonColumn/GiftVRChatPlusButton"));
                     MelonLogger.Msg("Removed VRC+ Gift Button");
                     GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_SelectedUser_Remote/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_UserActions/Button_GiftVRChatPlus"));
-                    MelonLogger.Msg("Removed VRC+ QM Gift Button");
+                    MelonLogger.Msg("Removed VRC+ QM Gift Button Remote");
+                    GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_SelectedUser_Local/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_UserActions/Button_GiftVRCPlus"));
+                    MelonLogger.Msg("Removed VRC+ QM Gift Button Local");
+
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     MelonLogger.Error("Failed to remove VRC+ Gift Buttons");
                     MelonLogger.Error(e);
