@@ -11,7 +11,7 @@ namespace AdBlocker
     {
         public const string Name = "AdBlocker";
         public const string Author = "tetra, Xavi";
-        public const string Version = "1.0.1";
+        public const string Version = "1.0.2";
         public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
     }
 
@@ -23,6 +23,7 @@ namespace AdBlocker
         private static MelonPreferences_Entry<bool> vrcPlusSupporterEntry;
         private static MelonPreferences_Entry<bool> vrcPlusGiftEntry;
         private static MelonPreferences_Entry<bool> vrcPlusTabEntry;
+        private static MelonPreferences_Entry<bool> vrcPlusPFPEntry;
 
         public override void OnApplicationStart()
         {
@@ -30,8 +31,9 @@ namespace AdBlocker
             cat = MelonPreferences.CreateCategory("AdBlocker", "AdBlocker Settings");
             carousselEntry = cat.CreateEntry("carousel", true, "Remove QM Caroussel");
             vrcPlusBannerEntry = cat.CreateEntry("vrcPlusBanner", true, "Remove VRC+ Banner");
-            vrcPlusSupporterEntry = cat.CreateEntry("vrcPlusSupporter", false, "Remove VRC+ Supporter Button");
             vrcPlusGiftEntry = cat.CreateEntry("vrcPlusGift", true, "Remove VRC+ Gift Buttons");
+            vrcPlusPFPEntry = cat.CreateEntry("vrcPlusPFPButton", true, "Remove VRC+ PFP Button");
+            vrcPlusSupporterEntry = cat.CreateEntry("vrcPlusSupporter", false, "Remove VRC+ Supporter Button");
             vrcPlusTabEntry = cat.CreateEntry("vrcPlusTab", false, "Remove VRC+ Tab");
 
             carousselEntry.OnValueChangedUntyped += OnPreferencesChanged;
@@ -39,6 +41,7 @@ namespace AdBlocker
             vrcPlusSupporterEntry.OnValueChangedUntyped += OnPreferencesChanged;
             vrcPlusGiftEntry.OnValueChangedUntyped += OnPreferencesChanged;
             vrcPlusTabEntry.OnValueChangedUntyped += OnPreferencesChanged;
+            vrcPlusPFPEntry.OnValueChangedUntyped += OnPreferencesChanged;
 
             VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
         }
@@ -117,6 +120,20 @@ namespace AdBlocker
                 catch (Exception e)
                 {
                     MelonLogger.Error("Failed to remove VRC+ Tab");
+                    MelonLogger.Error(e);
+                }
+            }
+
+            if (vrcPlusTabEntry.Value)
+            {
+                try
+                {
+                    GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/MenuContent/Screens/UserInfo/SelfButtons/ChangeProfilePicButton"));
+                    MelonLogger.Msg("Removed VRC+ PFP Button");
+                }
+                catch (Exception e)
+                {
+                    MelonLogger.Error("Failed to remove VRC+ PFP Button");
                     MelonLogger.Error(e);
                 }
             }
