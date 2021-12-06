@@ -124,7 +124,7 @@ namespace AdBlocker
                 }
             }
 
-            if (vrcPlusTabEntry.Value)
+            if (vrcPlusPFPEntry.Value)
             {
                 try
                 {
