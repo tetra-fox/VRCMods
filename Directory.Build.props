@@ -7,6 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
+        </Reference>
         <Reference Include="MelonLoader">
             <HintPath>$(VRChatPath)\MelonLoader\MelonLoader.dll</HintPath>
         </Reference>

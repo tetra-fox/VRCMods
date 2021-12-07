@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using VRChatUtilityKit;
 
 namespace AdBlocker {
 	internal static class Helpers {
@@ -12,5 +13,7 @@ namespace AdBlocker {
 
 			return currentObject;
 		}
+
+		public static void DisplayHudMessage(string msg) => VRCUiManager.prop_VRCUiManager_0.field_Private_List_1_String_0.Add(msg);
 	}
 }

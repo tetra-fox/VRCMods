@@ -23,7 +23,12 @@ namespace AdBlocker {
 			RemoveVrcPlusTab = Prefs.CreateEntry(nameof(RemoveVrcPlusPfp), false, "Remove VRC+ tab");
 			RemoveVrcPlusPfp = Prefs.CreateEntry(nameof(RemoveVrcPlusGift), true, "Remove VRC+ PFP button");
 
-			OnConfigChanged += () => { MelonLogger.Warning("Preferences changed, please restart your game for changes to take effect"); };
+			const string msg = "Preferences changed, please restart your game for changes to take effect";
+
+			OnConfigChanged += () => {
+				Helpers.DisplayHudMessage(msg);
+				MelonLogger.Warning(msg);
+			};
 
 			foreach (MelonPreferences_Entry e in Prefs.Entries) e.OnValueChangedUntyped += () => OnConfigChanged?.Invoke();
 		}
