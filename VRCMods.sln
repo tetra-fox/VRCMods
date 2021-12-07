@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnmuteSound", "UnmuteSound\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VXP", "VXP\VXP.csproj", "{25DB813A-7780-401B-B118-6A839FB9FCDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaTools", "AvaTools\AvaTools.csproj", "{6CD0DEEB-76D7-40A2-BB20-C8EE5ED12EDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,5 +43,9 @@ Global
 		{25DB813A-7780-401B-B118-6A839FB9FCDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{25DB813A-7780-401B-B118-6A839FB9FCDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25DB813A-7780-401B-B118-6A839FB9FCDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CD0DEEB-76D7-40A2-BB20-C8EE5ED12EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CD0DEEB-76D7-40A2-BB20-C8EE5ED12EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CD0DEEB-76D7-40A2-BB20-C8EE5ED12EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CD0DEEB-76D7-40A2-BB20-C8EE5ED12EDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
