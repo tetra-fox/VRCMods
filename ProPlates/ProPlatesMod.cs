@@ -36,9 +36,6 @@ namespace ProPlates {
 			Settings.Register();
 			Settings.OnConfigChanged += ReloadPronouns;
 
-			MelonLogger.Msg("Registering components...");
-			ClassInjector.RegisterTypeInIl2Cpp<OpacityListener>();
-
 			MelonLogger.Msg("Loading pronoun table...");
 			using Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream(BuildInfo.Name + ".pronouns.csv");
 
