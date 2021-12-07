@@ -17,52 +17,29 @@ namespace AdBlocker
 
     public class Mod : MelonMod
     {
-        private static MelonPreferences_Category cat;
-        private static MelonPreferences_Entry<bool> carousselEntry;
-        private static MelonPreferences_Entry<bool> vrcPlusBannerEntry;
-        private static MelonPreferences_Entry<bool> vrcPlusSupporterEntry;
-        private static MelonPreferences_Entry<bool> vrcPlusGiftEntry;
-        private static MelonPreferences_Entry<bool> vrcPlusTabEntry;
-        private static MelonPreferences_Entry<bool> vrcPlusPFPEntry;
-
         public override void OnApplicationStart()
         {
-            //If using emmVRC leave vrcPlusSupporter and vrcPlusTab off because it will throw errors since they use EnableDisable Listeners when opening the menu and we just make the objects go poof
-            cat = MelonPreferences.CreateCategory("AdBlocker", "AdBlocker Settings");
-            carousselEntry = cat.CreateEntry("carousel", true, "Remove QM Caroussel");
-            vrcPlusBannerEntry = cat.CreateEntry("vrcPlusBanner", true, "Remove VRC+ Banner");
-            vrcPlusGiftEntry = cat.CreateEntry("vrcPlusGift", true, "Remove VRC+ Gift Buttons");
-            vrcPlusPFPEntry = cat.CreateEntry("vrcPlusPFPButton", true, "Remove VRC+ PFP Button");
-            vrcPlusSupporterEntry = cat.CreateEntry("vrcPlusSupporter", false, "Remove VRC+ Supporter Button");
-            vrcPlusTabEntry = cat.CreateEntry("vrcPlusTab", false, "Remove VRC+ Tab");
-
-            carousselEntry.OnValueChangedUntyped += OnPreferencesChanged;
-            vrcPlusBannerEntry.OnValueChangedUntyped += OnPreferencesChanged;
-            vrcPlusSupporterEntry.OnValueChangedUntyped += OnPreferencesChanged;
-            vrcPlusGiftEntry.OnValueChangedUntyped += OnPreferencesChanged;
-            vrcPlusTabEntry.OnValueChangedUntyped += OnPreferencesChanged;
-            vrcPlusPFPEntry.OnValueChangedUntyped += OnPreferencesChanged;
-
-            VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
+            Settings.Register();
+            VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += TryRemove;
         }
 
-        private static void Init()
+        private static void TryRemove()
         {
-            if (carousselEntry.Value)
+            if (Settings.RemoveCarousel.Value)
             {
                 try
                 {
                     GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Carousel_Banners"));
                     MelonLogger.Msg("Removed Carousel");
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     MelonLogger.Error("Failed to remove Carousel");
                     MelonLogger.Error(e);
                 }
             }
 
-            if (vrcPlusBannerEntry.Value)
+            if (Settings.RemoveVrcPlusBanner.Value)
             {
                 try
                 {
@@ -70,14 +47,14 @@ namespace AdBlocker
                     GameObject.DestroyImmediate(vrcPlusBanner);
                     MelonLogger.Msg("Removed VRC+ Banner");
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     MelonLogger.Error("Failed to remove VRC+ Banner");
                     MelonLogger.Error(e);
                 }
             }
 
-            if (vrcPlusSupporterEntry.Value)
+            if (Settings.RemoveVrcPlusSupporter.Value)
             {
                 try
                 {
@@ -91,7 +68,7 @@ namespace AdBlocker
                 }
             }
 
-            if (vrcPlusGiftEntry.Value)
+            if (Settings.RemoveVrcPlusGift.Value)
             {
                 try
                 {
@@ -110,7 +87,7 @@ namespace AdBlocker
                 }
             }
 
-            if (vrcPlusTabEntry.Value)
+            if (Settings.RemoveVrcPlusTab.Value)
             {
                 try
                 {
@@ -124,7 +101,7 @@ namespace AdBlocker
                 }
             }
 
-            if (vrcPlusPFPEntry.Value)
+            if (Settings.RemoveVrcPlusPfp.Value)
             {
                 try
                 {
@@ -137,11 +114,6 @@ namespace AdBlocker
                     MelonLogger.Error(e);
                 }
             }
-        }
-
-        private void OnPreferencesChanged()
-        {
-            MelonLogger.Msg("Preferences changed, please restart your game for changes to take effect");
         }
     }
 }
