@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="pronouns.csv" />
+        <EmbeddedResource Include="pronouns.csv"/>
     </ItemGroup>
 
     <ItemGroup>

@@ -17,149 +17,136 @@ using StringComparer = System.StringComparer;
 [assembly: MelonGame("VRChat", "VRChat")]
 [assembly: MelonColor(System.ConsoleColor.Blue)]
 
-namespace ProPlates
-{
-    internal static class BuildInfo
-    {
-        public const string Name = "ProPlates";
-        public const string Author = "tetra";
-        public const string Version = "2.0.1";
-        public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
-    }
+namespace ProPlates {
+	internal static class BuildInfo {
+		public const string Name = "ProPlates";
+		public const string Author = "tetra";
+		public const string Version = "2.0.1";
+		public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
+	}
 
-    public class Mod : MelonMod
-    {
-        private static string[] _pronounTable;
-        private static readonly Regex PronounParser = new(@"^pronouns˸ (.*$)", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-        private static readonly List<string> PronounPairs = new();
-        public override void OnApplicationStart()
-        {
-            MelonLogger.Msg("Initializing ProPlates...");
-            MelonLogger.Msg("Registering settings...");
-            Settings.Register();
-            Settings.OnConfigChanged += ReloadPronouns;
+	public class Mod : MelonMod {
+		private static string[] _pronounTable;
+		private static readonly Regex PronounParser = new(@"^pronouns˸ (.*$)", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+		private static readonly List<string> PronounPairs = new();
 
-            MelonLogger.Msg("Registering components...");
-            ClassInjector.RegisterTypeInIl2Cpp<OpacityListener>();
+		public override void OnApplicationStart() {
+			MelonLogger.Msg("Initializing ProPlates...");
+			MelonLogger.Msg("Registering settings...");
+			Settings.Register();
+			Settings.OnConfigChanged += ReloadPronouns;
 
-            MelonLogger.Msg("Loading pronoun table...");
-            using Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream(BuildInfo.Name + ".pronouns.csv");
+			MelonLogger.Msg("Registering components...");
+			ClassInjector.RegisterTypeInIl2Cpp<OpacityListener>();
 
-            // pronoun table sourced from https://github.com/witch-house/pronoun.is/blob/master/resources/pronouns.tab
-            _pronounTable = new StreamReader(s!).ReadToEnd().Split(',', '\n');
+			MelonLogger.Msg("Loading pronoun table...");
+			using Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream(BuildInfo.Name + ".pronouns.csv");
 
-            // BIG LIST, it's *probably* fine
-            foreach (string p1 in _pronounTable)
-            {
-                foreach (string p2 in _pronounTable)
-                {
-                    // vrchat please stop "sanitizing" user input by replacing characters with unicode equivalents
-                    // it looks horrible and is terribly hacky
-                    // and so is this lol
-                    PronounPairs.AddRange(new List<string> { $"{p1}⁄{p2}", $"{p1}＼{p2}" });
-                }
-            }
+			// pronoun table sourced from https://github.com/witch-house/pronoun.is/blob/master/resources/pronouns.tab
+			_pronounTable = new StreamReader(s!).ReadToEnd().Split(',', '\n');
 
-            VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
-        }
+			// BIG LIST, it's *probably* fine
+			foreach (string p1 in _pronounTable) {
+				foreach (string p2 in _pronounTable) {
+					// vrchat please stop "sanitizing" user input by replacing characters with unicode equivalents
+					// it looks horrible and is terribly hacky
+					// and so is this lol
+					PronounPairs.AddRange(new List<string> {$"{p1}⁄{p2}", $"{p1}＼{p2}"});
+				}
+			}
 
-        private static void Init()
-        {
-            VRChatUtilityKit.Utilities.NetworkEvents.OnPlayerJoined += player =>
-            {
-                if (player) MakePlate(player, GetPlayerPronouns(player));
-            };
+			VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
+		}
 
-            MelonLogger.Msg("Initialized!");
-        }
+		private static void Init() {
+			VRChatUtilityKit.Utilities.NetworkEvents.OnPlayerJoined += player => {
+				if (player) MakePlate(player, GetPlayerPronouns(player));
+			};
 
-        private static void MakePlate(Player player, string text)
-        {
-            if (string.IsNullOrEmpty(text)) return;
-            if (Settings.MaxPronouns.Value < 1) return;
+			MelonLogger.Msg("Initialized!");
+		}
 
-            PlayerNameplate nameplate = player._vrcplayer.field_Public_PlayerNameplate_0;
-            if (nameplate.transform.Find("Contents/ProPlates Container")) return;
+		private static void MakePlate(Player player, string text) {
+			if (string.IsNullOrEmpty(text)) return;
+			if (Settings.MaxPronouns.Value < 1) return;
 
-            MelonLogger.Msg("Setting pronouns for {0}", player.prop_APIUser_0.displayName);
+			PlayerNameplate nameplate = player._vrcplayer.field_Public_PlayerNameplate_0;
+			if (nameplate.transform.Find("Contents/ProPlates Container")) return;
 
-            Transform pronounPlate = Object.Instantiate(nameplate.transform.Find("Contents/Quick Stats"),
-                nameplate.transform.Find("Contents"), false);
+			MelonLogger.Msg("Setting pronouns for {0}", player.prop_APIUser_0.displayName);
 
-            pronounPlate.name = "ProPlates Container";
-            pronounPlate.localPosition = new Vector3(0f, -60f, 0f); // y coordinate is in increments of 30, yes i'm aware the avatar DL progress covers this
-            pronounPlate.gameObject.active = true;
+			Transform pronounPlate = Object.Instantiate(nameplate.transform.Find("Contents/Quick Stats"),
+				nameplate.transform.Find("Contents"), false);
 
-            OpacityListener opacityListener = pronounPlate.gameObject.AddComponent<OpacityListener>();
-            opacityListener.reference = nameplate.transform.Find("Contents/Main/Background").GetComponent<ImageThreeSlice>();
-            opacityListener.target = pronounPlate.gameObject.GetComponent<ImageThreeSlice>();
+			pronounPlate.name = "ProPlates Container";
+			pronounPlate.localPosition = new Vector3(0f, -60f, 0f); // y coordinate is in increments of 30, yes i'm aware the avatar DL progress covers this
+			pronounPlate.gameObject.active = true;
 
-            // remove unnecessary gameobjects and set pronoun text
-            for (int i = pronounPlate.childCount; i > 0; i--)
-            {
-                Transform c = pronounPlate.GetChild(i - 1);
-                if (c.name == "Trust Text")
-                {
-                    c.name = "Text";
-                    c.GetComponent<TextMeshProUGUI>().text = text;
-                    c.GetComponent<TextMeshProUGUI>().color = Color.white;
-                    continue;
-                }
-                Object.DestroyImmediate(c.gameObject);
-            }
-        }
+			OpacityListener opacityListener = pronounPlate.gameObject.AddComponent<OpacityListener>();
+			opacityListener.reference = nameplate.transform.Find("Contents/Main/Background").GetComponent<ImageThreeSlice>();
+			opacityListener.target = pronounPlate.gameObject.GetComponent<ImageThreeSlice>();
 
-        private static string GetPlayerPronouns(Player player)
-        {
-            string[] playerPronouns = PronounParser.Match(player.prop_APIUser_0.bio).Groups[1].Value.Split('⁄', '＼');
+			// remove unnecessary gameobjects and set pronoun text
+			for (int i = pronounPlate.childCount; i > 0; i--) {
+				Transform c = pronounPlate.GetChild(i - 1);
+				if (c.name == "Trust Text") {
+					c.name = "Text";
+					c.GetComponent<TextMeshProUGUI>().text = text;
+					c.GetComponent<TextMeshProUGUI>().color = Color.white;
+					continue;
+				}
 
-            // sanitize because pronoun jokes aren't funny
-            playerPronouns = playerPronouns.Distinct(StringComparer.CurrentCultureIgnoreCase).Where(p => _pronounTable.Contains(p.ToLower())).ToArray();
+				Object.DestroyImmediate(c.gameObject);
+			}
+		}
 
-            // fall back to exact string comparison (now in status too)
-            if (playerPronouns.Length < 1)
-            {
-                //MelonLogger.Msg("No ProPlates format found, falling back");
-                playerPronouns = ParseEntireProfile(player);
-            }
+		private static string GetPlayerPronouns(Player player) {
+			string[] playerPronouns = PronounParser.Match(player.prop_APIUser_0.bio).Groups[1].Value.Split('⁄', '＼');
 
-            if (playerPronouns.Length > Settings.MaxPronouns.Value) Array.Resize(ref playerPronouns, Settings.MaxPronouns.Value);
+			// sanitize because pronoun jokes aren't funny
+			playerPronouns = playerPronouns.Distinct(StringComparer.CurrentCultureIgnoreCase).Where(p => _pronounTable.Contains(p.ToLower())).ToArray();
 
-            return playerPronouns.Length < 1 ? null : string.Join("/", playerPronouns);
-        }
+			// fall back to exact string comparison (now in status too)
+			if (playerPronouns.Length < 1) {
+				//MelonLogger.Msg("No ProPlates format found, falling back");
+				playerPronouns = ParseEntireProfile(player);
+			}
 
-        private static string[] ParseEntireProfile(Player player)
-        {
-            string[] playerPronouns = { };
+			if (playerPronouns.Length > Settings.MaxPronouns.Value) Array.Resize(ref playerPronouns, Settings.MaxPronouns.Value);
 
-            // combine bio and status to make my life easier
-            string playerInfo = string.Concat(player.prop_APIUser_0.statusDescription, player.prop_APIUser_0.bio).ToLower();
+			return playerPronouns.Length < 1 ? null : string.Join("/", playerPronouns);
+		}
 
-            string foundPronouns = PronounPairs.FirstOrDefault(pair => playerInfo.Contains(pair));
+		private static string[] ParseEntireProfile(Player player) {
+			string[] playerPronouns = { };
 
-            if (!string.IsNullOrEmpty(foundPronouns)) playerPronouns = foundPronouns.Split('⁄', '＼');
+			// combine bio and status to make my life easier
+			string playerInfo = string.Concat(player.prop_APIUser_0.statusDescription, player.prop_APIUser_0.bio).ToLower();
 
-            return playerPronouns;
-        }
+			string foundPronouns = PronounPairs.FirstOrDefault(pair => playerInfo.Contains(pair));
 
-        private static void ReloadPronouns()
-        {
-            try
-            {
-                Il2CppSystem.Collections.Generic.List<Player> players = PlayerManager.field_Private_Static_PlayerManager_0.field_Private_List_1_Player_0;
-                foreach (Player p in players)
-                {
-                    try
-                    {
-                        Object.DestroyImmediate(p.prop_VRCPlayer_0.field_Public_PlayerNameplate_0.transform
-                            .Find("Contents/ProPlates Container").gameObject);
-                        MelonLogger.Msg("Removed pronouns for {0}", p.prop_APIUser_0.displayName);
-                    }
-                    catch { }
-                    MakePlate(p, GetPlayerPronouns(p));
-                }
-            }
-            catch { }
-        }
-    }
+			if (!string.IsNullOrEmpty(foundPronouns)) playerPronouns = foundPronouns.Split('⁄', '＼');
+
+			return playerPronouns;
+		}
+
+		private static void ReloadPronouns() {
+			try {
+				Il2CppSystem.Collections.Generic.List<Player> players = PlayerManager.field_Private_Static_PlayerManager_0.field_Private_List_1_Player_0;
+				foreach (Player p in players) {
+					try {
+						Object.DestroyImmediate(p.prop_VRCPlayer_0.field_Public_PlayerNameplate_0.transform
+							.Find("Contents/ProPlates Container").gameObject);
+						MelonLogger.Msg("Removed pronouns for {0}", p.prop_APIUser_0.displayName);
+					}
+					catch {
+					}
+
+					MakePlate(p, GetPlayerPronouns(p));
+				}
+			}
+			catch {
+			}
+		}
+	}
 }

@@ -8,10 +8,10 @@
     <ItemGroup>
         <Reference Include="Assembly-CSharp">
             <HintPath>$(VRChatPath)\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
-          </Reference>
-          <Reference Include="UnityEngine.AudioModule">
+        </Reference>
+        <Reference Include="UnityEngine.AudioModule">
             <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.AudioModule.dll</HintPath>
-          </Reference>
+        </Reference>
     </ItemGroup>
 
 </Project>

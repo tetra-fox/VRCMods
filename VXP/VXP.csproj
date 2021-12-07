@@ -1,40 +1,40 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <AssemblyName Condition="$(Configuration) == Release">VXP</AssemblyName>
-    <AssemblyName Condition="$(Configuration) == Debug">VXP.dev</AssemblyName>
-  </PropertyGroup>
+    <PropertyGroup>
+        <AssemblyName Condition="$(Configuration) == Release">VXP</AssemblyName>
+        <AssemblyName Condition="$(Configuration) == Debug">VXP.dev</AssemblyName>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>$(VRChatPath)\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="UIExpansionKit">
-      <HintPath>$(VRChatPath)\Mods\UIExpansionKit.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
-    </Reference>
-    <Reference Include="VRCCore-Standalone, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCCore-Standalone.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="VRCCore-Standalone">
-      <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCCore-Standalone.dll</HintPath>
-    </Reference>
-    <Reference Include="VRCSDK3A, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCSDK3A.dll</HintPath>
-    </Reference>
-    <Reference Include="VRCSDKBase, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCSDKBase.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="UIExpansionKit">
+            <HintPath>$(VRChatPath)\Mods\UIExpansionKit.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputLegacyModule">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+        </Reference>
+        <Reference Include="VRCCore-Standalone, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCCore-Standalone.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PhysicsModule">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="VRCCore-Standalone">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCCore-Standalone.dll</HintPath>
+        </Reference>
+        <Reference Include="VRCSDK3A, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCSDK3A.dll</HintPath>
+        </Reference>
+        <Reference Include="VRCSDKBase, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCSDKBase.dll</HintPath>
+        </Reference>
+    </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(VRChatPath)\Mods\$(TargetFileName)" />
-    <Message Text="Copied $(TargetFileName) to $(VRChatPath)\Mods" Importance="high" />
-  </Target>
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(VRChatPath)\Mods\$(TargetFileName)"/>
+        <Message Text="Copied $(TargetFileName) to $(VRChatPath)\Mods" Importance="high"/>
+    </Target>
 
 </Project>

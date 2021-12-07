@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <AssemblyName Condition="$(Configuration) == Release">AdBlocker</AssemblyName>
-    <AssemblyName Condition="$(Configuration) == Debug">AdBlocker.dev</AssemblyName>
-  </PropertyGroup>
+    <PropertyGroup>
+        <AssemblyName Condition="$(Configuration) == Release">AdBlocker</AssemblyName>
+        <AssemblyName Condition="$(Configuration) == Debug">AdBlocker.dev</AssemblyName>
+    </PropertyGroup>
 
 </Project>
