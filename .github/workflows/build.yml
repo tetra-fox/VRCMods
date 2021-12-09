@@ -45,7 +45,7 @@ jobs:
     - name: Install MelonLoader & download dependencies
       run: |
         Expand-Archive ./MelonLoader.x64.zip
-        Move-Item ./MelonLoader.x64.CI/* ./VRChat
+        Move-Item ./MelonLoader.x64/* ./VRChat
         New-Item -Path ./VRChat/Mods -ItemType Directory
         New-Item -Path ./VRChat/Plugins -ItemType Directory
         Move-Item ./Plugins/GenerateAssemblies.dll ./VRChat/Plugins
