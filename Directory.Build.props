@@ -41,8 +41,8 @@
     </Target>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="$(RunningInGithubWorkflow) == True">
-        <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(MsBuildThisFileDirectory)\bin\$(TargetFileName)" />
-        <Message Text="Copied $(TargetFileName) to $(MsBuildThisFileDirectory)\bin" Importance="high"/>
+        <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(MsBuildThisFileDirectory)bin\$(TargetFileName)" />
+        <Message Text="Copied $(TargetFileName) to $(MsBuildThisFileDirectory)bin" Importance="high"/>
     </Target>
 
 </Project>

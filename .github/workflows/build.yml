@@ -14,7 +14,7 @@ jobs:
     - name: Checkout repository and submodules
       uses: actions/checkout@v2
       with:
-        token: ${{ secrets.GH_PAT }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         submodules: recursive
       
     - name: Setup .NET
@@ -28,8 +28,5 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ github.GITHUB_SHA }}
+        name: ${{ github.sha }}
         path: bin/
-      
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
