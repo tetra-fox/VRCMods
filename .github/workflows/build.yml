@@ -42,8 +42,8 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         workflow: dotnet-core.yml
         workflow_conclusion: success
-        name: Cpp2IL-Windows-Netframework472
-        path: ./Cpp2IL-Windows-Netframework472
+        name: Cpp2IL-Netframework472-Windows
+        path: ./Cpp2IL-Netframework472-Windows
 
     - name: Fetch MelonLoader
       uses: robinraju/release-downloader@v1.3
@@ -79,11 +79,11 @@ jobs:
         Invoke-WebRequest https://api.vrcmg.com/v0/mods/231/VRChatUtilityKit.dll -OutFile ./VRChat/Mods/VRChatUtilityKit.dll
 
     - name: Generate assemblies
-      run: ./Cpp2IL-Windows-Netframework472/Cpp2IL.exe --game-path ./VRChat --output-root ./Cpp2IL-Windows-Netframework472/cpp2il_out --just-give-me-dlls-asap-dammit
+      run: ./Cpp2IL-Netframework472-Windows/Cpp2IL.exe --game-path ./VRChat --output-root ./Cpp2IL-Netframework472-Windows/cpp2il_out --just-give-me-dlls-asap-dammit
 
     - name: Unhollow assemblies
       run: |
-        ./AssemblyUnhollower.exe --input=./Cpp2IL-Windows-Netframework472/cpp2il_out \
+        ./AssemblyUnhollower.exe --input=./Cpp2IL-Netframework472-Windows/cpp2il_out \
                                  --output=./VRChat/MelonLoader/Dependencies/Il2CppAssemblyGenerator/Il2CppAssemblyUnhollower/Managed \
                                  --mscorlib=./VRChat/MelonLoader/Managed/mscorlib.dll" \
                                  --unity=./VRChat/MelonLoader/Dependencies/Il2CppAssemblyGenerator/UnityDependencies \
