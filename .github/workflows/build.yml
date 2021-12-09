@@ -16,7 +16,40 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-      
+
+    - name: Fetch & extract DepotDownloader
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        repo: SteamRE/DepotDownloader
+        branch: master
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        workflow: build.yml
+        name: DepotDownloader-Windows
+        workflow_conclusion: success
+
+    - name: Fetch VRChat binaries
+      run: dotnet .\DepotDownloader-Windows\DepotDownloader.dll -app 438100 -depot 438101 -dir ./VRChat -username $env:DEPOTDL_USERNAME -password $env:DEPOTDL_PASSWORD
+
+    - name: Fetch MelonLoader
+      uses: robinraju/release-downloader@v1.3
+      with:
+        repository: LavaGang/MelonLoader
+        tag: "v0.5.1"
+        fileName: MelonLoader.x64.zip
+        out-file-path: ./
+
+    - name: Install MelonLoader & download dependencies
+      run: |
+        Expand-Archive ./MelonLoader.x64.CI.zip
+        Move-Item ./MelonLoader.x64.CI/* ./VRChat
+        New-Item -Path ./VRChat/Mods -ItemType Directory
+        New-Item -Path ./VRChat/Plugins -ItemType Directory
+        Move-Item ./Plugins/GenerateAssemblies.dll ./VRChat/Plugins
+        Invoke-WebRequest https://api.vrcmg.com/v0/mods/231/VRChatUtilityKit.dll -OutFile ./VRChat/Mods/VRChatUtilityKit.dll
+
+    - name: Generate assemblies
+      run: ./VRChat/VRChat.exe --regenerate.assemblies
+
     - name: Build
       run: dotnet build -p:RunningInGitHubWorkflow=True -p:Configuration=Release
 
@@ -28,4 +61,8 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{ steps.short-sha.outputs.sha }}.zip
-        path: bin/
+        path: ./bin/
+
+      env:
+        DEPOTDL_USERNAME: ${{ secrets.DEPOTDL_USERNAME }}
+        DEPOTDL_PASSWORD: ${{ secrets.DEPOTDL_PASSWORD }}
