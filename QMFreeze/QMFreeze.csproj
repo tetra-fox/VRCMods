@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <AssemblyName Condition="$(Configuration) == Release">QMFreeze</AssemblyName>
-        <AssemblyName Condition="$(Configuration) == Debug">QMFreeze.dev</AssemblyName>
+        <AssemblyName>QMFreeze</AssemblyName>
+        <AssemblyName Condition="$(Configuration) == Debug">$(AssemblyName).dev</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

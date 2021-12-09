@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <AssemblyName Condition="$(Configuration) == Release">ProPlates</AssemblyName>
-        <AssemblyName Condition="$(Configuration) == Debug">ProPlates.dev</AssemblyName>
+        <AssemblyName>ProPlates</AssemblyName>
+        <AssemblyName Condition="$(Configuration) == Debug">$(AssemblyName).dev</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

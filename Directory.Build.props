@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net472</TargetFramework>
         <LangVersion>latest</LangVersion>
+        <RunningInGithubWorkflow>False</RunningInGithubWorkflow>
         <VRChatPath>F:\Steam\steamapps\common\VRChat</VRChatPath>
         <VRChatPath Condition="$(RunningInGitHubWorkflow) == True">$(MsBuildThisFileDirectory)VRChat-ML-Libs</VRChatPath>
     </PropertyGroup>
@@ -34,10 +35,14 @@
         </Reference>
     </ItemGroup>
 
-
     <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="$(RunningInGithubWorkflow) == False">
         <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(VRChatPath)\Mods\$(TargetFileName)" />
         <Message Text="Copied $(TargetFileName) to $(VRChatPath)\Mods" Importance="high"/>
+    </Target>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="$(RunningInGithubWorkflow) == True">
+        <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(MsBuildThisFileDirectory)\bin\$(TargetFileName)" />
+        <Message Text="Copied $(TargetFileName) to $(MsBuildThisFileDirectory)\bin" Importance="high"/>
     </Target>
 
 </Project>

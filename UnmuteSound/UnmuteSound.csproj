@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <AssemblyName Condition="$(Configuration) == Release">UnmuteSound</AssemblyName>
-        <AssemblyName Condition="$(Configuration) == Debug">UnmuteSound.dev</AssemblyName>
+        <AssemblyName>UnmuteSound</AssemblyName>
+        <AssemblyName Condition="$(Configuration) == Debug">$(AssemblyName).dev</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

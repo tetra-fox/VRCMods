@@ -22,11 +22,14 @@ jobs:
       with:
         dotnet-version: 5.0.x
       
-    - name: Restore dependencies
-      run: dotnet restore
-      
     - name: Build
-      run: dotnet build --no-restore -p:RunningInGitHubWorkflow=True 
+      run: dotnet build --no-restore -p:RunningInGitHubWorkflow=True -p:Configuration=Release
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ github.GITHUB_SHA }}
+        path: bin/
       
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
