@@ -52,7 +52,7 @@ jobs:
         Invoke-WebRequest https://api.vrcmg.com/v0/mods/231/VRChatUtilityKit.dll -OutFile ./VRChat/Mods/VRChatUtilityKit.dll
 
     - name: Generate assemblies
-      run: ./VRChat/VRChat.exe --regenerate.assemblies
+      run: ./VRChat/VRChat.exe --regenerate.assemblies --melonloader.disablestartscreen --melonloader.hideconsole
 
     - name: Build
       run: dotnet build -p:RunningInGitHubWorkflow=True -p:Configuration=Release
