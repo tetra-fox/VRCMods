@@ -48,7 +48,6 @@ jobs:
         Move-Item ./MelonLoader.x64/* ./VRChat
         New-Item -Path ./VRChat/Mods -ItemType Directory
         New-Item -Path ./VRChat/Plugins -ItemType Directory
-        Move-Item ./Plugins/GenerateAssemblies.dll ./VRChat/Plugins
         Invoke-WebRequest https://api.vrcmg.com/v0/mods/231/VRChatUtilityKit.dll -OutFile ./VRChat/Mods/VRChatUtilityKit.dll
 
     - name: Generate assemblies
