@@ -1,10 +1,5 @@
-on:
-  push:
-    branches:
-    - master
-  pull_request:
-    branches:
-    - master
+name: Build & upload artifacts
+on: [push, pull_request]
 
 jobs:
   build:
@@ -25,8 +20,11 @@ jobs:
     - name: Build
       run: dotnet build -p:RunningInGitHubWorkflow=True -p:Configuration=Release
 
+    - run: $SHORT_SHA=$GITHUB_SHA.SubString(0,7)
+      shell: pwsh
+
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ github.sha }}
+        name: ${{ env.SHORT_SHA }}.zip
         path: bin/
