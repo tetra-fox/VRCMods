@@ -23,7 +23,7 @@ jobs:
         dotnet-version: 5.0.x
       
     - name: Build
-      run: dotnet build --no-restore -p:RunningInGitHubWorkflow=True -p:Configuration=Release
+      run: dotnet build -p:RunningInGitHubWorkflow=True -p:Configuration=Release
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
