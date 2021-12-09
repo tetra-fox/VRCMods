@@ -3,33 +3,34 @@
     <PropertyGroup>
         <TargetFramework>net472</TargetFramework>
         <LangVersion>latest</LangVersion>
-        <VRChatPath>$(MsBuildThisFileDirectory)VRChat-ML-Libs</VRChatPath>
+        <LibsPath>$(MsBuildThisFileDirectory)VRChat-ML-Libs</LibsPath>
+        <VRChatPath>F:\Steam\steamapps\common\VRChat</VRChatPath>
     </PropertyGroup>
 
     <ItemGroup>
         <Reference Include="Assembly-CSharp">
-            <HintPath>$(VRChatPath)\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
+            <HintPath>$(LibsPath)\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
         </Reference>
         <Reference Include="MelonLoader">
-            <HintPath>$(VRChatPath)\MelonLoader\MelonLoader.dll</HintPath>
+            <HintPath>$(LibsPath)\MelonLoader\MelonLoader.dll</HintPath>
         </Reference>
         <Reference Include="VRChatUtilityKit">
-            <HintPath>$(VRChatPath)\Mods\VRChatUtilityKit.dll</HintPath>
+            <HintPath>$(LibsPath)\Mods\VRChatUtilityKit.dll</HintPath>
         </Reference>
         <Reference Include="Il2Cppmscorlib">
-            <HintPath>$(VRChatPath)\MelonLoader\Managed\Il2Cppmscorlib.dll</HintPath>
+            <HintPath>$(LibsPath)\MelonLoader\Managed\Il2Cppmscorlib.dll</HintPath>
         </Reference>
         <Reference Include="UnhollowerBaseLib">
-            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>
+            <HintPath>$(LibsPath)\MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>
         </Reference>
         <Reference Include="UnhollowerRuntimeLib">
-            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnhollowerRuntimeLib.dll</HintPath>
+            <HintPath>$(LibsPath)\MelonLoader\Managed\UnhollowerRuntimeLib.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine">
-            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.dll</HintPath>
+            <HintPath>$(LibsPath)\MelonLoader\Managed\UnityEngine.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
-            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.CoreModule.dll</HintPath>
+            <HintPath>$(LibsPath)\MelonLoader\Managed\UnityEngine.CoreModule.dll</HintPath>
         </Reference>
     </ItemGroup>
 

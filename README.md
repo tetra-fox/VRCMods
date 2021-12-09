@@ -9,5 +9,5 @@
 ## A note before continuing
 The mods listed here require **VRChatUtilityKit** by **loukylor**. Please be sure to install it before using any of my mods! You can get it [here](https://github.com/loukylor/VRC-Mods/releases).
 
-## Building
-Change the `VRChatPath` property in `Directory.build.props` to the path of your VRChat installation.
+## Building locally
+Change the `LibsPath` and `VRChatPath` properties in `Directory.build.props` to the path of your VRChat installation.
