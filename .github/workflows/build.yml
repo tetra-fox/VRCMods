@@ -34,6 +34,14 @@ jobs:
         DEPOTDL_USERNAME: ${{ secrets.DEPOTDL_USERNAME }}
         DEPOTDL_PASSWORD: ${{ secrets.DEPOTDL_PASSWORD }}
 
+    - name: Fetch Cpp2IL
+      uses: robinraju/release-downloader@v1.3
+      with:
+        repository: SamboyCoding/Cpp2IL
+        tag: "2021.6.1"
+        fileName: Cpp2IL-2021.6.1-Windows.exe
+        out-file-path: ./
+
     - name: Fetch MelonLoader
       uses: robinraju/release-downloader@v1.3
       with:
@@ -47,11 +55,10 @@ jobs:
         Expand-Archive ./MelonLoader.x64.zip
         Move-Item ./MelonLoader.x64/* ./VRChat
         New-Item -Path ./VRChat/Mods -ItemType Directory
-        New-Item -Path ./VRChat/Plugins -ItemType Directory
         Invoke-WebRequest https://api.vrcmg.com/v0/mods/231/VRChatUtilityKit.dll -OutFile ./VRChat/Mods/VRChatUtilityKit.dll
 
     - name: Generate assemblies
-      run: ./VRChat/VRChat.exe --regenerate.assemblies --melonloader.disablestartscreen --melonloader.hideconsole
+      run: ./Cpp2IL-2021.6.1-Windows.exe --game-path ./VRChat/MelonLoader/Managed --output-root ./VRChat/Melonloader/Managed --just-give-me-dlls-asap-dammit
 
     - name: Build
       run: dotnet build -p:RunningInGitHubWorkflow=True -p:Configuration=Release
