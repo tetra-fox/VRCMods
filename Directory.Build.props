@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net472</TargetFramework>
         <LangVersion>latest</LangVersion>
-        <VRChatPath>F:\Steam\steamapps\common\VRChat</VRChatPath>
+        <VRChatPath>$(MsBuildThisFileDirectory)VRChat-ML-Libs</VRChatPath>
     </PropertyGroup>
 
     <ItemGroup>
