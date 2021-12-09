@@ -11,13 +11,13 @@
 
     <ItemGroup>
         <Reference Include="UnityEngine.AssetBundleModule">
-            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+            <HintPath>$(LibsPath)\MelonLoader\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.UI">
-            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.UI.dll</HintPath>
+            <HintPath>$(LibsPath)\MelonLoader\Managed\UnityEngine.UI.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.VRModule">
-            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.VRModule.dll</HintPath>
+            <HintPath>$(LibsPath)\MelonLoader\Managed\UnityEngine.VRModule.dll</HintPath>
         </Reference>
     </ItemGroup>
 </Project>

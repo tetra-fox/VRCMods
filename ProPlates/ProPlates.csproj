@@ -11,13 +11,13 @@
 
     <ItemGroup>
         <Reference Include="Unity.TextMeshPro">
-            <HintPath>$(VRChatPath)\MelonLoader\Managed\Unity.TextMeshPro.dll</HintPath>
+            <HintPath>$(LibsPath)\MelonLoader\Managed\Unity.TextMeshPro.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.UI">
-            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.UI.dll</HintPath>
+            <HintPath>$(LibsPath)\MelonLoader\Managed\UnityEngine.UI.dll</HintPath>
         </Reference>
         <Reference Include="VRCCore-Standalone">
-            <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCCore-Standalone.dll</HintPath>
+            <HintPath>$(LibsPath)\MelonLoader\Managed\VRCCore-Standalone.dll</HintPath>
         </Reference>
     </ItemGroup>
 
