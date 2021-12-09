@@ -58,7 +58,7 @@ jobs:
         Invoke-WebRequest https://api.vrcmg.com/v0/mods/231/VRChatUtilityKit.dll -OutFile ./VRChat/Mods/VRChatUtilityKit.dll
 
     - name: Generate assemblies
-      run: ./Cpp2IL-2021.6.1-Windows.exe --game-path ./VRChat/MelonLoader/Managed --output-root ./VRChat/Melonloader/Managed --just-give-me-dlls-asap-dammit
+      run: ./Cpp2IL-2021.6.1-Windows.exe --game-path ./VRChat --output-root ./VRChat/Melonloader/Managed --just-give-me-dlls-asap-dammit
 
     - name: Build
       run: dotnet build -p:RunningInGitHubWorkflow=True -p:Configuration=Release
