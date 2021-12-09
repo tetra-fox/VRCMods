@@ -5,40 +5,46 @@ using UnityEngine;
 [assembly: MelonInfo(typeof(AdBlocker.Mod), AdBlocker.BuildInfo.Name, AdBlocker.BuildInfo.Version, AdBlocker.BuildInfo.Author, AdBlocker.BuildInfo.DownloadLink)]
 [assembly: MelonGame("VRChat", "VRChat")]
 
-namespace AdBlocker {
-	internal static class BuildInfo {
+namespace AdBlocker
+{
+	internal static class BuildInfo
+	{
 		public const string Name = "AdBlocker";
 		public const string Author = "tetra, Xavi";
 		public const string Version = "1.0.2";
 		public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
 	}
 
-	public class Mod : MelonMod {
-		public override void OnApplicationStart() {
+	public class Mod : MelonMod
+	{
+		public override void OnApplicationStart()
+		{
 			Settings.Register();
 			VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += TryRemove;
 		}
 
-		public override void OnPreferencesSaved() {
+		public override void OnPreferencesSaved()
+		{
 			// only if the user changed AdBlocker prefs
 			if (!Settings.Changed) return;
-			
+
 			const string msg = "Preferences changed, please restart your game for changes to take effect";
-			MelonLogger.Warning(msg);
+			this.LoggerInstance.Warning(msg);
 			Helpers.DisplayHudMessage($"[AdBlocker]\n{msg}");
-			
+
 			Settings.Changed = false;
 		}
 
-		private static void TryRemove() {
+		private void TryRemove()
+		{
 			if (Settings.RemoveCarousel.Value) {
 				try {
 					GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Carousel_Banners"));
-					MelonLogger.Msg("Removed Carousel");
+					this.LoggerInstance.Msg("Removed Carousel");
 				}
 				catch (Exception e) {
-					MelonLogger.Error("Failed to remove Carousel");
-					MelonLogger.Error(e);
+					this.LoggerInstance.Error("Failed to remove Carousel");
+					this.LoggerInstance.Error(e);
 				}
 			}
 
@@ -46,59 +52,59 @@ namespace AdBlocker {
 				try {
 					GameObject vrcPlusBanner = Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/VRC+_Banners");
 					GameObject.DestroyImmediate(vrcPlusBanner);
-					MelonLogger.Msg("Removed VRC+ Banner");
+					this.LoggerInstance.Msg("Removed VRC+ Banner");
 				}
 				catch (Exception e) {
-					MelonLogger.Error("Failed to remove VRC+ Banner");
-					MelonLogger.Error(e);
+					this.LoggerInstance.Error("Failed to remove VRC+ Banner");
+					this.LoggerInstance.Error(e);
 				}
 			}
 
 			if (Settings.RemoveVrcPlusSupporter.Value) {
 				try {
 					GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/MenuContent/Screens/UserInfo/Buttons/RightSideButtons/RightUpperButtonColumn/Supporter"));
-					MelonLogger.Msg("Removed VRC+ Supporter Button");
+					this.LoggerInstance.Msg("Removed VRC+ Supporter Button");
 				}
 				catch (Exception e) {
-					MelonLogger.Error("Failed to remove VRC+ Supporter Button");
-					MelonLogger.Error(e);
+					this.LoggerInstance.Error("Failed to remove VRC+ Supporter Button");
+					this.LoggerInstance.Error(e);
 				}
 			}
 
 			if (Settings.RemoveVrcPlusGift.Value) {
 				try {
 					GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/MenuContent/Screens/UserInfo/Buttons/RightSideButtons/RightUpperButtonColumn/GiftVRChatPlusButton"));
-					MelonLogger.Msg("Removed VRC+ Gift Button");
+					this.LoggerInstance.Msg("Removed VRC+ Gift Button");
 					GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_SelectedUser_Remote/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_UserActions/Button_GiftVRChatPlus"));
-					MelonLogger.Msg("Removed VRC+ QM Gift Button Remote");
+					this.LoggerInstance.Msg("Removed VRC+ QM Gift Button Remote");
 					GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_SelectedUser_Local/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_UserActions/Button_GiftVRCPlus"));
-					MelonLogger.Msg("Removed VRC+ QM Gift Button Local");
+					this.LoggerInstance.Msg("Removed VRC+ QM Gift Button Local");
 				}
 				catch (Exception e) {
-					MelonLogger.Error("Failed to remove VRC+ Gift Buttons");
-					MelonLogger.Error(e);
+					this.LoggerInstance.Error("Failed to remove VRC+ Gift Buttons");
+					this.LoggerInstance.Error(e);
 				}
 			}
 
 			if (Settings.RemoveVrcPlusTab.Value) {
 				try {
 					GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/MenuContent/Backdrop/Header/Tabs/ViewPort/Content/VRC+PageTab"));
-					MelonLogger.Msg("Removed VRC+ Tab");
+					this.LoggerInstance.Msg("Removed VRC+ Tab");
 				}
 				catch (Exception e) {
-					MelonLogger.Error("Failed to remove VRC+ Tab");
-					MelonLogger.Error(e);
+					this.LoggerInstance.Error("Failed to remove VRC+ Tab");
+					this.LoggerInstance.Error(e);
 				}
 			}
 
 			if (Settings.RemoveVrcPlusPfp.Value) {
 				try {
 					GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/MenuContent/Screens/UserInfo/SelfButtons/ChangeProfilePicButton"));
-					MelonLogger.Msg("Removed VRC+ PFP Button");
+					this.LoggerInstance.Msg("Removed VRC+ PFP Button");
 				}
 				catch (Exception e) {
-					MelonLogger.Error("Failed to remove VRC+ PFP Button");
-					MelonLogger.Error(e);
+					this.LoggerInstance.Error("Failed to remove VRC+ PFP Button");
+					this.LoggerInstance.Error(e);
 				}
 			}
 		}

@@ -6,19 +6,23 @@ using UnityEngine;
 [assembly: MelonInfo(typeof(UnmuteSound.Mod), UnmuteSound.BuildInfo.Name, UnmuteSound.BuildInfo.Version, UnmuteSound.BuildInfo.Author, UnmuteSound.BuildInfo.DownloadLink)]
 [assembly: MelonGame("VRChat", "VRChat")]
 
-namespace UnmuteSound {
-	internal static class BuildInfo {
+namespace UnmuteSound
+{
+	internal static class BuildInfo
+	{
 		public const string Name = "UnmuteSound";
 		public const string Author = "tetra";
 		public const string Version = "2.0.0";
 		public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
 	}
 
-	public class Mod : MelonMod {
-		public override void OnApplicationStart() { VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init; }
+	public class Mod : MelonMod
+	{
+		public override void OnApplicationStart() => VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += this.Init;
 
-		private static void Init() {
-			MelonLogger.Msg("Creating audio source...");
+		private void Init()
+		{
+			this.LoggerInstance.Msg("Creating audio source...");
 
 			HudVoiceIndicator voiceIndicator = GameObject.Find("UserInterface/UnscaledUI/HudContent").GetComponent<HudVoiceIndicator>();
 
@@ -29,17 +33,19 @@ namespace UnmuteSound {
 
 			// thanks knah https://github.com/knah/VRCMods/blob/142dab764543a17ab10092ec684bf7cf19e72683/JoinNotifier/JoinNotifierMod.cs#L64-L70
 			VRCAudioManager audioManager = VRCAudioManager.field_Private_Static_VRCAudioManager_0;
-			unmuteBlop.outputAudioMixerGroup = new[] {
+			unmuteBlop.outputAudioMixerGroup = new[]
+			{
 				audioManager.field_Public_AudioMixerGroup_0,
 				audioManager.field_Public_AudioMixerGroup_1,
 				audioManager.field_Public_AudioMixerGroup_2
 			}.Single(mg => mg.name == "UI");
 
-			MelonLogger.Msg("Patching methods...");
+			this.LoggerInstance.Msg("Patching methods...");
 
 			bool joiningRoom = true;
 
-			DefaultTalkController.field_Private_Static_Action_0 += (Action) (() => {
+			DefaultTalkController.field_Private_Static_Action_0 += (Action) (() =>
+			{
 				if (DefaultTalkController.field_Private_Static_Boolean_0 || joiningRoom) return;
 				unmuteBlop.Play();
 			});
@@ -47,7 +53,7 @@ namespace UnmuteSound {
 			VRChatUtilityKit.Utilities.NetworkEvents.OnRoomJoined += () => joiningRoom = false;
 			VRChatUtilityKit.Utilities.NetworkEvents.OnRoomLeft += () => joiningRoom = true;
 
-			MelonLogger.Msg("Initialized!");
+			this.LoggerInstance.Msg("Initialized!");
 		}
 	}
 }

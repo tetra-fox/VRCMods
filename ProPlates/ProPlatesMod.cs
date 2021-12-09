@@ -16,26 +16,30 @@ using StringComparer = System.StringComparer;
 [assembly: MelonGame("VRChat", "VRChat")]
 [assembly: MelonColor(System.ConsoleColor.Blue)]
 
-namespace ProPlates {
-	internal static class BuildInfo {
+namespace ProPlates
+{
+	internal static class BuildInfo
+	{
 		public const string Name = "ProPlates";
 		public const string Author = "tetra";
 		public const string Version = "2.0.1";
 		public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
 	}
 
-	public class Mod : MelonMod {
+	public class Mod : MelonMod
+	{
 		private static string[] _pronounTable;
 		private static readonly Regex PronounParser = new(@"^pronouns˸ (.*$)", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 		private static readonly List<string> PronounPairs = new();
 
-		public override void OnApplicationStart() {
-			MelonLogger.Msg("Initializing ProPlates...");
-			MelonLogger.Msg("Registering settings...");
+		public override void OnApplicationStart()
+		{
+			this.LoggerInstance.Msg("Initializing ProPlates...");
+			this.LoggerInstance.Msg("Registering settings...");
 			Settings.Register();
-			Settings.OnConfigChanged += ReloadPronouns;
+			Settings.OnConfigChanged += this.ReloadPronouns;
 
-			MelonLogger.Msg("Loading pronoun table...");
+			this.LoggerInstance.Msg("Loading pronoun table...");
 			using Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream(BuildInfo.Name + ".pronouns.csv");
 
 			// pronoun table sourced from https://github.com/witch-house/pronoun.is/blob/master/resources/pronouns.tab
@@ -51,25 +55,27 @@ namespace ProPlates {
 				}
 			}
 
-			VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
+			VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += this.Init;
 		}
 
-		private static void Init() {
+		private void Init()
+		{
 			VRChatUtilityKit.Utilities.NetworkEvents.OnPlayerJoined += player => {
-				if (player) MakePlate(player, GetPlayerPronouns(player));
+				if (player) this.MakePlate(player, GetPlayerPronouns(player));
 			};
 
-			MelonLogger.Msg("Initialized!");
+			this.LoggerInstance.Msg("Initialized!");
 		}
 
-		private static void MakePlate(Player player, string text) {
+		private void MakePlate(Player player, string text)
+		{
 			if (string.IsNullOrEmpty(text)) return;
 			if (Settings.MaxPronouns.Value < 1) return;
 
 			PlayerNameplate nameplate = player._vrcplayer.field_Public_PlayerNameplate_0;
 			if (nameplate.transform.Find("Contents/ProPlates Container")) return;
 
-			MelonLogger.Msg("Setting pronouns for {0}", player.prop_APIUser_0.displayName);
+			this.LoggerInstance.Msg("Setting pronouns for {0}", player.prop_APIUser_0.displayName);
 
 			Transform pronounPlate = Object.Instantiate(nameplate.transform.Find("Contents/Quick Stats"),
 				nameplate.transform.Find("Contents"), false);
@@ -96,7 +102,8 @@ namespace ProPlates {
 			}
 		}
 
-		private static string GetPlayerPronouns(Player player) {
+		private static string GetPlayerPronouns(Player player)
+		{
 			string[] playerPronouns = PronounParser.Match(player.prop_APIUser_0.bio).Groups[1].Value.Split('⁄', '＼');
 
 			// sanitize because pronoun jokes aren't funny
@@ -104,7 +111,7 @@ namespace ProPlates {
 
 			// fall back to exact string comparison (now in status too)
 			if (playerPronouns.Length < 1) {
-				//MelonLogger.Msg("No ProPlates format found, falling back");
+				//this.LoggerInstance.Msg("No ProPlates format found, falling back");
 				playerPronouns = ParseEntireProfile(player);
 			}
 
@@ -113,7 +120,8 @@ namespace ProPlates {
 			return playerPronouns.Length < 1 ? null : string.Join("/", playerPronouns);
 		}
 
-		private static string[] ParseEntireProfile(Player player) {
+		private static string[] ParseEntireProfile(Player player)
+		{
 			string[] playerPronouns = { };
 
 			// combine bio and status to make my life easier
@@ -126,19 +134,20 @@ namespace ProPlates {
 			return playerPronouns;
 		}
 
-		private static void ReloadPronouns() {
+		private void ReloadPronouns()
+		{
 			try {
 				Il2CppSystem.Collections.Generic.List<Player> players = PlayerManager.field_Private_Static_PlayerManager_0.field_Private_List_1_Player_0;
 				foreach (Player p in players) {
 					try {
 						Object.DestroyImmediate(p.prop_VRCPlayer_0.field_Public_PlayerNameplate_0.transform
 							.Find("Contents/ProPlates Container").gameObject);
-						MelonLogger.Msg("Removed pronouns for {0}", p.prop_APIUser_0.displayName);
+						this.LoggerInstance.Msg("Removed pronouns for {0}", p.prop_APIUser_0.displayName);
 					}
 					catch {
 					}
 
-					MakePlate(p, GetPlayerPronouns(p));
+					this.MakePlate(p, GetPlayerPronouns(p));
 				}
 			}
 			catch {

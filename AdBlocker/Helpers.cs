@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 
-namespace AdBlocker {
-	internal static class Helpers {
-		public static GameObject FindInactive(string path) {
+namespace AdBlocker
+{
+	internal static class Helpers
+	{
+		public static GameObject FindInactive(string path)
+		{
 			// very bad and inefficient do not use
 			// or do i don't really care
 			string[] hierarchy = path.Split('/');
