@@ -20,11 +20,12 @@ jobs:
     - name: Build
       run: dotnet build -p:RunningInGitHubWorkflow=True -p:Configuration=Release
 
-    - run: $SHORT_SHA=$GITHUB_SHA.SubString(0,7)
-      shell: pwsh
+    - name: Get short commit SHA
+      uses: benjlevesque/short-sha@v1.2
+      id: short-sha
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ env.SHORT_SHA }}.zip
+        name: ${{ steps.short-sha.outputs.sha }}.zip
         path: bin/
