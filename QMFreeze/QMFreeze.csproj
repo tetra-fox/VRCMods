@@ -7,10 +7,10 @@
 
     <ItemGroup>
         <Reference Include="UnityEngine.PhysicsModule">
-            <HintPath>$(LibsPath)\MelonLoader\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.PhysicsModule.dll</HintPath>
         </Reference>
         <Reference Include="VRCSDKBase">
-            <HintPath>$(LibsPath)\MelonLoader\Managed\VRCSDKBase.dll</HintPath>
+            <HintPath>$(VRChatPath)\MelonLoader\Managed\VRCSDKBase.dll</HintPath>
         </Reference>
     </ItemGroup>
 
