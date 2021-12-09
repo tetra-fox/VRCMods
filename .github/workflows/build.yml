@@ -1,4 +1,3 @@
-name: Build & upload artifacts
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
@@ -24,8 +23,9 @@ jobs:
         branch: master
         github_token: ${{ secrets.GITHUB_TOKEN }}
         workflow: build.yml
-        name: DepotDownloader-Windows
         workflow_conclusion: success
+        name: DepotDownloader-Windows
+        path: ./DepotDownloader-Windows
 
     - name: Fetch VRChat binaries
       run: dotnet .\DepotDownloader-Windows\DepotDownloader.dll -app 438100 -depot 438101 -dir ./VRChat -username $env:DEPOTDL_USERNAME -password $env:DEPOTDL_PASSWORD
