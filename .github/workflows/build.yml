@@ -30,6 +30,9 @@ jobs:
 
     - name: Fetch VRChat binaries
       run: dotnet .\DepotDownloader-Windows\DepotDownloader.dll -app 438100 -depot 438101 -dir ./VRChat -username $env:DEPOTDL_USERNAME -password $env:DEPOTDL_PASSWORD
+      env:
+        DEPOTDL_USERNAME: ${{ secrets.DEPOTDL_USERNAME }}
+        DEPOTDL_PASSWORD: ${{ secrets.DEPOTDL_PASSWORD }}
 
     - name: Fetch MelonLoader
       uses: robinraju/release-downloader@v1.3
@@ -63,7 +66,3 @@ jobs:
       with:
         name: ${{ steps.short-sha.outputs.sha }}.zip
         path: ./bin/
-
-      env:
-        DEPOTDL_USERNAME: ${{ secrets.DEPOTDL_USERNAME }}
-        DEPOTDL_PASSWORD: ${{ secrets.DEPOTDL_PASSWORD }}
