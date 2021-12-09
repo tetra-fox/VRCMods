@@ -11,7 +11,7 @@ Removes:
 - VRC+ UserInfo supporter button<sup>*</sup>
 - VRC+ Menu Tab<sup>*</sup>
 
-<sup>*do not use use these options while using emmVRC and use emmVRCs own functions to disable these buttons</sup>
+<sup>*if you are using emmVRC to remove these UI elements, leave these options enabled, otherwise you may encounter issues</sup>
 
 If you have VRC+ and are missing buttons, please verify that those aren't removed by the mod (e.g. the change profile
 picture button).

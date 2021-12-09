@@ -19,6 +19,17 @@ namespace AdBlocker {
 			VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += TryRemove;
 		}
 
+		public override void OnPreferencesSaved() {
+			// only if the user changed AdBlocker prefs
+			if (!Settings.Changed) return;
+			
+			const string msg = "Preferences changed, please restart your game for changes to take effect";
+			MelonLogger.Warning(msg);
+			Helpers.DisplayHudMessage($"[AdBlocker]\n{msg}");
+			
+			Settings.Changed = false;
+		}
+
 		private static void TryRemove() {
 			if (Settings.RemoveCarousel.Value) {
 				try {

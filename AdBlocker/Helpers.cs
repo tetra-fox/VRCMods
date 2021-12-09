@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using VRChatUtilityKit;
 
 namespace AdBlocker {
 	internal static class Helpers {
