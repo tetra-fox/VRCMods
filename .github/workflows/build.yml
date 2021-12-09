@@ -33,65 +33,25 @@ jobs:
       env:
         DEPOTDL_USERNAME: ${{ secrets.DEPOTDL_USERNAME }}
         DEPOTDL_PASSWORD: ${{ secrets.DEPOTDL_PASSWORD }}
-    
-    - name: Fetch Cpp2IL
-      uses: dawidd6/action-download-artifact@v2
-      with:
-        repo: SamboyCoding/Cpp2IL
-        branch: new-analysis
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        workflow: dotnet-core.yml
-        workflow_conclusion: success
-        name: Cpp2IL-Netframework472-Windows
-        path: ./Cpp2IL-Netframework472-Windows
 
     - name: Fetch MelonLoader
       uses: robinraju/release-downloader@v1.3
       with:
         repository: LavaGang/MelonLoader
-        tag: "v0.5.1"
+        tag: "v0.5.2"
         fileName: MelonLoader.x64.zip
         out-file-path: ./
 
-    - name: Fetch Il2CppAssemblyUnhollower
-      uses: robinraju/release-downloader@v1.3
-      with:
-        repository: knah/Il2CppAssemblyUnhollower
-        latest: true
-        out-file-path: ./Il2CppAssemblyUnhollower
-
-    - name: Fetch Unity dependencies
-      run: |
-        New-Item -Path ./VRChat/MelonLoader/Dependencies/Il2CppAssemblyGenerator -ItemType Directory
-        Invoke-WebRequest https://github.com/LavaGang/Unity-Runtime-Libraries/raw/master/2019.4.31.zip -OutFile ./VRChat/MelonLoader/Dependencies/Il2CppAssemblyGenerator/UnityDependencies/2019.4.31.zip
-        Expand-Archive ./VRChat/MelonLoader/Dependencies/Il2CppAssemblyGenerator/UnityDependencies/2019.4.31.zip
-
-    - name: Fetch deobfuscation map
-      run: |
-        New-Item -Path ./VRChat/MelonLoader/Dependencies/Il2CppAssemblyGenerator -ItemType Directory
-        Invoke-WebRequest https://github.com/LavaGang/Deobfuscation-Maps/raw/master/VRChat/1159.0.csv.gz -OutFile ./VRChat/MelonLoader/Dependencies/Il2CppAssemblyGenerator/DeobfuscationMap.csv.gz
-
-    - name: Install MelonLoader
+    - name: Install MelonLoader & download dependencies
       run: |
         Expand-Archive ./MelonLoader.x64.zip
         Move-Item ./MelonLoader.x64/* ./VRChat
+        Move-Item ./Plugins/MelonLoader.dll ./VRChat/MelonLoader -Force
         New-Item -Path ./VRChat/Mods -ItemType Directory
         Invoke-WebRequest https://api.vrcmg.com/v0/mods/231/VRChatUtilityKit.dll -OutFile ./VRChat/Mods/VRChatUtilityKit.dll
 
     - name: Generate assemblies
-      run: ./Cpp2IL-Netframework472-Windows/Cpp2IL.exe --game-path ./VRChat --output-root ./Cpp2IL-Netframework472-Windows/cpp2il_out --just-give-me-dlls-asap-dammit
-
-    - name: Unhollow assemblies
-      run: |
-        ./AssemblyUnhollower.exe --input=./Cpp2IL-Netframework472-Windows/cpp2il_out \
-                                 --output=./VRChat/MelonLoader/Dependencies/Il2CppAssemblyGenerator/Il2CppAssemblyUnhollower/Managed \
-                                 --mscorlib=./VRChat/MelonLoader/Managed/mscorlib.dll" \
-                                 --unity=./VRChat/MelonLoader/Dependencies/Il2CppAssemblyGenerator/UnityDependencies \
-                                 --gameassembly=./VRChat/GameAssembly.dll \
-                                 --rename-map=./VRChat/MelonLoader/Dependencies/Il2CppAssemblyGenerator/DeobfuscationMap.csv.gz \
-                                 --blacklist-assembly=Mono.Security \
-                                 --blacklist-assembly=Newtonsoft.Json \
-                                 --blacklist-assembly=Valve.Newtonsoft.Json \
+      run: ./VRChat/VRChat.exe --melonloader.agfregenerate --melonloader.disablestartscreen --melonloader.hideconsole
 
     - name: Build
       run: dotnet build -p:RunningInGitHubWorkflow=True -p:Configuration=Release
