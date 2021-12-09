@@ -14,7 +14,7 @@ jobs:
     - name: Checkout repository and submodules
       uses: actions/checkout@v2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GH_PAT }}
         submodules: recursive
       
     - name: Setup .NET
