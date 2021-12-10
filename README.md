@@ -1,4 +1,4 @@
-## Mod Directory [![Build](https://github.com/tetra-fox/VRCMods/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/tetra-fox/VRCMods/actions/workflows/build.yml)
+## Mod Directory
 - [AdBlocker](../../tree/master/AdBlocker)
 - [CalibrateConfirm](../../tree/master/CalibrateConfirm)
 - [ProPlates](../../tree/master/ProPlates)
