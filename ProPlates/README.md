@@ -1,4 +1,4 @@
-## ProPlates
+## ProPlates ![VRCUK](https://img.shields.io/badge/VRChatUtilityKit-required-orange?style=flat-square)
 
 ProPlates displays a player's pronouns under their nameplate.
 

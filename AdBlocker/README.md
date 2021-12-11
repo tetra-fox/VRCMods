@@ -1,4 +1,4 @@
-## AdBlocker
+## AdBlocker ![VRCUK](https://img.shields.io/badge/VRChatUtilityKit-required-orange?style=flat-square) ![UIX](https://img.shields.io/badge/UIExpansionKit-recommended-blue?style=flat-square)
 
 Removes the carousels from the quick menu and more.
 

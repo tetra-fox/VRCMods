@@ -1,4 +1,4 @@
-## CalibrateConfirm
+## CalibrateConfirm ![VRCUK](https://img.shields.io/badge/VRChatUtilityKit-required-orange?style=flat-square)
 
 CalibrateConfirm adds a confirmation prompt when you click calibrate, in the case that you've accidentally clicked
 calibrate and don't want to stand up to recalibrate your avatar
