@@ -25,17 +25,18 @@ namespace CalibrateConfirm
 
 	public class Mod : MelonMod
 	{
-		private SingleButton _confirmFbtButton;
-		private GameObject _calibrateFbtButton;
+		private static readonly MelonLogger.Instance Logger = new(BuildInfo.Name);
+		private static SingleButton _confirmFbtButton;
+		private static GameObject _calibrateFbtButton;
 
 		public override void OnApplicationStart() { VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init; }
 
-		private void Init()
+		private static void Init()
 		{
 			if (!XRDevice.isPresent) return;
-			this.LoggerInstance.Msg("Initializing...");
+			Logger.Msg("Initializing...");
 
-			this._calibrateFbtButton = Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/SitStandCalibrateButton/Button_CalibrateFBT");
+			_calibrateFbtButton = Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/SitStandCalibrateButton/Button_CalibrateFBT");
 
 			// load our asset bundle
 			AssetBundle assetBundle;
@@ -55,7 +56,7 @@ namespace CalibrateConfirm
 
 			object timeout = new();
 
-			this._confirmFbtButton = new SingleButton(() =>
+			_confirmFbtButton = new SingleButton(() =>
 				{
 					calibrateMethod.Invoke(VRCTrackingManager.field_Private_Static_VRCTrackingManager_0, null);
 					_confirmFbtButton.gameObject.SetActive(false);
@@ -64,41 +65,41 @@ namespace CalibrateConfirm
 				},
 				confirmFbtSprite, "Confirm?", "Button_ConfirmFBT", "Are you sure you want to calibrate?");
 
-			ButtonWatcher watcher = this._calibrateFbtButton.gameObject.AddComponent<ButtonWatcher>();
-			watcher.reference = this._confirmFbtButton.gameObject;
-			watcher.target = this._calibrateFbtButton;
+			ButtonWatcher watcher = _calibrateFbtButton.gameObject.AddComponent<ButtonWatcher>();
+			watcher.reference = _confirmFbtButton.gameObject;
+			watcher.target = _calibrateFbtButton;
 
-			this._confirmFbtButton.gameObject.SetActive(false);
+			_confirmFbtButton.gameObject.SetActive(false);
 
 			GameObject sitStandGroup = Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickActions/SitStandCalibrateButton");
 
-			UiManager.AddButtonToExistingGroup(sitStandGroup, this._confirmFbtButton);
+			UiManager.AddButtonToExistingGroup(sitStandGroup, _confirmFbtButton);
 
 			// reset calibrate button's onClick
-			this._calibrateFbtButton.GetComponent<Button>().onClick = new Button.ButtonClickedEvent();
+			_calibrateFbtButton.GetComponent<Button>().onClick = new Button.ButtonClickedEvent();
 
-			this._calibrateFbtButton.GetComponent<Button>().onClick.AddListener((Action) delegate
+			_calibrateFbtButton.GetComponent<Button>().onClick.AddListener((Action) delegate
 			{
-				this._confirmFbtButton.gameObject.SetActive(true);
-				this._calibrateFbtButton.SetActive(false);
-				timeout = MelonCoroutines.Start(this.Timeout(5));
+				_confirmFbtButton.gameObject.SetActive(true);
+				_calibrateFbtButton.SetActive(false);
+				timeout = MelonCoroutines.Start(Timeout(5));
 			});
 
-			this.LoggerInstance.Msg("Initialized!");
+			Logger.Msg("Initialized!");
 		}
 
-		private IEnumerator Timeout(int length)
+		private static IEnumerator Timeout(int length)
 		{
 			int timeLeft = length;
 
 			while (timeLeft > 0) {
-				this._confirmFbtButton.Text = "Confirm?\n" + timeLeft;
+				_confirmFbtButton.Text = "Confirm?\n" + timeLeft;
 				timeLeft--;
 				yield return new WaitForSeconds(1);
 			}
 
-			this._confirmFbtButton.gameObject.SetActive(false);
-			this._calibrateFbtButton.SetActive(true);
+			_confirmFbtButton.gameObject.SetActive(false);
+			_calibrateFbtButton.SetActive(true);
 		}
 	}
 }

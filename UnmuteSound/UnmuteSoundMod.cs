@@ -18,11 +18,13 @@ namespace UnmuteSound
 
 	public class Mod : MelonMod
 	{
-		public override void OnApplicationStart() => VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += this.Init;
+		private static readonly MelonLogger.Instance Logger = new(BuildInfo.Name);
+		
+		public override void OnApplicationStart() => VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
 
-		private void Init()
+		private static void Init()
 		{
-			this.LoggerInstance.Msg("Creating audio source...");
+			Logger.Msg("Creating audio source...");
 
 			HudVoiceIndicator voiceIndicator = GameObject.Find("UserInterface/UnscaledUI/HudContent").GetComponent<HudVoiceIndicator>();
 
@@ -40,7 +42,7 @@ namespace UnmuteSound
 				audioManager.field_Public_AudioMixerGroup_2
 			}.Single(mg => mg.name == "UI");
 
-			this.LoggerInstance.Msg("Patching methods...");
+			Logger.Msg("Patching methods...");
 
 			bool joiningRoom = true;
 
@@ -53,7 +55,7 @@ namespace UnmuteSound
 			VRChatUtilityKit.Utilities.NetworkEvents.OnRoomJoined += () => joiningRoom = false;
 			VRChatUtilityKit.Utilities.NetworkEvents.OnRoomLeft += () => joiningRoom = true;
 
-			this.LoggerInstance.Msg("Initialized!");
+			Logger.Msg("Initialized!");
 		}
 	}
 }

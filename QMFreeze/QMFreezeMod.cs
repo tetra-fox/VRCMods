@@ -17,6 +17,7 @@ namespace QMFreeze
 
 	public class Mod : MelonMod
 	{
+		private static readonly MelonLogger.Instance Logger = new(BuildInfo.Name);
 		private static bool _freezeAllowed;
 		private static bool _frozen;
 		private static Vector3 _originalGravity;
@@ -24,24 +25,24 @@ namespace QMFreeze
 
 		public override void OnApplicationStart()
 		{
-			this.LoggerInstance.Msg("Registering settings...");
+			Logger.Msg("Registering settings...");
 			Settings.Register();
 			Settings.OnConfigChanged += OnDisableCheck;
 
-			VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += this.Init;
+			VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
 		}
 
-		private void Init()
+		private static void Init()
 		{
-			this.LoggerInstance.Msg("Patching QM open/close...");
+			Logger.Msg("Patching QM open/close...");
 			VRChatUtilityKit.Ui.UiManager.OnQuickMenuOpened += Freeze;
 			VRChatUtilityKit.Ui.UiManager.OnQuickMenuClosed += Unfreeze;
 
-			this.LoggerInstance.Msg("Setting up risky functions check...");
+			Logger.Msg("Setting up risky functions check...");
 			VRChatUtilityKit.Utilities.VRCUtils.OnEmmWorldCheckCompleted += allowed => { _freezeAllowed = allowed; };
 			VRChatUtilityKit.Utilities.NetworkEvents.OnRoomLeft += LeaveRoomPatch;
 
-			this.LoggerInstance.Msg("Initialized!");
+			Logger.Msg("Initialized!");
 		}
 
 		private static void Freeze()
