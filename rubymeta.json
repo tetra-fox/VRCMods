@@ -2,91 +2,91 @@
   {
     "_id": 277,
     "name": "AdBlocker",
-    "modversion": "1.0.1",
-    "vrchatversion": "1149",
-    "loaderversion": "0.4.3",
+    "modversion": "1.0.2",
+    "vrchatversion": "1160",
+    "loaderversion": "0.5.2",
     "modtype": "Mod",
-    "author": "tetra#0001",
-    "description": "Literally just removes the carousels from the quick menu.",
+    "author": "tetra#0001, Xavi",
+    "description": "Removes the carousels from the quick menu & VRC+ UI elements.",
     "searchtags": null,
     "requirements": [
-      "[VRChatUtilityKit](https://github.com/loukylor/VRC-Mods/releases)"
+      "[VRChatUtilityKit](https://github.com/SleepyVRC/Mods/releases)"
     ],
-    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.11/AdBlocker.dll",
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.1.15/AdBlocker.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
-    "changelog": "Version bump & rebuilt for latest VRCUK",
+    "changelog": "* Remove VRC+ related UI elements\n* Add preference entries for each element",
     "embedcolor": "#d92341"
   },
   {
     "_id": 184,
     "name": "CalibrateConfirm",
-    "modversion": "3.0.1",
-    "vrchatversion": "1149",
-    "loaderversion": "0.4.3",
+    "modversion": "3.0.2",
+    "vrchatversion": "1160",
+    "loaderversion": "0.5.2",
     "modtype": "Mod",
     "author": "tetra#0001",
     "description": "Adds a confirmation prompt when you click calibrate, in the case that you've accidentally clicked calibrate and don't want to stand up to recalibrate your avatar.",
     "searchtags": null,
     "requirements": [
-      "[VRChatUtilityKit](https://github.com/loukylor/VRC-Mods/releases)"
+      "[VRChatUtilityKit](https://github.com/SleepyVRC/Mods/releases)"
     ],
-    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.11/CalibrateConfirm.dll",
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.1.15/CalibrateConfirm.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
-    "changelog": "Version bump & rebuilt for latest VRCUK",
+    "changelog": "* Fixed scaling issue (hopefully, I haven't seen it happen since updating)\n* Prompt length is now configurable\n* Prompt can be enabled for the settings tab calibrate button",
     "embedcolor": "#43e872"
   },
   {
     "_id": 233,
     "name": "ProPlates",
-    "modversion": "2.0.1",
-    "vrchatversion": "1149",
-    "loaderversion": "0.4.3",
+    "modversion": "2.1.0",
+    "vrchatversion": "1160",
+    "loaderversion": "0.5.2",
     "modtype": "Mod",
     "author": "tetra#0001",
     "description": "Gets a player's pronouns from their status/bio then displays them under their nameplate.\n\nIf you'd like to manually set your pronouns, check the [**README**](https://github.com/tetra-fox/VRCMods/tree/master/ProPlates) for instructions.",
     "searchtags": null,
     "requirements": [
-      "[VRChatUtilityKit](https://github.com/loukylor/VRC-Mods/releases)"
+      "[VRChatUtilityKit](https://github.com/SleepyVRC/Mods/releases)"
     ],
-    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.11/ProPlates.dll",
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.1.15/ProPlates.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
-    "changelog": "Version bump & rebuilt for latest VRCUK",
+    "changelog": "* Major internal changes, use new PlateAPI",
     "embedcolor": "#03bafc"
   },
   {
     "_id": 163,
     "name": "QMFreeze",
-    "modversion": "3.0.1",
-    "vrchatversion": "1149",
-    "loaderversion": "0.4.3",
+    "modversion": "3.0.2",
+    "vrchatversion": "1160",
+    "loaderversion": "0.5.2",
     "modtype": "Mod",
     "author": "tetra#0001",
     "description": "Freezes your avatar when you open the quick menu, in case you're falling/moving too fast and can't click anything on the quick menu.",
     "searchtags": null,
     "requirements": [
-      "[VRChatUtilityKit](https://github.com/loukylor/VRC-Mods/releases)"
+      "[VRChatUtilityKit](https://github.com/SleepyVRC/Mods/releases)"
     ],
-    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.11/QMFreeze.dll",
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.1.15/QMFreeze.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
-    "changelog": "Version bump & rebuilt for latest VRCUK",
+    "changelog": "* Minor internal change, use new ML Logger",
     "embedcolor": "#ad2ee8"
   },
   {
     "_id": 185,
     "name": "UnmuteSound",
-    "modversion": "2.0.0",
-    "vrchatversion": "1149",
-    "loaderversion": "0.4.3",
+    "modversion": "2.0.1",
+    "vrchatversion": "1160",
+    "loaderversion": "0.5.2",
     "modtype": "Mod",
     "author": "tetra#0001",
     "description": "Plays a higher pitched *blop* sound when unmuting your microphone.",
     "searchtags": null,
     "requirements": [
-      "[VRChatUtilityKit](https://github.com/loukylor/VRC-Mods/releases)"
+      "[VRChatUtilityKit](https://github.com/SleepyVRC/Mods/releases)"
     ],
-    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2021.11.11/UnmuteSound.dll",
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.1.15/UnmuteSound.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
-    "changelog": "Fix for build 1149",
+    "changelog": "* Minor internal change, use new ML Logger",
     "embedcolor": "#F5DE19"
   }
 ]

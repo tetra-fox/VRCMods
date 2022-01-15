@@ -12,7 +12,7 @@ namespace UnmuteSound
 	{
 		public const string Name = "UnmuteSound";
 		public const string Author = "tetra";
-		public const string Version = "2.0.0";
+		public const string Version = "2.0.1";
 		public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
 	}
 
