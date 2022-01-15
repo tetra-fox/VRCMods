@@ -13,8 +13,8 @@ namespace ProPlates.Components
 
 		private void Update()
 		{
-			if (target.color == reference.color) return;
-			target.color = reference.color;
+			if (this.target.color == this.reference.color) return;
+			this.target.color = this.reference.color;
 		}
 	}
 }

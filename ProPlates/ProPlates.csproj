@@ -6,12 +6,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="pronouns.csv"/>
+        <EmbeddedResource Include="pronouns.csv" />
     </ItemGroup>
 
     <ItemGroup>
         <Reference Include="Unity.TextMeshPro">
             <HintPath>$(VRChatPath)\MelonLoader\Managed\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputLegacyModule">
+          <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.UI">
             <HintPath>$(VRChatPath)\MelonLoader\Managed\UnityEngine.UI.dll</HintPath>
