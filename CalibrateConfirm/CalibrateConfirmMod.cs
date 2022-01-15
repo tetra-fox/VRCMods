@@ -146,7 +146,6 @@ namespace CalibrateConfirm
 		
 		public override void OnPreferencesSaved()
 		{
-			// only if the user changed AdBlocker prefs
 			if (!Settings.Changed) return;
 
 			const string msg = "Preferences changed, please restart your game for changes to take effect";
