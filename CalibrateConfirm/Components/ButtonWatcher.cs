@@ -14,7 +14,7 @@ namespace CalibrateConfirm.Components
 		private void Update()
 		{
 			// shit fix for when opening QM while timeout period is active
-			if (reference.gameObject.active) target.SetActive(false);
+			if (this.reference.gameObject.active) this.target.SetActive(false);
 		}
 	}
 }
