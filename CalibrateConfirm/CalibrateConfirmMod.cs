@@ -54,7 +54,7 @@ namespace CalibrateConfirm
 			// load sprite from the asset bundle
 			Sprite confirmFbtSprite = assetBundle.LoadAsset_Internal("ConfirmFBT", Il2CppType.Of<Sprite>()).Cast<Sprite>();
 
-			MethodInfo calibrateMethod = Helpers.GetCalibrateMethod();
+			MethodInfo calibrateMethod = Helpers.CalibrateMethod;
 
 			object timeout = new();
 
