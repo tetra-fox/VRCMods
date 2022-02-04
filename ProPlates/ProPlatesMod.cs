@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using VRC;
 using Array = System.Array;
 using StringComparer = System.StringComparer;
@@ -18,7 +19,7 @@ namespace ProPlates
 	{
 		public const string Name = "ProPlates";
 		public const string Author = "tetra";
-		public const string Version = "2.1.0";
+		public const string Version = "2.1.1";
 		public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
 	}
 
@@ -55,7 +56,12 @@ namespace ProPlates
 				if (player && pronouns != null && Settings.MaxPronouns.Value > 0) MakePlate(player, pronouns);
 			};
 
-			VRChatUtilityKit.Utilities.NetworkEvents.OnPlayerLeft += player => Cabinet.Remove(Cabinet.Shelf.Find(pair => pair.Key == player));
+			VRChatUtilityKit.Utilities.NetworkEvents.OnPlayerLeft += player =>
+			{
+				KeyValuePair<Player, Plate> plateToRemove = Cabinet.Shelf.Find(pair => pair.Key == player);
+				if (plateToRemove.Equals(new KeyValuePair<Player, Plate>())) return; // no matches
+				Cabinet.Remove(plateToRemove);
+			};
 			
 			VRChatUtilityKit.Utilities.NetworkEvents.OnRoomLeft += Cabinet.Empty;
 
