@@ -1,31 +1,52 @@
-name: Build & upload artifacts
+name: Build - ubuntu
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository and submodules
-      uses: actions/checkout@v3
-      with:
-        token: ${{ secrets.GH_PAT }}
-        submodules: recursive
-      
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 5.0.x
-      
-    - name: Build
-      run: dotnet build -p:RunningInGitHubWorkflow=True -p:Configuration=Release
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Get short commit SHA
-      uses: benjlevesque/short-sha@v1.2
-      id: short-sha
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 5.0.x
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: VRCMods.${{ steps.short-sha.outputs.sha }}.CI
-        path: bin/
+      - name: Fetch VRChat binaries
+        uses: Skippeh/steamfetch-action@v1
+        with:
+          app: 438100
+          # VRChat 1189
+          depot: 438101
+          manifest: 3105093342092399207
+          dir: ${{ github.workspace }}/VRChat
+          os: windows
+          osarch: 64
+          username: ${{ secrets.DEPOTDL_USERNAME }}
+          password: ${{ secrets.DEPOTDL_PASSWORD }}
+
+      - name: Generate libraries
+        uses: tetra-fox/ml-gen@latest
+        with:
+          game: vrchat
+          game_path: ${{ github.workspace }}/VRChat
+          game_executable: VRChat
+          unity_version: 2019.4.31
+
+      - name: Download VRChatUtilityKit
+        run: wget -q -P ${{ github.workspace }}/VRChat/Mods https://api.vrcmg.com/v0/mods/231/VRChatUtilityKit.dll
+
+      - name: Build
+        run: dotnet build -p:CI=True -p:Configuration=Release
+
+      - name: Get short commit SHA
+        uses: benjlevesque/short-sha@v1.2
+        id: short-sha
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: VRCMods.${{ steps.short-sha.outputs.sha }}.CI
+          path: bin/

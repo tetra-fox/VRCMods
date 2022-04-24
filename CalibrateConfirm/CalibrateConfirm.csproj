@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="calibrateconfirm.assetbundle" />
+        <EmbeddedResource Include="icon.assetbundle" />
     </ItemGroup>
 
     <ItemGroup>

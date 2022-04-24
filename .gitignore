@@ -12,5 +12,6 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 
-AvaTools/
-VXP/
+AvaTools/**/*
+ComfierVRMenu/**/*
+VXPLauncher/**/*

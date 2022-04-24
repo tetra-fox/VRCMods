@@ -6,8 +6,8 @@
         <VRChatPath>F:\Steam\steamapps\common\VRChat</VRChatPath>
         <CopyToPath>$(VRChatPath)\Mods</CopyToPath>
         
-        <VRChatPath Condition="$(RunningInGitHubWorkflow) == True">$(MsBuildThisFileDirectory)VRChat-ML-Libs</VRChatPath>
-        <CopyToPath Condition="$(RunningInGitHubWorkflow) == True">$(MsBuildThisFileDirectory)bin</CopyToPath>
+        <VRChatPath Condition="$(CI) == True">$(MsBuildThisFileDirectory)VRChat</VRChatPath>
+        <CopyToPath Condition="$(CI) == True">$(MsBuildThisFileDirectory)bin</CopyToPath>
     </PropertyGroup>
 
     <ItemGroup>

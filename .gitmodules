@@ -1,6 +1,0 @@
-[submodule "VXP/ParamLib"]
-	path = VXP/ParamLib
-	url = https://github.com/benaclejames/ParamLib
-[submodule "VRChat-ML-Libs"]
-	path = VRChat-ML-Libs
-	url = https://github.com/tetra-fox/VRChat-ML-Libs
