@@ -1,4 +1,4 @@
-name: Build - ubuntu
+name: Build
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
           app: 438100
           # VRChat 1189
           depot: 438101
-          manifest: 3105093342092399207
+          manifest: '3105093342092399207'
           dir: ${{ github.workspace }}/VRChat
           os: windows
           osarch: 64
