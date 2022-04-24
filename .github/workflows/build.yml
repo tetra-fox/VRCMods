@@ -18,7 +18,7 @@ jobs:
         uses: Skippeh/steamfetch-action@v1
         with:
           app: 438100
-          # VRChat 1189
+          # VRChat 1190
           depot: 438101
           manifest: '3105093342092399207'
           dir: ${{ github.workspace }}/VRChat
