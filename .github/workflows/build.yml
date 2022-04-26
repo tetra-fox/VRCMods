@@ -13,27 +13,31 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 6.0.x
-
+          
       - name: Fetch VRChat binaries
         uses: Skippeh/steamfetch-action@v1
         with:
           app: 438100
-          # VRChat 1190
           depot: 438101
+          # VRChat 1190
           manifest: '3105093342092399207'
           dir: ${{ github.workspace }}/VRChat
           os: windows
           osarch: 64
           username: ${{ secrets.DEPOTDL_USERNAME }}
           password: ${{ secrets.DEPOTDL_PASSWORD }}
+          files: |
+                VRChat.exe
+                GameAssembly.dll
+                VRChat_Data\globalgamemanagers
+                VRChat_Data\il2cpp_data\Metadata\global-metadata.dat
 
       - name: Generate libraries
-        uses: tetra-fox/ml-gen@latest
+        uses: tetra-fox/ml-gen@main
         with:
           game: vrchat
           game_path: ${{ github.workspace }}/VRChat
           game_executable: VRChat
-          unity_version: 2019.4.31
 
       - name: Download VRChatUtilityKit
         run: wget -q -P ${{ github.workspace }}/VRChat/Mods https://api.vrcmg.com/v0/mods/231/VRChatUtilityKit.dll
@@ -46,7 +50,7 @@ jobs:
         id: short-sha
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: VRCMods.${{ steps.short-sha.outputs.sha }}.CI
           path: bin/
