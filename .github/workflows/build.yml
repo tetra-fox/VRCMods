@@ -29,7 +29,8 @@ jobs:
           files: |
                 VRChat.exe
                 GameAssembly.dll
-                VRChat_Data\globalgamemanagers
+                # UnityPlayer.dll # Windows only
+                VRChat_Data\globalgamemanagers # Linux, macOS
                 VRChat_Data\il2cpp_data\Metadata\global-metadata.dat
 
       - name: Generate libraries
