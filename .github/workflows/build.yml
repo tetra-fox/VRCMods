@@ -19,7 +19,7 @@ jobs:
         with:
           app: 438100
           depot: 438101
-          manifest: '3105093342092399207' # VRChat 1190
+          manifest: '682916728963337440' # VRChat 1192
           dir: ${{ github.workspace }}/VRChat
           os: windows
           osarch: 64
@@ -28,8 +28,7 @@ jobs:
           files: |
                 VRChat.exe
                 GameAssembly.dll
-                # UnityPlayer.dll # Windows only
-                VRChat_Data\globalgamemanagers # Linux, macOS
+                VRChat_Data\globalgamemanagers
                 VRChat_Data\il2cpp_data\Metadata\global-metadata.dat
 
       - name: Generate libraries
