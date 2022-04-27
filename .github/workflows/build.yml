@@ -25,6 +25,8 @@ jobs:
           osarch: 64
           username: ${{ secrets.DEPOTDL_USERNAME }}
           password: ${{ secrets.DEPOTDL_PASSWORD }}
+          # UnityPlayer.dll is needed on Windows runners
+          # VRChat_Data\globalgamemanagers for Linux & macOS runners
           files: |
                 VRChat.exe
                 GameAssembly.dll
