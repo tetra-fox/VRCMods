@@ -2,9 +2,9 @@
   {
     "_id": 277,
     "name": "AdBlocker",
-    "modversion": "1.0.2",
-    "vrchatversion": "1160",
-    "loaderversion": "0.5.2",
+    "modversion": "1.0.3",
+    "vrchatversion": "1192",
+    "loaderversion": "0.5.4",
     "modtype": "Mod",
     "author": "tetra#0001, Xavi",
     "description": "Removes the carousels from the quick menu & VRC+ UI elements.",
@@ -14,15 +14,15 @@
     ],
     "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.1.15/AdBlocker.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
-    "changelog": "* Remove VRC+ related UI elements\n* Add preference entries for each element",
+    "changelog": "* Rebuilt with latest dependencies",
     "embedcolor": "#d92341"
   },
   {
     "_id": 184,
     "name": "CalibrateConfirm",
-    "modversion": "3.0.2",
-    "vrchatversion": "1160",
-    "loaderversion": "0.5.2",
+    "modversion": "3.0.3",
+    "vrchatversion": "1192",
+    "loaderversion": "0.5.4",
     "modtype": "Mod",
     "author": "tetra#0001",
     "description": "Adds a confirmation prompt when you click calibrate, in the case that you've accidentally clicked calibrate and don't want to stand up to recalibrate your avatar.",
@@ -32,7 +32,7 @@
     ],
     "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.1.15/CalibrateConfirm.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
-    "changelog": "* Fixed scaling issue (hopefully, I haven't seen it happen since updating)\n* Prompt length is now configurable\n* Prompt can be enabled for the settings tab calibrate button",
+    "changelog": "* Internal changes * Rebuilt with latest dependencies",
     "embedcolor": "#43e872"
   },
   {
@@ -56,9 +56,9 @@
   {
     "_id": 163,
     "name": "QMFreeze",
-    "modversion": "3.0.2",
-    "vrchatversion": "1160",
-    "loaderversion": "0.5.2",
+    "modversion": "3.0.3",
+    "vrchatversion": "1192",
+    "loaderversion": "0.5.4",
     "modtype": "Mod",
     "author": "tetra#0001",
     "description": "Freezes your avatar when you open the quick menu, in case you're falling/moving too fast and can't click anything on the quick menu.",
@@ -68,15 +68,15 @@
     ],
     "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.1.15/QMFreeze.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
-    "changelog": "* Minor internal change, use new ML Logger",
+    "changelog": "* Rebuilt with latest dependencies",
     "embedcolor": "#ad2ee8"
   },
   {
     "_id": 185,
     "name": "UnmuteSound",
-    "modversion": "2.0.1",
-    "vrchatversion": "1160",
-    "loaderversion": "0.5.2",
+    "modversion": "2.0.2",
+    "vrchatversion": "1192",
+    "loaderversion": "0.5.4",
     "modtype": "Mod",
     "author": "tetra#0001",
     "description": "Plays a higher pitched *blop* sound when unmuting your microphone.",
@@ -86,7 +86,7 @@
     ],
     "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.1.15/UnmuteSound.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
-    "changelog": "* Minor internal change, use new ML Logger",
+    "changelog": "* Rebuilt with latest dependencies",
     "embedcolor": "#F5DE19"
   }
 ]

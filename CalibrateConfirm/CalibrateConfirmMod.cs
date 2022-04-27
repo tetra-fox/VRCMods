@@ -63,7 +63,6 @@ public class Mod : MelonMod
 			MakeConfirmButton(calibrateFbtButtonSettings, groupSettings, confirmFbtSprite);
 			
 			Helpers.FindInactive("UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Settings/Panel_QM_ScrollRect/Viewport/VerticalLayoutGroup/Buttons_FBT/Button_ConfirmFBT").transform.SetSiblingIndex(2);
-			
 		}
 
 		Logger.Msg("Initialized!");

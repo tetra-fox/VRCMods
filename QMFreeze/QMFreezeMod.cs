@@ -11,7 +11,7 @@ internal static class BuildInfo
 {
 	public const string Name = "QMFreeze";
 	public const string Author = "tetra";
-	public const string Version = "3.0.2";
+	public const string Version = "3.0.3";
 	public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
 }
 
