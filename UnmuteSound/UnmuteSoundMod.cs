@@ -10,51 +10,51 @@ namespace UnmuteSound;
 
 internal static class BuildInfo
 {
-	public const string Name = "UnmuteSound";
-	public const string Author = "tetra";
-	public const string Version = "2.0.2";
-	public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
+    public const string Name = "UnmuteSound";
+    public const string Author = "tetra";
+    public const string Version = "2.0.2";
+    public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
 }
 
 public class Mod : MelonMod
 {
-	private static readonly MelonLogger.Instance Logger = new(BuildInfo.Name);
-		
-	public override void OnApplicationStart() => VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
+    private static readonly MelonLogger.Instance Logger = new(BuildInfo.Name);
 
-	private static void Init()
-	{
-		Logger.Msg("Creating audio source...");
+    public override void OnApplicationStart() => VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += Init;
 
-		HudVoiceIndicator voiceIndicator = GameObject.Find("UserInterface/UnscaledUI/HudContent").GetComponent<HudVoiceIndicator>();
+    private static void Init()
+    {
+        Logger.Msg("Creating audio source...");
 
-		AudioSource unmuteBlop = voiceIndicator.gameObject.AddComponent<AudioSource>();
-		unmuteBlop.clip = voiceIndicator.field_Public_AudioClip_0;
-		unmuteBlop.playOnAwake = false;
-		unmuteBlop.pitch = 1.2f;
+        HudVoiceIndicator voiceIndicator = GameObject.Find("UserInterface/UnscaledUI/HudContent").GetComponent<HudVoiceIndicator>();
 
-		// thanks knah https://github.com/knah/VRCMods/blob/142dab764543a17ab10092ec684bf7cf19e72683/JoinNotifier/JoinNotifierMod.cs#L64-L70
-		VRCAudioManager audioManager = VRCAudioManager.field_Private_Static_VRCAudioManager_0;
-		unmuteBlop.outputAudioMixerGroup = new[]
-		{
-			audioManager.field_Public_AudioMixerGroup_0,
-			audioManager.field_Public_AudioMixerGroup_1,
-			audioManager.field_Public_AudioMixerGroup_2
-		}.Single(mg => mg.name == "UI");
+        AudioSource unmuteBlop = voiceIndicator.gameObject.AddComponent<AudioSource>();
+        unmuteBlop.clip = voiceIndicator.field_Public_AudioClip_0;
+        unmuteBlop.playOnAwake = false;
+        unmuteBlop.pitch = 1.2f;
 
-		Logger.Msg("Patching methods...");
+        // thanks knah https://github.com/knah/VRCMods/blob/142dab764543a17ab10092ec684bf7cf19e72683/JoinNotifier/JoinNotifierMod.cs#L64-L70
+        VRCAudioManager audioManager = VRCAudioManager.field_Private_Static_VRCAudioManager_0;
+        unmuteBlop.outputAudioMixerGroup = new[]
+        {
+            audioManager.field_Public_AudioMixerGroup_0,
+            audioManager.field_Public_AudioMixerGroup_1,
+            audioManager.field_Public_AudioMixerGroup_2
+        }.Single(mg => mg.name == "UI");
 
-		bool joiningRoom = true;
+        Logger.Msg("Patching methods...");
 
-		DefaultTalkController.field_Private_Static_Action_0 += (Action) (() =>
-		{
-			if (DefaultTalkController.field_Private_Static_Boolean_0 || joiningRoom) return;
-			unmuteBlop.Play();
-		});
+        bool joiningRoom = true;
 
-		VRChatUtilityKit.Utilities.NetworkEvents.OnRoomJoined += () => joiningRoom = false;
-		VRChatUtilityKit.Utilities.NetworkEvents.OnRoomLeft += () => joiningRoom = true;
+        DefaultTalkController.field_Private_Static_Action_0 += (Action)(() =>
+        {
+            if (DefaultTalkController.field_Private_Static_Boolean_0 || joiningRoom) return;
+            unmuteBlop.Play();
+        });
 
-		Logger.Msg("Initialized!");
-	}
+        VRChatUtilityKit.Utilities.NetworkEvents.OnRoomJoined += () => joiningRoom = false;
+        VRChatUtilityKit.Utilities.NetworkEvents.OnRoomLeft += () => joiningRoom = true;
+
+        Logger.Msg("Initialized!");
+    }
 }
