@@ -1,6 +1,6 @@
 <p align="center">
     <img src="https://img.shields.io/static/v1?label=melonloader&message=v0.5.4&color=green&style=flat-square">
-    <img src="https://img.shields.io/static/v1?label=vrchat&message=1189&color=00c9ab&style=flat-square">
+    <img src="https://img.shields.io/static/v1?label=vrchat&message=1192&color=00c9ab&style=flat-square">
     <img src="https://img.shields.io/github/workflow/status/tetra-fox/VRCMods/Build?style=flat-square">
     <img src="https://img.shields.io/github/downloads/tetra-fox/VRCMods/total?color=informational&style=flat-square">
 </p>
