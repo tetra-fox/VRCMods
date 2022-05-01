@@ -12,6 +12,7 @@ internal static class Settings
     public static MelonPreferences_Entry<bool> RemoveVrcPlusGift;
     public static MelonPreferences_Entry<bool> RemoveVrcPlusTab;
     public static MelonPreferences_Entry<bool> RemoveVrcPlusPfp;
+    public static MelonPreferences_Entry<bool> RemoveVrcPlusGetMoreFavorites;
 
     public static event Action OnConfigChanged;
 
@@ -27,6 +28,7 @@ internal static class Settings
         RemoveVrcPlusGift = Prefs.CreateEntry(nameof(RemoveVrcPlusGift), false, "Remove VRC+ gift buttons");
         RemoveVrcPlusTab = Prefs.CreateEntry(nameof(RemoveVrcPlusTab), false, "Remove VRC+ tab");
         RemoveVrcPlusPfp = Prefs.CreateEntry(nameof(RemoveVrcPlusPfp), false, "Remove VRC+ PFP button");
+        RemoveVrcPlusGetMoreFavorites = Prefs.CreateEntry(nameof(RemoveVrcPlusGetMoreFavorites), true, "Remove \"Get More Favorites\" button");
 
         OnConfigChanged += () => Changed = true;
 

@@ -129,5 +129,19 @@ public class Mod : MelonMod
                 Logger.Error(e);
             }
         }
+
+        if (Settings.RemoveVrcPlusGetMoreFavorites.Value)
+        {
+            try
+            {
+                GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/MenuContent/Screens/Avatar/Vertical Scroll View/Viewport/Content/FavoriteContent/avatars1/GetMoreFavorites"));
+                Logger.Msg("Removed \"Get More Favorites\" Button");
+            }
+            catch(Exception e)
+            {
+                Logger.Error("Failed to remove \"Get More Favorites\" Button");
+                Logger.Error(e);
+            }
+        }
     }
 }
