@@ -4,6 +4,8 @@ using UnityEngine;
 
 [assembly: MelonInfo(typeof(AdBlocker.Mod), AdBlocker.BuildInfo.Name, AdBlocker.BuildInfo.Version, AdBlocker.BuildInfo.Author, AdBlocker.BuildInfo.DownloadLink)]
 [assembly: MelonGame("VRChat", "VRChat")]
+[assembly: MelonAdditionalDependencies("VRChatUtilityKit")]
+[assembly: MelonOptionalDependencies("UI Expansion Kit")]
 
 namespace AdBlocker;
 
