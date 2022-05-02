@@ -27,7 +27,7 @@ public class Mod : MelonMod
     {
         Settings.Register();
         
-        // Pairs of settings values and their corresponding GameObject paths
+        // Settings values and their corresponding GameObject paths
         Dictionary<MelonPreferences_Entry<bool>, string[]> ads = new()
         {
             {Settings.RemoveCarousel,
@@ -61,7 +61,7 @@ public class Mod : MelonMod
                     }
                     catch (Exception e)
                     {
-                        Logger.Error($"Failed to {ad.Key.DisplayName[0].ToString().ToLower() + ad.Key.DisplayName.Substring(1)}");
+                        Logger.Error($"Failed to {char.ToLower(ad.Key.DisplayName[0]) + ad.Key.DisplayName.Substring(1)}");
                         Logger.Error(e);
                     }
                 }
