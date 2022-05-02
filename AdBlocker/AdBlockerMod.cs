@@ -134,7 +134,9 @@ public class Mod : MelonMod
         {
             try
             {
-                GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/MenuContent/Screens/Avatar/Vertical Scroll View/Viewport/Content/FavoriteContent/avatars1/GetMoreFavorites"));
+                GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/MenuContent/Screens/Avatar/Vertical Scroll View/Viewport/FavoriteListTemplate/GetMoreFavorites/MoreFavoritesButton"));
+                GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/MenuContent/Screens/Avatar/Vertical Scroll View/Viewport/FavoriteListTemplate/GetMoreFavorites/MoreFavoritesText"));
+
                 Logger.Msg("Removed \"Get More Favorites\" Button");
             }
             catch(Exception e)
