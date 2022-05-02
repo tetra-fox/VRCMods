@@ -50,7 +50,7 @@
     ],
     "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.5.2/ProPlates.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
-    "changelog": "* Fix pronouns overlapping with avatar interaction indicator\n* Improved pronoun detection (now infinite)\n**BREAKING CHANGE:** Removed manual override with `pronouns: xxx/xxx` format.",
+    "changelog": "* Fix pronouns overlapping with avatar interaction indicator\n* Improved pronoun detection (now infinite)\n* **BREAKING CHANGE:** Removed manual override with `pronouns: xxx/xxx` format.",
     "embedcolor": "#03bafc"
   },
   {
