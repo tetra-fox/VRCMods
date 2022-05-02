@@ -10,6 +10,6 @@ Safeguards include:
 
 - Default display limit of 3 pronouns
 - Duplicate checking
-- Pronoun filtering (`pronouns.json` contains the most common good faith pronouns. If you feel that more pronouns belong here, feel free to send a pull request!)
+- Pronoun filtering (`pronouns.json` contains the [most common good faith pronouns](https://github.com/witch-house/pronoun.is/blob/master/resources/pronouns.tab). If you feel that more pronouns belong here, feel free to send a pull request!)
 
 ![](https://user-images.githubusercontent.com/6416201/166181522-d45b3eae-9058-4186-80ae-765619269901.png)
