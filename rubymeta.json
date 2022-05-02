@@ -12,7 +12,7 @@
     "requirements": [
       "[VRChatUtilityKit](https://github.com/SleepyVRC/Mods/releases)"
     ],
-    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.1.15/AdBlocker.dll",
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.5.2/AdBlocker.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
     "changelog": "* Rebuilt with latest dependencies",
     "embedcolor": "#d92341"
@@ -30,7 +30,7 @@
     "requirements": [
       "[VRChatUtilityKit](https://github.com/SleepyVRC/Mods/releases)"
     ],
-    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.1.15/CalibrateConfirm.dll",
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.5.2/CalibrateConfirm.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
     "changelog": "* Internal changes * Rebuilt with latest dependencies",
     "embedcolor": "#43e872"
@@ -48,7 +48,7 @@
     "requirements": [
       "[VRChatUtilityKit](https://github.com/SleepyVRC/Mods/releases)"
     ],
-    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.1.15/ProPlates.dll",
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.5.2/ProPlates.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
     "changelog": "* Fix pronouns overlapping with avatar interaction indicator\n* Improved pronoun detection (now infinite)\n**BREAKING CHANGE:** Removed manual override with `pronouns: xxx/xxx` format.",
     "embedcolor": "#03bafc"
@@ -66,7 +66,7 @@
     "requirements": [
       "[VRChatUtilityKit](https://github.com/SleepyVRC/Mods/releases)"
     ],
-    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.1.15/QMFreeze.dll",
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.5.2/QMFreeze.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
     "changelog": "* Rebuilt with latest dependencies",
     "embedcolor": "#ad2ee8"
@@ -84,7 +84,7 @@
     "requirements": [
       "[VRChatUtilityKit](https://github.com/SleepyVRC/Mods/releases)"
     ],
-    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.1.15/UnmuteSound.dll",
+    "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.5.2/UnmuteSound.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
     "changelog": "* Rebuilt with latest dependencies",
     "embedcolor": "#F5DE19"
