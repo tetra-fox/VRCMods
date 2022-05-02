@@ -24,11 +24,11 @@ internal static class Settings
         // they use EnableDisable Listeners when opening the menu and we just make the objects go poof
         RemoveCarousel = Prefs.CreateEntry(nameof(RemoveCarousel), true, "Remove QM carousel");
         RemoveVrcPlusBanner = Prefs.CreateEntry(nameof(RemoveVrcPlusBanner), true, "Remove VRC+ banner");
-        RemoveVrcPlusSupporter = Prefs.CreateEntry(nameof(RemoveVrcPlusSupporter), false, "Remove VRC+ supporter button");
-        RemoveVrcPlusGift = Prefs.CreateEntry(nameof(RemoveVrcPlusGift), false, "Remove VRC+ gift buttons");
-        RemoveVrcPlusTab = Prefs.CreateEntry(nameof(RemoveVrcPlusTab), false, "Remove VRC+ tab");
-        RemoveVrcPlusPfp = Prefs.CreateEntry(nameof(RemoveVrcPlusPfp), false, "Remove VRC+ PFP button");
+        RemoveVrcPlusGift = Prefs.CreateEntry(nameof(RemoveVrcPlusGift), true, "Remove VRC+ gift buttons");
         RemoveVrcPlusGetMoreFavorites = Prefs.CreateEntry(nameof(RemoveVrcPlusGetMoreFavorites), true, "Remove \"Get More Favorites\" button");
+        RemoveVrcPlusPfp = Prefs.CreateEntry(nameof(RemoveVrcPlusPfp), false, "Remove VRC+ PFP button");
+        RemoveVrcPlusSupporter = Prefs.CreateEntry(nameof(RemoveVrcPlusSupporter), false, "Remove VRC+ supporter button");
+        RemoveVrcPlusTab = Prefs.CreateEntry(nameof(RemoveVrcPlusTab), false, "Remove VRC+ tab");
 
         OnConfigChanged += () => Changed = true;
 
