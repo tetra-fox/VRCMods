@@ -6,10 +6,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="pronouns.csv" />
+        <EmbeddedResource Include="pronouns.json" />
     </ItemGroup>
 
     <ItemGroup>
+        <Reference Include="Newtonsoft.Json">
+          <HintPath>$(VRChatPath)\MelonLoader\Managed\Newtonsoft.Json.dll</HintPath>
+        </Reference>
         <Reference Include="Unity.TextMeshPro">
             <HintPath>$(VRChatPath)\MelonLoader\Managed\Unity.TextMeshPro.dll</HintPath>
         </Reference>

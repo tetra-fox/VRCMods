@@ -12,7 +12,7 @@ internal static class Settings
 
     public static void Register()
     {
-        MaxPronouns = Prefs.CreateEntry(nameof(MaxPronouns), 8, "Max pronouns to display (0 to disable)");
+        MaxPronouns = Prefs.CreateEntry(nameof(MaxPronouns), 3, "Max pronouns to display (0 to disable)");
 
         foreach (MelonPreferences_Entry e in Prefs.Entries) e.OnValueChangedUntyped += () => OnConfigChanged?.Invoke();
     }
