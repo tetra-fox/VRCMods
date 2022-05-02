@@ -25,7 +25,7 @@ internal static class Settings
         RemoveCarousel = Prefs.CreateEntry(nameof(RemoveCarousel), true, "Remove QM carousel");
         RemoveVrcPlusBanner = Prefs.CreateEntry(nameof(RemoveVrcPlusBanner), true, "Remove VRC+ banner");
         RemoveVrcPlusGift = Prefs.CreateEntry(nameof(RemoveVrcPlusGift), true, "Remove VRC+ gift buttons");
-        RemoveVrcPlusGetMoreFavorites = Prefs.CreateEntry(nameof(RemoveVrcPlusGetMoreFavorites), true, "Remove \"Get More Favorites\" button");
+        RemoveVrcPlusGetMoreFavorites = Prefs.CreateEntry(nameof(RemoveVrcPlusGetMoreFavorites), true, @"Remove ""Get More Favorites"" button");
         RemoveVrcPlusPfp = Prefs.CreateEntry(nameof(RemoveVrcPlusPfp), false, "Remove VRC+ PFP button");
         RemoveVrcPlusSupporter = Prefs.CreateEntry(nameof(RemoveVrcPlusSupporter), false, "Remove VRC+ supporter button");
         RemoveVrcPlusTab = Prefs.CreateEntry(nameof(RemoveVrcPlusTab), false, "Remove VRC+ tab");
