@@ -12,4 +12,4 @@ Safeguards include:
 - Duplicate checking
 - Pronoun filtering (`pronouns.json` contains the most common good faith pronouns. If you feel that more pronouns belong here, feel free to send a pull request!)
 
-![](https://i.imgur.com/AZEl7LA.png)
+![](https://user-images.githubusercontent.com/6416201/166181522-d45b3eae-9058-4186-80ae-765619269901.png)
