@@ -5,7 +5,7 @@ namespace AdBlocker;
 
 internal static class Settings
 {
-    private static readonly MelonPreferences_Category Prefs = MelonPreferences.CreateCategory(BuildInfo.Name+"v1.0.4+", $"{BuildInfo.Name} Settings");
+    private static readonly MelonPreferences_Category Prefs = MelonPreferences.CreateCategory(BuildInfo.Name, $"{BuildInfo.Name} Settings");
     public static MelonPreferences_Entry<bool> RemoveCarousel;
     public static MelonPreferences_Entry<bool> RemoveVrcPlusBanner;
     public static MelonPreferences_Entry<bool> RemoveVrcPlusSupporter;
