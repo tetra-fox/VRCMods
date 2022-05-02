@@ -2,7 +2,7 @@
   {
     "_id": 277,
     "name": "AdBlocker",
-    "modversion": "1.0.3",
+    "modversion": "1.0.4",
     "vrchatversion": "1192",
     "loaderversion": "0.5.4",
     "modtype": "Mod",
@@ -14,7 +14,7 @@
     ],
     "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.5.2/AdBlocker.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
-    "changelog": "* Rebuilt with latest dependencies",
+    "changelog": "* Fixed preference names not corresponding to the correct elements (i'm really dumb)",
     "embedcolor": "#d92341"
   },
   {
