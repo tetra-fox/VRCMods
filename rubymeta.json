@@ -38,19 +38,19 @@
   {
     "_id": 233,
     "name": "ProPlates",
-    "modversion": "2.2.0",
+    "modversion": "3.0.0",
     "vrchatversion": "1192",
     "loaderversion": "0.5.4",
     "modtype": "Mod",
     "author": "tetra#0001",
-    "description": "Gets a player's pronouns from their status/bio then displays them under their nameplate.\n\nIf you'd like to manually set your pronouns, check the [**README**](https://github.com/tetra-fox/VRCMods/tree/master/ProPlates) for instructions.",
+    "description": "Gets a player's pronouns from their status/bio then displays them under their nameplate.",
     "searchtags": null,
     "requirements": [
       "[VRChatUtilityKit](https://github.com/SleepyVRC/Mods/releases)"
     ],
     "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.1.15/ProPlates.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
-    "changelog": "* Fix pronouns overlapping with avatar interaction indicator\n* Fix for changing MaxPronounds to 0",
+    "changelog": "* Fix pronouns overlapping with avatar interaction indicator\n* Improved pronoun detection (now infinite)\n**BREAKING CHANGE:** Removed manual override with `pronouns: xxx/xxx` format.",
     "embedcolor": "#03bafc"
   },
   {
