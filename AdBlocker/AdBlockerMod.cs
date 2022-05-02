@@ -4,6 +4,8 @@ using UnityEngine;
 
 [assembly: MelonInfo(typeof(AdBlocker.Mod), AdBlocker.BuildInfo.Name, AdBlocker.BuildInfo.Version, AdBlocker.BuildInfo.Author, AdBlocker.BuildInfo.DownloadLink)]
 [assembly: MelonGame("VRChat", "VRChat")]
+[assembly: MelonAdditionalDependencies("VRChatUtilityKit")]
+[assembly: MelonOptionalDependencies("UI Expansion Kit")]
 
 namespace AdBlocker;
 
@@ -11,7 +13,7 @@ internal static class BuildInfo
 {
     public const string Name = "AdBlocker";
     public const string Author = "tetra, Xavi";
-    public const string Version = "1.0.3";
+    public const string Version = "1.0.4";
     public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
 }
 
@@ -124,6 +126,22 @@ public class Mod : MelonMod
             catch (Exception e)
             {
                 Logger.Error("Failed to remove VRC+ PFP Button");
+                Logger.Error(e);
+            }
+        }
+
+        if (Settings.RemoveVrcPlusGetMoreFavorites.Value)
+        {
+            try
+            {
+                GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/MenuContent/Screens/Avatar/Vertical Scroll View/Viewport/FavoriteListTemplate/GetMoreFavorites/MoreFavoritesButton"));
+                GameObject.DestroyImmediate(Helpers.FindInactive("UserInterface/MenuContent/Screens/Avatar/Vertical Scroll View/Viewport/FavoriteListTemplate/GetMoreFavorites/MoreFavoritesText"));
+
+                Logger.Msg("Removed \"Get More Favorites\" Button");
+            }
+            catch(Exception e)
+            {
+                Logger.Error("Failed to remove \"Get More Favorites\" Button");
                 Logger.Error(e);
             }
         }
