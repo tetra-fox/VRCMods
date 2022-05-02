@@ -1,5 +1,13 @@
 name: Build
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    paths:
+      - "**.cs"
+      - "**.csproj"
+      - "pronouns.json"
+      - "VRCMods.sln"
+      - "Directory.Build.props"
+  workflow_dispatch:
 
 jobs:
   build:
