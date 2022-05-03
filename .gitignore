@@ -1,4 +1,5 @@
-.idea/
+# Rider stuff
+.idea/**/*
 
 *.suo
 *.user
@@ -12,6 +13,7 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 
+# Hidden mods (they're not toxic, I just don't want to release for one reason or another :P)
 AvaTools/**/*
 ComfierVRMenu/**/*
 VXPLauncher/**/*
