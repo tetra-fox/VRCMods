@@ -14,7 +14,7 @@
     ],
     "downloadlink": "https://github.com/tetra-fox/VRCMods/releases/download/2022.5.2/AdBlocker.dll",
     "sourcelink": "https://github.com/tetra-fox/VRCMods",
-    "changelog": "* Fixed preference names not corresponding to the correct elements (i'm really dumb)",
+    "changelog": "* Fixed preference names not corresponding to the correct elements (i'm really dumb)\n* Added remove \"Get More Favorites\" button",
     "embedcolor": "#d92341"
   },
   {
