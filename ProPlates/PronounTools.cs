@@ -25,22 +25,15 @@ internal static class PronounTools
     public static List<string> GetPronouns(string bio)
     {
         MatchCollection matches = Regex.Matches(bio, @"(?:^|\W)([a-zA-Z]*[⁄＼][a-zA-Z⁄＼]*)(?:$|\W)");
-        List<string> pronouns = new();
+        HashSet<string> pronouns = new();
 
-        // O(n^2) ehehehe
         foreach (Match match in matches)
         {
-            // split into separate pronouns
             string[] foundPronouns = match.Groups[1].Value.Split('⁄', '＼');
-            foreach (string text in foundPronouns)
-            {
-                // ignore pronouns not in the pronouns table
-                if (_allowedPronouns.All(s => s != text.ToLower())) continue;
-                // add to list (ignoring duplicates)
-                if (!pronouns.Contains(text)) pronouns.Add(text);
-            }
+            foreach (string text in foundPronouns.Where(e => _allowedPronouns.Contains(e.ToLower())))
+                pronouns.Add(text);
         }
 
-        return pronouns;
+        return pronouns.ToList();
     }
 }

@@ -12,7 +12,7 @@ internal static class BuildInfo
 {
     public const string Name = "ProPlates";
     public const string Author = "tetra";
-    public const string Version = "3.0.0";
+    public const string Version = "3.0.1";
     public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
 }
 
@@ -35,31 +35,13 @@ public class Mod : MelonMod
 
     private static void Init()
     {
-        VRChatUtilityKit.Utilities.NetworkEvents.OnPlayerJoined += player =>
-        {
-            string pronouns = GetPlayerPronouns(player);
-            if (player && pronouns != null && Settings.MaxPronouns.Value > 0) MakePlate(player, pronouns);
-        };
-
-        VRChatUtilityKit.Utilities.NetworkEvents.OnPlayerLeft += player =>
-        {
-            KeyValuePair<Player, Plate> plateToRemove = _cabinet.Plates.Find(pair => pair.Key == player);
-            if (plateToRemove.Equals(new KeyValuePair<Player, Plate>())) return; // no matches
-            _cabinet.Remove(plateToRemove);
-        };
-
+        VRChatUtilityKit.Utilities.NetworkEvents.OnPlayerJoined += TryMakePlate;
+        VRChatUtilityKit.Utilities.NetworkEvents.OnPlayerLeft += player => _cabinet.TryRemove(player);
         VRChatUtilityKit.Utilities.NetworkEvents.OnRoomLeft += () => _cabinet = new PlateStore();
 
         Logger.Msg("Initialized!");
     }
-
-    private static void MakePlate(Player player, string text)
-    {
-        Logger.Msg("Setting pronouns for {0}", player.prop_APIUser_0.displayName);
-        Plate customPlate = new(player, text, Color.white, containerPrefix: "ProPlates");
-        _cabinet.Add(player, customPlate);
-    }
-
+    
     private static string GetPlayerPronouns(Player player)
     {
         // combine bio and status to make my life easier
@@ -73,9 +55,19 @@ public class Mod : MelonMod
         return pronouns.Count != 0 ? string.Join("/", pronouns) : null;
     }
 
+    private static void TryMakePlate(Player player)
+    {
+        string pronouns = GetPlayerPronouns(player);
+        if (!player || pronouns == null || Settings.MaxPronouns.Value == 0) return;
+        
+        Logger.Msg("Setting pronouns for {0}", player.prop_APIUser_0.displayName);
+        Plate customPlate = new(player, pronouns, Color.white, containerPrefix: "ProPlates");
+        _cabinet.Add(player, customPlate);
+    }
+    
     private static void UpdatePlates()
     {
-        // if maxpronouns are zero, empty the cabinet (destroy all plate objects)
+        // if MaxPronouns is zero, empty the PlateStore (destroy all plate objects)
         if (Settings.MaxPronouns.Value < 1)
         {
             _cabinet.Empty();
@@ -87,16 +79,12 @@ public class Mod : MelonMod
         if (_cabinet.IsEmpty)
         {
             foreach (Player player in PlayerManager.field_Private_Static_PlayerManager_0.field_Private_List_1_Player_0)
-            {
-                string pronouns = GetPlayerPronouns(player);
-                if (pronouns == null) continue;
-                MakePlate(player, pronouns);
-            }
+                TryMakePlate(player);
             return;
         }
 
         // update text in place
-        foreach (KeyValuePair<Player, Plate> plate in _cabinet.Plates)
+        foreach (KeyValuePair<Player, Plate> plate in _cabinet.GetPlates)
         {
             string pronouns = GetPlayerPronouns(plate.Key);
             if (pronouns == "") return;

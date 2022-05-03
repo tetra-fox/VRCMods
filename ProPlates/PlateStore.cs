@@ -6,22 +6,22 @@ using VRC;
 namespace ProPlates;
 public class PlateStore
 {
-    public readonly List<KeyValuePair<Player, Plate>> Plates = new();
+    public Dictionary<Player, Plate> GetPlates { get; } = new();
+    public bool IsEmpty => this.GetPlates.Count == 0;
 
-    public void Add(Player player, Plate plate) => this.Plates.Add(new KeyValuePair<Player, Plate>(player, plate));
+    public void Add(Player player, Plate plate) => this.GetPlates[player] = plate;
 
-    public void Remove(KeyValuePair<Player, Plate> plate)
+    public void TryRemove(Player player)
     {
-        this.Plates.Remove(plate);
-        if (!GameObject.Find(VRChatUtilityKit.Utilities.Extensions.GetPath(plate.Value.GameObject))) return;
-        Object.DestroyImmediate(plate.Value.GameObject);
-        Mod.Logger.Msg("Removed pronouns for {0}", plate.Key.prop_APIUser_0.displayName);
+        if (!this.GetPlates.TryGetValue(player, out Plate plate)) return;
+        this.GetPlates.Remove(player);
+        if (!GameObject.Find(VRChatUtilityKit.Utilities.Extensions.GetPath(plate.GameObject))) return;
+        Object.DestroyImmediate(plate.GameObject);
+        Mod.Logger.Msg("Removed pronouns for {0}", player.prop_APIUser_0.displayName);
     }
 
     public void Empty()
     {
-        foreach (KeyValuePair<Player, Plate> plate in this.Plates.ToList()) this.Remove(plate);
+        foreach (Player player in this.GetPlates.Keys.ToList()) this.TryRemove(player);
     }
-
-    public bool IsEmpty => this.Plates.Count == 0;
 }
