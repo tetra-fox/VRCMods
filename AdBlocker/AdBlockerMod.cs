@@ -1,12 +1,13 @@
 ﻿using MelonLoader;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 [assembly: MelonInfo(typeof(AdBlocker.Mod), AdBlocker.BuildInfo.Name, AdBlocker.BuildInfo.Version, AdBlocker.BuildInfo.Author, AdBlocker.BuildInfo.DownloadLink)]
 [assembly: MelonGame("VRChat", "VRChat")]
-[assembly: MelonAdditionalDependencies("VRChatUtilityKit")]
 [assembly: MelonOptionalDependencies("UI Expansion Kit")]
 
 namespace AdBlocker;
@@ -15,20 +16,21 @@ internal static class BuildInfo
 {
     public const string Name = "AdBlocker";
     public const string Author = "tetra, Xavi";
-    public const string Version = "1.0.4";
+    public const string Version = "1.0.5";
     public const string DownloadLink = "https://github.com/tetra-fox/VRCMods";
 }
 
 public class Mod : MelonMod
 {
     private static readonly MelonLogger.Instance Logger = new(BuildInfo.Name);
+    private Dictionary<MelonPreferences_Entry<bool>, string[]> ads;
 
     public override void OnApplicationStart()
     {
         Settings.Register();
         
         // Settings values and their corresponding GameObject paths
-        Dictionary<MelonPreferences_Entry<bool>, string[]> ads = new()
+        ads = new()
         {
             {Settings.RemoveCarousel,
                 new[] {"UserInterface/Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Carousel_Banners"}},
@@ -48,25 +50,11 @@ public class Mod : MelonMod
                 new[] {"UserInterface/MenuContent/Screens/Avatar/Vertical Scroll View/Viewport/FavoriteListTemplate/GetMoreFavorites/MoreFavoritesButton",
                     "UserInterface/MenuContent/Screens/Avatar/Vertical Scroll View/Viewport/FavoriteListTemplate/GetMoreFavorites/MoreFavoritesText"}}
         };
+    }
 
-        VRChatUtilityKit.Utilities.VRCUtils.OnUiManagerInit += () =>
-        {
-            foreach (KeyValuePair<MelonPreferences_Entry<bool>, string[]> ad in ads.Where(element => element.Key.Value))
-            {
-                foreach (string path in ad.Value)
-                {
-                    try
-                    {
-                        Object.DestroyImmediate(Helpers.FindInactive(path));
-                    }
-                    catch (Exception e)
-                    {
-                        Logger.Error($"Failed to {char.ToLower(ad.Key.DisplayName[0]) + ad.Key.DisplayName.Substring(1)}");
-                        Logger.Error(e);
-                    }
-                }
-            }
-        };
+    public override void OnApplicationLateStart()
+    {
+        MelonCoroutines.Start(WaitForUIManager());
     }
 
     public override void OnPreferencesSaved()
@@ -79,5 +67,40 @@ public class Mod : MelonMod
         Helpers.DisplayHudMessage($"[AdBlocker]\n{msg}");
 
         Settings.Changed = false;
+    }
+
+    public IEnumerator WaitForUIManager()
+    {
+        while(VRCUiManager.prop_VRCUiManager_0 == null)
+        {
+            yield return null;
+        }
+
+        while(GameObject.Find("UserInterface").transform.Find("Canvas_QuickMenu(Clone)") == null)
+        {
+            yield return null;
+        }
+
+        OnUIManagerInit();
+    }
+
+    public void OnUIManagerInit()
+    {
+        foreach(KeyValuePair<MelonPreferences_Entry<bool>, string[]> ad in ads.Where(element => element.Key.Value))
+        {
+            foreach(string path in ad.Value)
+            {
+                try
+                {
+                    Object.DestroyImmediate(Helpers.FindInactive(path));
+                }
+                catch(Exception e)
+                {
+                    Logger.Error($"Failed to {char.ToLower(ad.Key.DisplayName[0]) + ad.Key.DisplayName.Substring(1)}");
+                    Logger.Error(e);
+                }
+            }
+        }
+        ads = null;
     }
 }
