@@ -17,7 +17,7 @@
 ## Preface
 Modification of the VRChat client is a violation of VRChat's [Terms of Service](https://hello.vrchat.com/legal), is not officially supported or endorsed by VRChat, and **can result in an account ban**. However, if using mods that _enhance_ your user experience and do not harm the experience of others, it is generally safe to say that no bans will be issued, as generally, they are undetectable by other users.
 
-The mods listed here require **VRChatUtilityKit**. Please be sure to install it before using any of my mods! You can get it [here](https://github.com/SleepyVRC/Mods/releases).
+The mods listed here (except [AdBlocker](../../tree/master/AdBlocker)) require **VRChatUtilityKit**. Please be sure to install it before using any of my mods! You can get it [here](https://github.com/SleepyVRC/Mods/releases).
 
 ## Building Locally
 1. Ensure you have the latest [.NET SDK 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
